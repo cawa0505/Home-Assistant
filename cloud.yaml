@@ -1,0 +1,28 @@
+#################################################################
+## Cloud
+#################################################################        
+        
+        ##########################################################
+        ## Google
+        ##########################################################
+
+     google_actions:
+      filter:
+        include_entities:
+            - sensor.trash_day
+            - sensor.recycle_day
+        include_domains:
+            - automation
+            - input_boolean
+            - scene
+            - sensor
+            - switch
+        exclude_domains:
+            - alert
+            - cover
+            - fan
+            - group
+            - lock
+            - light
+            - media_player
+        

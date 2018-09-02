@@ -1,0 +1,144 @@
+#################################################################
+## Home Assistant
+#################################################################
+
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: metric
+  time_zone: Europe/London
+  customize: !include customize.yaml
+  whitelist_external_dirs:
+  - /config/camera_snapshot
+
+frontend:
+
+config:
+
+http:
+    api_password: !secret api_password
+  #  base_url: !secret public_url
+  #  ssl_certificate: !secret http_ssl_certificate
+  #  ssl_key: !secret http_ssl_key
+updater:
+discovery:
+conversation:
+history:
+logbook:
+map:
+sun:
+
+#################################################################
+## Components
+#################################################################
+
+nest:
+    client_id: !secret nest_client_id
+    client_secret: !secret nest_secret
+
+media_player:
+        platform: kodi
+        host: 192.168.86.39
+        port: 80
+
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+ # - platform: amazon_polly
+   # aws_access_key_id: !secret aws_access_key_id
+   # aws_secret_access_key: !secret aws_secret_access_key
+google:
+  client_id: !secret google_id
+  client_secret: !secret google_secret
+
+hue:
+  bridges:
+     - host: 192.168.86.46
+       allow_unreachable: true
+       allow_hue_groups: false
+
+switch:
+  - platform: tplink
+    name: "Man Cave Servers"
+    host: "192.168.86.178"
+  - platform: tplink
+    name: "Man Cave Console Lights"
+    host: "192.168.86.35"
+  - platform: tplink
+    name: "Man Cave Fan"
+    host: "192.168.86.47"
+
+ffmpeg:
+
+mqtt:
+  broker: localhost
+  discovery: true
+  discovery_prefix: smartthings
+
+device_tracker:
+  - platform: bluetooth_tracker
+    track_new_devices: true
+
+  - platform: ping
+    track_new_devices: true
+   #interval_seconds: 5
+    consider_home: 300
+    scan_interval: 15
+    hosts:
+      Aimee_iPhone: 192.168.86.98
+      Chris_Android: 192.168.86.99
+      charlotesiphonelan: 192.168.86.55
+
+  - platform: nmap_tracker
+    track_new_devices: true
+    scan_options: " --privileged -sP "
+    hosts:
+      - 192.168.86.0/24
+      - 192.168.87.0/24
+    home_interval: 10
+    consider_home: 300
+    interval_seconds: 30
+
+notify:
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chat
+
+  - name: telegram_chris
+    platform: telegram
+    chat_id: !secret telegram_chris_chat
+
+telegram_bot:
+    platform: polling
+    api_key: !secret telegram_api
+    parse_mode: html
+    allowed_chat_ids:
+        - !secret telegram_chat
+        - !secret telegram_chris_chat
+        - !secret telegram_aimee_chat
+
+remote:
+  - platform: harmony
+    name: Living room
+    host: 192.168.86.30
+
+
+#################################################################
+## Includes
+#################################################################
+
+cloud: !include cloud.yaml
+automation: !include_dir_merge_list automation
+sensor: !include sensors.yaml
+scene: !include scenes.yaml
+group: !include groups.yaml
+script: !include scripts.yaml
+light: !include light_group.yaml
+binary_sensor: !include binary_sensor.yaml
+input_boolean: !include input_boolean.yaml
+rest_command: !include rest_command.yaml
+input_select: !include input_select.yaml

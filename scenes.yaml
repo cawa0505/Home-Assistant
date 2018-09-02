@@ -1,0 +1,37 @@
+#################################################################
+## Scenes
+#################################################################
+
+  - name: Security
+    entities:
+        input_boolean.alarm_tripped:
+            state: on
+        light.hue_lights:
+            state: on
+            flash: long
+            brightness_pct: 100
+            xy_color: [0.6531,0.2834]
+        light.hue_lights_exterior:
+            state: on
+            brightness_pct: 100
+
+  - name: Disable Security
+    entities:
+        input_boolean.alarm_tripped:
+            state: off
+        light.hue_lights_exterior:
+            state: off
+
+  - name: Livingroom Dim
+    entities:
+        group.livingroom_media:
+            state: on
+            transition: 30
+            brightness_pct:
+
+  - name: Livingroom Normal
+    entities:
+        group.livingroom_media:
+            state: on
+            transition: 2
+            brightness_pct: 40

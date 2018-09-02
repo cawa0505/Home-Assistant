@@ -1,0 +1,486 @@
+#################################################################
+## Groups
+#################################################################
+
+default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+        - persistent_notification.1
+        - group.interior_lights
+        - camera.front_door
+        - camera.man_cave
+        - group.exterior_lights
+        - group.household
+        - group.climate_control
+        - group.automation_on_demand
+        - group.motion_sensors
+        - group.calendar_events
+
+cameras:
+    name: Cameras
+    view: yes
+    icon: mdi:camera
+    entities:
+        - camera.front_door
+        - camera.man_cave
+family:
+    name: Family
+    entities:
+        - group.person_keith
+        - group.person_terri
+
+visitors:
+    name: Visitors
+    entities:
+
+calendar_events:
+    name: Calendar Events
+    entities:
+        - calendar.contacts
+        - calendar.family
+        - calendar.chris_starks_facebook_events
+        - calendar.chris_stark_main
+        - calendar.holidays_in_united_kingdom
+        - calendar.liverpool
+        - calendar.my_meetups
+        - calendar.work
+
+sensors:
+    name: Sensors
+    view: yes
+    icon: mdi:gauge
+    entities:
+        - camera.front_door
+        - group.battery_levels
+        - group.door_bell
+        - group.occupancy
+        - group.door_bell_status
+        - group.nest_hermostat
+        - group.household
+        - group.motion_sensors
+        - group.pi_hole
+        - group.temperatures
+        - group.monitor_devices
+        - group.servers
+        - group.family
+        - group.internet
+
+Temperatures:
+     - sensor.heating_thermostat_temperature
+     - sensor.man_cave_temperature
+     - sensor.kitchen_temperature
+     - sensor.upstairs_temperature
+     - sensor.downstairs_temperature
+
+bedrooms:
+    name: Bedrooms
+    view: yes
+    icon: mdi:hotel
+    entities:
+      - group.bedroom
+      - group.guest_bedroom
+
+HTPC:
+    name: HTPC
+    view: yes
+    entities:
+      - group.sabnzbd
+      - group.radarr
+      - group.sonarr
+
+All Input Boolean:
+      - input_boolean.panic_mode
+      - input_boolean.master_security
+      - input_boolean.alarm_tripped
+      - input_boolean.enable_security
+      - input_boolean.disable_intruder
+      - input_boolean.disable_downloads
+      - input_boolean.trash_reminders
+
+troubleshooting:
+    name: Troubleshooting
+    view: yes
+    icon: mdi:none
+    entities:
+     - group.all_devices
+     - group.scenes
+     - group.all_input_boolean
+     - group.all_switches
+     - group.all_lights
+
+Sabnzbd:
+    entities:
+      - sensor.sabnzbd_disk
+      - sensor.sabnzbd_disk_free
+      - sensor.sabnzbd_left
+      - sensor.sabnzbd_queue
+      - sensor.sabnzbd_queue_count
+      - sensor.sabnzbd_speed
+      - sensor.sabnzbd_status
+
+Radarr:
+    entities:
+      - sensor.radarr_movies
+      - sensor.radarr_status
+      - sensor.radarr_upcoming
+
+Sonarr:
+    entities:
+      - sensor.sonarr_upcoming
+      - sensor.sonarr_queue
+      - sensor.sonarr_series
+      - sensor.sonarr_wanted
+
+Door Bell Status:
+     entities:
+       - binary_sensor.front_door_camera__garden_activity
+       - binary_sensor.front_door_camera__gate_activity
+       - binary_sensor.front_door_camera__road_activity
+       - binary_sensor.front_door_camera_motion_detected
+       - binary_sensor.front_door_camera_online
+       - binary_sensor.front_door_camera_person_detected
+       - binary_sensor.front_door_camera_sound_detected
+
+Pi Hole:
+    entities:
+     - sensor.pihole_ads_blocked_today
+     - sensor.pihole_ads_percentage_blocked_today
+     - sensor.pihole_dns_queries_cached
+     - sensor.pihole_dns_queries_forwarded
+     - sensor.pihole_dns_queries_today
+     - sensor.pihole_dns_unique_clients
+     - sensor.pihole_dns_unique_domains
+     - sensor.pihole_domains_blocked
+
+Guest Bedroom:
+    control: hidden
+    entities:
+        - light.bedroom_2_light
+
+outdoors:
+    name: Outdoors
+    view: yes
+    icon: mdi:tree
+    entities:
+        - group.exterior_lights
+        - camera.front_door
+
+Bedroom:
+    control: hidden
+    entities:
+      - light.bedroom_light
+
+weatherdashboard:
+    name: Weather
+    view: yes
+    icon: mdi:weather-partlycloudy
+    entities:
+      - group.thermostat
+      - group.humidity
+      - group.weather
+
+Weather:
+    - sun.sun
+    - sensor.moon
+    - sensor.met_office_feels_like_temperature
+    - sensor.met_office_humidity
+    - sensor.met_office_probability_of_precipitation
+    - sensor.met_office_temperature
+    - sensor.met_office_uv
+    - sensor.met_office_visibility
+    - sensor.met_office_visibility_distance
+    - sensor.met_office_weather
+    - sensor.met_office_wind_direction
+    - sensor.met_office_wind_gust
+    - sensor.met_office_wind_speed
+
+Battery Levels:
+    - sensor.man_cave_button__battery
+    - sensor.man_cave_motion__sensor_battery
+    - sensor.alarm_button__battery
+    - sensor.motion_downstairs_battery
+    - sensor.motion_upstairs_battery
+    - sensor.motion_kitchen_battery
+
+Doors:
+    - binary_sensor.man_cave_door
+    - binary_sensor.porch_door
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+Motion Sensors:
+    - sensor.motion_downstairs
+    - sensor.motion_upstairs
+    - sensor.motion_kitchen
+    - binary_sensor.man_cave_door
+    - binary_sensor.porch_door
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+    - binary_sensor.man_cave_motion_sensor
+    - binary_sensor.front_door_camera__garden_activity
+    - binary_sensor.front_door_camera__gate_activity
+    - binary_sensor.front_door_camera__road_activity
+    - binary_sensor.front_door_camera_motion_detected
+
+Livingroom_Lights:
+    name: Living Room Lights
+    entities:
+        - light.living_ceiling_light_1
+        - light.living_ceiling_light_2
+        - light.living_ceiling_light_3
+        - light.living_wall_light_1
+        - light.living_wall_light_2
+        - light.hue_livingroom_lightstrip
+
+automation:
+    name: Automation
+    view: yes
+    icon: mdi:robot
+    entities:
+      - group.all_automations
+      - group.alarm
+
+Interior:
+    control: hidden
+    entities:
+      - light.downstairs_hallway_light_2
+      - light.hallway
+      - light.upstairs_hallway
+      - light.bottom_man_cave
+      - light.man_cave_landing
+
+Interior Lights:
+      - light.downstairs_hallway_light_2
+      - light.hallway
+      - light.upstairs_hallway
+      - light.bottom_man_cave
+      - light.man_cave_landing
+
+Exterior Lights:
+      - light.porch_light
+      - light.outside_light
+
+living:
+    name: Living
+    view: yes
+    icon: mdi:sofa
+    entities:
+        - group.livingroom_lights
+        - media_player.living_room_tv
+        - media_player.living_room_home
+        - media_player.kodi
+        - remote.harmony_hub
+
+motion_announcements:
+        name: Nest Hello Motion Announcements
+        entities:
+          - media_player.hallway_home
+          - media_player.man_cave_home
+          - media_player.kitchen_home
+
+Livingroom_Media:
+  name: Livingroom Media lights
+  entities:
+        - light.living_wall_light_1
+        - light.living_wall_light_2
+        - light.hue_livingroom_lightstrip
+
+Man_Cave_Lights:
+    name: Man Cave Lights
+    entities:
+        - light.man_cave_desk_light
+        - light.man_cave_desk_strip
+        - light.man_cave_lamp
+        - light.man_cave_light
+
+Man_Cave_Switches:
+    name: Man Cave Switches
+    entities:
+        - switch.man_cave_console_lights
+
+dining:
+    name: Dining
+    view: yes
+    icon: mdi:silverware-variant
+    entities:
+      - group.kitchen_lights
+
+Internet:
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+  - sensor.speedtest_ping
+  - sensor.hass_uptime
+  - sensor.google_wifi_status
+  - sensor.google_wifi_uptime
+  - sensor.google_wifi_last_restart
+  - sensor.google_wifi_current_version
+  - sensor.google_wifi_local_ip
+  - sensor.google_wifi_new_version
+
+Google_Home:
+    name: Google Home Devices
+    view: yes
+    icon: mdi:music
+    entities:
+        - media_player.hallway_home
+        - media_player.living_room_home
+        - media_player.man_cave_home
+        - media_player.kitchen_home
+        - media_player.bedroom_2_home
+
+Man_Cave_Room:
+    name: Man Cave
+    view: yes
+    icon: mdi:google-controller
+    entities:
+        - group.man_cave_lights
+        - group.man_cave_switches
+
+Kitchen_Lights:
+    name: Kitchen Lights
+    entities:
+        - light.kitchen_light_1
+        - light.kitchen_light_2
+
+Thermostat:
+    entities:
+        - sensor.heating_thermostat_temperature
+
+
+Humidity:
+    entities:
+       - sensor.heating_thermostat_humidity
+
+Automation On Demand:
+    control: hidden
+    entities:
+       - automation.trash_and_recycle_pickup_reminder
+       - input_select.trash_pickup_day
+       - input_select.recycle_pickup_week
+       - input_select.recycle_pickup_day
+       - sensor.trash_day
+       - sensor.recycle_day
+       - sensor.recycle_pickup_week
+
+nest_hermostat:
+    name: Nest Thermostat
+    entities:
+        - binary_sensor.heating_thermostat_online
+        - climate.heating
+        - sensor.heating_thermostat_temperature
+        - sensor.heating_thermostat_target
+        - sensor.heating_thermostat_operation_mode
+        - binary_sensor.heating_thermostat_fan
+        - binary_sensor.heating_thermostat_has_leaf
+        - binary_sensor.heating_thermostat_is_locked
+        - binary_sensor.heating_thermostat_is_using_emergency_heat
+        - sensor.heating_thermostat_humidity
+        - sensor.heating_thermostat_hvac_state
+
+Climate Control:
+    control: hidden
+    entities:
+      - climate.heating
+
+Alarm:
+    control: hidden
+    entities:
+      - input_boolean.master_security
+      - input_boolean.enable_security
+      - automation.security__motion_alarm
+      - automation.security__door_alarm
+      - input_boolean.panic_mode
+      - input_boolean.alarm_tripped
+
+Household:
+    - group.person_chris
+    - group.person_aimee
+    - group.person_charlotte
+
+Alarm_SafeList:
+    - group.household
+    - group.family
+
+person_chris:
+  name: Chris
+  icon: mdi:account-multiple
+  entities:
+      - device_tracker.chris_android
+      - device_tracker.oneplus_3t
+
+person_terri:
+   name: Terri
+   icon: mdi:account-multiple
+   entities:
+
+
+person_aimee:
+  name: Aimee
+  icon: mdi:account-multiple
+  entities:
+      - device_tracker.aimee_iphone
+      - device_tracker.aimees_iphone
+
+person_keith:
+  name: Keith
+  icon: mdi:account-multiple
+  entities:
+      - device_tracker.aimeedad
+
+person_charlotte:
+  name: Charlotte
+  icon: mdi:account-multiple
+  entities:
+      - device_tracker.charlottes_iphone
+      - device_tracker.charlotesiphonelan
+
+monitor_devices:
+    name: Monitored Devices
+    entities:
+        - device_tracker.aimeesaplewatchlan
+        - device_tracker.rubylan
+
+servers:
+    name: Servers
+    entities:
+        - sensor.hpml10v2
+        - device_tracker.freenas
+        - device_tracker.pihole
+
+Scenes:
+    - scene.lock_doors
+    - scene.put_out_fire
+    - scene.security
+    - scene.disable_security
+    - scene.start_a_fire
+    - scene.unlock_doors
+    - scene.vacation
+    - scene.vacation_disable_automation
+    - scene.vacation_enable_automation
+
+
+Trash Schedule:
+    entities:
+      - sensor.trash_day
+      - sensor.trash_pickup_day
+      - input_select.trash_pickup_day
+
+Recycle Schedule:
+    entities:
+      - sensor.recycle_day
+      - sensor.recycle_pickup_day
+      - sensor.recycle_pickup_week
+      - input_select.recycle_pickup_day
+      - sensor.current_week
+      - input_select.recycle_pickup_week
+
+Date Time:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.time_utc
+      - sensor.date__time
+      - sensor.time__date
+      - sensor.internet_time
+      - sensor.rocket_launch_time
+      - sensor.beat
