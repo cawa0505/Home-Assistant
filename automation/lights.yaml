@@ -1,0 +1,356 @@
+#################################################################
+## Lights Automations
+#################################################################
+
+    - alias: 'Man Cave Button Presed - on'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.man_cave_button
+        from: 'off'
+        to: 'on'
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+            - light.man_cave_lamp
+            - light.man_cave_desk_strip
+        - service: switch.turn_on
+          entity_id: 
+             - switch.man_cave_console_lights
+            
+    - alias: 'Man Cave Button Pressed - off'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.man_cave_button
+        from: 'on'
+        to: 'off'
+        
+      action:
+        - service: light.turn_off
+          entity_id: 
+            - light.man_cave_lamp
+            - light.man_cave_desk_strip
+        - service: switch.turn_off
+          entity_id: 
+             - switch.man_cave_console_lights
+             
+        ##########################################################
+        ## Porch Door - Open
+        ##########################################################
+            
+    - alias: Porch Door - Open
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.porch_door
+        from: 'off'
+        to: 'on'
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+             - light.porch_light
+             
+        ##########################################################
+        ## Porch Door - Open 10 mins
+        ##########################################################
+            
+    - alias: Porch Door - Open - 10 mins
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.porch_door
+        from: 'off'
+        to: 'on'
+        for: '00:10:00'
+        
+      action:
+        - service: light.turn_off
+          entity_id: 
+             - light.porch_light
+        
+        ##########################################################
+        ## Porch Door - Open 20 mins
+        ##########################################################
+            
+    - alias: Porch Door - Open - 20 mins
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.porch_door
+        from: 'off'
+        to: 'on'
+        for: '00:20:00'
+        
+      action:
+        - service: light.turn_off
+          entity_id: 
+             - light.porch_light
+             
+        ##########################################################
+        ## Porch Door - Closed
+        ##########################################################
+             
+    - alias: Porch Door - Closed
+      trigger:
+        platform: state
+        entity_id: binary_sensor.porch_door
+        from: 'to'
+        to: 'off'
+        for: '00:03:00'
+        
+      action:
+        service: light.turn_off
+        entity_id: 
+             - light.porch_light
+        
+        ##########################################################
+        ## Porch Door - Open & Sunset
+        ##########################################################
+             
+    - alias: Porch Door - Open & Sunset
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.porch_door
+        from: 'off'
+        to: 'on'
+        
+      condition: 
+        condition: state
+        entity_id: sun.sun
+        state: below_horizon  
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+             - light.porch_light
+             - light.outside_light
+             
+        #########################################################
+        ## Man Cave Door - Open & Sunset
+        ##########################################################
+             
+    - alias: Man Cave Door - Open & Sunset
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.man_cave_door
+        from: 'off'
+        to: 'on'
+        
+      condition: 
+        condition: state
+        entity_id: sun.sun
+        state: below_horizon  
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+             - light.man_cave_desk_strip
+             - light.man_cave_lamp
+        - service: switch.turn_on
+          entity_id: 
+             - switch.man_cave_console_lights
+             
+        #########################################################
+        ## Man Cave Door - Closed - Turn on landing light
+        ##########################################################
+             
+    - alias: Man Cave Door - Closed - Turn on landing light
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.man_cave_door
+        from: 'on'
+        to: 'off'
+        
+      condition:
+        - condition: state
+          entity_id: sun.sun
+          state: below_horizon    
+        
+      action:
+        - service: light.turn_on
+          entity_id: light.man_cave_landing
+
+        ##########################################################
+        ## Front Door - Open
+        ##########################################################
+            
+    - alias: Front Door - Open
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door
+        from: 'off'
+        to: 'on'
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+             - light.porch_light
+             
+            
+        ##########################################################
+        ## Front Door - Closed
+        ##########################################################
+            
+    - alias: Front Door - Closed
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door
+        to: 'off'
+        for: '00:05:00'
+       
+      action:
+        - service: light.turn_off
+          entity_id: 
+             - light.outside_light
+             - light.porch_light
+     
+     ##########################################################
+        ## Front Door - Closed - 15 mins
+        ##########################################################
+            
+    - alias: Front Door - Closed - 15 mins
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door
+        to: 'off'
+        for: '00:15:00'
+       
+      action:
+        - service: light.turn_off
+          entity_id: 
+             - light.outside_light
+             - light.porch_light
+             
+        ##########################################################
+        ## Front Door - Open & Sunset
+        ##########################################################
+             
+    - alias: Front Door - Open & Sunset
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door
+        from: 'off'
+        to: 'on'
+        
+      condition: 
+        condition: state
+        entity_id: sun.sun
+        state: below_horizon  
+        
+      action:
+        - service: light.turn_on
+          entity_id: 
+             - light.porch_light
+             - light.outside_light
+             - group.interior_lights
+             
+        ##########################################################
+        ## Upstairs motion - Turn on Man Cave Landing
+        ##########################################################
+
+    - alias: 'Upstairs motion - Turn on Man Cave Landing'
+      initial_state: on
+      trigger:
+        - platform: state
+          entity_id: sensor.upstairs_motion_motion
+          to: 'on'        
+          
+      condition: 
+        condition: and
+        conditions:
+        
+          - condition: state
+            entity_id: sun.sun
+            state: below_horizon    
+        
+          - condition: state
+            entity_id: light.upstairs_hallway
+            state: 'on'
+               
+      action:
+        - service: light.turn_on
+          entity_id: 
+            - light.man_cave_landing
+            
+        ##########################################################
+        ## Upstairs motion - Turn off Man Cave Landing
+        ##########################################################
+
+    - alias: 'Upstairs motion - Turn off Man Cave Landing'
+      initial_state: on
+      trigger:
+        - platform: state
+          entity_id: sensor.upstairs_motion_motion
+          to: 'off'  
+          for: '00:03:00'
+               
+      action:
+        - service: light.turn_off
+          entity_id: 
+            - light.man_cave_landing
+            
+        ##########################################################
+        ## No-one home - lights on
+        ########################################################## 
+        
+    - alias: 'No One Home - Lights on'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'off'
+        to: 'on'
+        entity_id: group.all_lights
+      
+      action:
+        - delay: 00:02:00
+        - wait_template: "{{ states.group.household.state == 'not_home' }}"
+          timeout: 00:00:03   
+        - service: notfy.telegram
+          data_template: 
+            message: >
+              The following lights are on: 
+              {%- for entity_id in states.group.all_lights.attributes.entity_id -%}
+                {% set parts = entity_id.split('.') -%}
+                {%- if states(entity_id) == 'on' %}
+                {%- if loop.first %} {% elif loop.last %} and the {% else %}, the {% endif -%}{{ states[parts[0]][parts[1]].name }}{% endif -%}
+              {%- endfor %}
+              
+        ##########################################################
+        ## No-one home - Hue lights on
+        ########################################################## 
+               
+    - alias: 'No One Home - Hue Lights on'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'off'
+        to: 'on'
+        entity_id: light.hue_lights
+      
+      action:
+        - delay: 00:02:00
+        - wait_template: "{{ states.group.household.state == 'not_home' }}"
+          timeout: 00:00:03   
+        - service: notfy.telegram
+          data_template: 
+            message: >
+              The following lights are on: 
+              {%- for entity_id in states.light.hue_lights.attributes.entity_id -%}
+                {% set parts = entity_id.split('.') -%}
+                {%- if states(entity_id) == 'on' %}
+                {%- if loop.first %} {% elif loop.last %} and the {% else %}, the {% endif -%}{{ states[parts[0]][parts[1]].name }}{% endif -%}
+              {%- endfor %}
+            
+
+             
+             

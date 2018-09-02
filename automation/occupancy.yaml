@@ -1,0 +1,282 @@
+#################################################################
+## Occupancy Automations
+#################################################################
+
+        ##########################################################
+        ## Household Away - Master Security = on
+        ##########################################################
+
+    - alias: 'Both away - Max sab speed'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'home'
+        to: 'not_home'
+        entity_id: group.household
+
+      condition:
+      - condition: state
+        entity_id: input_boolean.master_security
+        state: 'on'
+
+      action:
+         - service: homeassistant.turn_on
+           entity_id: input_boolean.disable_downloads
+         - service: notify.telegram
+           data:
+            message: 'No-one home - Alarm has been armed & downloads set to unrestricted'
+
+        ##########################################################
+        ## Household - Master Security = off
+        ##########################################################
+
+    - alias: 'Both away - Max sab speed'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'home'
+        to: 'not_home'
+        entity_id: group.household
+
+      condition:
+      - condition: state
+        entity_id: input_boolean.master_security
+        state: 'off'
+
+      action:
+         - service: homeassistant.turn_on
+           entity_id: input_boolean.disable_downloads
+         - service: notify.telegram
+           data:
+            message: 'No-one home - Alarm not set, Security is disabled. Downloads set to unrestricted'
+
+        ##########################################################
+        ## Household is home - Master Security = on
+        ##########################################################
+
+    - alias: 'Someone is home - Limit sab speed'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.household
+
+      condition:
+        - condition: time
+          after: '08:00:00'
+          before: '23:00:00'
+
+        - condition: state
+          entity_id: input_boolean.master_security
+          state: 'on'
+
+      action:
+        - service: homeassistant.turn_off
+          entity_id: input_boolean.disable_downloads
+        - service: notify.telegram
+          data:
+            message: 'Someone is home - Alarm has been disarmed & downloads have been limited'
+
+        ##########################################################
+        ## Household is home - Master Security = off
+        ##########################################################
+
+    - alias: 'Someone is home - Limit sab speed'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.household
+
+      condition:
+        - condition: time
+          after: '08:00:00'
+          before: '23:00:00'
+
+        - condition: state
+          entity_id: input_boolean.master_security
+          state: 'off'
+
+      action:
+        - service: homeassistant.turn_off
+          entity_id: input_boolean.disable_downloads
+        - service: notify.telegram
+          data:
+            message: 'Someone is home - Security is disabled, no disarm. Downloads have been limited'
+
+        ##########################################################
+        ## Chris is home at sunset
+        ##########################################################
+
+    - alias: 'Chris is home at sunset - turn on lights'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.person_chris
+
+      condition:
+         condition: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id:
+            - group.interior_lights
+            - light.outside_light
+            - light.porch_light
+
+        ##########################################################
+        ## Charlotte is home at sunset
+        ##########################################################
+
+    - alias: 'Charlotte is home at sunset - turn on lights'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.person_charlotte
+
+      condition:
+         condition: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id:
+            - group.interior_lights
+            - light.outside_light
+            - light.porch_light
+
+        ##########################################################
+        ## Aimee is home at sunset
+        ##########################################################
+
+    - alias: 'Aimee is home at sunset - turn on lights'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.person_aimee
+
+      condition:
+         condition: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id:
+            - group.interior_lights
+            - light.outside_light
+            - light.porch_light
+
+        ##########################################################
+        ## Visitors
+        ##########################################################
+
+    - alias: 'Visitors arrive'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.visitors
+
+      action:
+      - service: notify.telegram
+        data:
+         message: 'A visitor has arrived'
+
+        ##########################################################
+        ## No One Home - Turn off all lights
+        ##########################################################
+
+    - alias: 'No One Home - Turn off all lights'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'home'
+        to: 'not_home'
+        entity_id: group.household
+
+      action:
+        - service: light.turn_off
+          entity_id:
+            - group.all_lights
+
+        ##########################################################
+        ## Nll home - turn off outside lights
+        ##########################################################
+
+    - alias: 'All home - turn off outside light'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'off'
+        to: 'on'
+        entity_id: group.exterior_lights
+
+      action:
+        - delay: 00:03:00
+        - wait_template: "{{ states.group.household.state == 'home' }}"
+          timeout: '00:00:03'
+        - service: light.turn_off
+          entity_id:
+            - group.exterior_lights
+
+        ##########################################################
+        ## Man Cave Door closed and no motion - Turn off lights
+        ##########################################################
+
+    - alias: 'Man Cave Door Closed, no motion - Turn off lights'
+      initial_state: on
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.man_cave_motion_sensor
+          to: 'off'
+          for: '00:03:00'
+
+      condition:
+         condition: state
+         entity_id: binary_sensor.man_cave_door
+         state: 'off'
+
+      action:
+        - service: light.turn_off
+          entity_id:
+            - group.man_cave_lights
+        - service: switch.turn_off
+          entity_id:
+             - switch.man_cave_console_lights
+
+        ##########################################################
+        ## Man Cave Door Open, Sunrise - Turn on lights
+        ##########################################################
+
+    - alias: 'Man Cave Door open, sunrise - Turn on lights'
+      initial_state: on
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.man_cave_door
+          to: 'on'
+
+      condition:
+         condition: state
+         entity_id:  sun.sun
+         state: 'above_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id:
+            - light.man_cave_desk_strip
+        - service: switch.turn_on
+          entity_id:
+             - switch.man_cave_console_lights

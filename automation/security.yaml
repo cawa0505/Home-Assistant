@@ -1,0 +1,338 @@
+#################################################################
+## Security Automations
+#################################################################
+
+        ##########################################################
+        ## Enable Alarm when household away
+        ##########################################################
+
+- alias: Security - Enable Alarm when Away
+
+  trigger:
+    - platform: state
+      entity_id: group.alarm_safelist
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.enable_security
+    - delay:
+        seconds: 10
+    - service: rest_command.reset_alarm_button
+
+        ##########################################################
+        ## Disable Alarm when Home
+        ##########################################################
+
+- alias: Security - Disable Alarm when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.alarm_safelist
+      from: 'not_home'
+      to: 'home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.enable_security
+    - delay:
+        seconds: 10
+    - service: rest_command.reset_alarm_button
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.alarm_tripped
+
+        ##########################################################
+        ## Household away - Master Security enabled. Front door open
+        ##########################################################
+
+- alias: 'Man Cave Door - Open'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'on'
+
+  action:
+    - service: notify.telegram
+      data:
+        message: 'No-one home - Alarm triggered - Front Door Open'
+    - wait_template: "{{ states.enable_security == 'on' }}"
+      timeout: '00:30:00'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - service: notify.telegram
+      data:
+        message: 'Alarm has sounded'
+
+        ##########################################################
+        ## Panic Mode
+        ##########################################################
+
+- alias: Security - Panic Mode
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.alarm_button
+      to: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.panic_mode
+    - service: notify.telegram
+      data:
+        message: 'PANIC BUTTON HAS BEEN PUSHED!'
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - delay:
+        seconds: 10
+    - service: rest_command.reset_alarm_button
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.panic_mode
+
+        ##########################################################
+        ## Shut Off Alarm Manually
+        ##########################################################
+
+- alias: Security - Shut Off Alarm Manually
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.alarm_button
+      to: 'off'
+
+  action:
+     - service: notify.telegram
+       data:
+         message: 'Alarm has been disarmed manually'
+     - service: homeassistant.turn_off
+       entity_id: input_boolean.enable_security
+     - service: homeassistant.turn_off
+       entity_id: input_boolean.alarm_tripped
+     - service: scene.turn_on
+       entity_id: scene.disable_security
+
+    # - service: wink.enable_siren
+    #  data:
+    #    entity_id: wink.siren
+    #    enabled: 'false'
+
+        ##########################################################
+        ## Household away - Master Security enabled. Man Cave Door Open
+        ##########################################################
+
+- alias: 'Man Cave Door - Open'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.man_cave_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       brightness_pct: 100
+       color_name: "red"
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights_exterior
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.hue_lights
+      data:
+       flash: long
+    - service: notify.telegram
+      data:
+        message: 'No-one home - Alarm triggered - Man Cave Door Open'
+
+        ##########################################################
+        ## Household away - Master Security disabled. Front Door Open
+        ##########################################################
+
+- alias: 'Front Door Open - Not Home'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'off'
+
+
+  action:
+    - service: notify.telegram
+      data:
+        message: 'No-one home - Security disabled - Front Door is open'
+
+        ##########################################################
+        ## Household away - Master Security disabled. Man Cave Door Open
+        ##########################################################
+
+- alias: 'Man Cave Door - Not Home'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.man_cave_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'off'
+
+  action:
+    - service: notify.telegram
+      data:
+       message: 'No-one home - Security disabled - Man Cave Door Open'
+
+        ##########################################################
+        ## Household away - Master Security enabled. Back Door Open
+        ##########################################################
+
+- alias: 'Back Door - Not Home'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'on'
+
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.alarm_tripped
+    - service: notify.telegram
+      data:
+       message: 'No-one home - Alarm triggered - Front Door Open'
+    - wait_template: "{{ states.enable_security == 'on' }}"
+      timeout: '00:30:00'
+    - service: script.turn_on
+      entity_id: script.alarm_flash
+    - service: notify.telegram
+      data:
+       message: 'Alarm sounded'
+
+        ##########################################################
+        ## Household away - Master Security disabled. Back Door Open
+        ##########################################################
+
+- alias: 'Back door - Not Home'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_door
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'off'
+
+  action:
+    - service: notify.telegram
+      data:
+       message: 'No-one home - Security disabled - Back Door Open'

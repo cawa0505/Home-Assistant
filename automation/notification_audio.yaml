@@ -1,0 +1,287 @@
+#################################################################
+## Audio Notification Automations
+#################################################################
+
+        ##########################################################
+        ## Alarm Audio Notification
+        ##########################################################
+
+- alias: Notification Audio - Alarm Audio
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.alarm_tripped
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.alarm_safelist
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.enable_security
+      state: 'on'
+
+  action:
+    - delay: 00:00:03
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 1
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'I want to play a game, you have 30 seconds to find and disable the alarm before some crazy shit happens'
+    - delay: 00:00:30
+    - wait_template: "{{ states.enable_security == 'on' }}"
+      timeout: 00:00:01
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 1
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'Game over - Mug shot has been taken and the Police Has Been Notified!'
+
+        ##########################################################
+        ## Panic Audio Notification
+        ##########################################################
+
+
+- alias: Notification Audio - Panic Audio
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.panic_mode
+      from: 'off'
+      to: 'on'
+
+  condition:
+
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 1
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'The rules of our game have been very clear. You need to abide by those rules.'
+
+        ##########################################################
+        ## Disable Alarm Audio Notification
+        ##########################################################
+
+
+- alias: Notification Audio - Disable Alarm Audio
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.alarm_button
+      from: 'reset'
+      to: 'off'
+
+  condition:
+
+  action:
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'Alarm has been disarmed!'
+    - service: rest_command.reset_alarm_button
+
+        ##########################################################
+        ## Welcome Home Audio Notification - Chris
+        ##########################################################
+
+- alias: 'Chris is home'
+  initial_state: on
+  trigger:
+    platform: state
+    from: 'not_home'
+    to: 'home'
+    entity_id: group.person_chris
+
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '22:00:00'
+
+  action:
+    - wait_template: "{{ states.binary_sensor.porch_door.state == 'on' }}"
+      timeout: 00:05:00
+    - delay: 00:00:01
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.hallway_speaker
+        volume_level: 0.5
+    - service: tts.google_say
+      entity_id: media_player.hallway_speaker
+      data_template:
+        #volume_level: .82
+        message: !include random_welcome/chris.yaml
+
+
+        ##########################################################
+        ## Welcome Home Audio Notification - Aimee
+        ##########################################################
+
+- alias: 'Aimee is home'
+  initial_state: on
+  trigger:
+    platform: state
+    from: 'not_home'
+    to: 'home'
+    entity_id: group.person_aimee
+
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '22:00:00'
+
+  action:
+    - wait_template: "{{ states.binary_sensor.porch_door.state == 'on' }}"
+      timeout: 00:05:00
+    - delay: 00:00:01
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.hallway_speaker
+        volume_level: 0.5
+    - service: tts.google_say
+      entity_id: media_player.hallway_speaker
+      data_template:
+       #volume_level: .82
+       message: !include random_welcome/aimee.yaml
+
+        ##########################################################
+        ## Welcome Home Audio Notification - Keith
+        ##########################################################
+
+- alias: 'Keith has arrived'
+  initial_state: on
+  trigger:
+    platform: state
+    from: 'not_home'
+    to: 'home'
+    entity_id: group.person_keith
+
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '22:00:00'
+
+  action:
+    - wait_template: "{{ states.binary_sensor.front_door.state == 'on' }}"
+      timeout: 00:03:00
+    - delay: 00:00:03
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.hallway_speaker
+        volume_level: 0.5
+    - service: tts.google_say
+      entity_id: media_player.hallway_speaker
+      data_template:
+       #volume_level: .82
+       message: !include random_welcome/keith.yaml
+
+        ##########################################################
+        ## Welcome Home Audio Notification - Charlotte
+        ##########################################################
+
+- alias: 'Charlotte is home'
+  initial_state: on
+  trigger:
+    platform: state
+    from: 'not_home'
+    to: 'home'
+    entity_id: group.person_charlotte
+
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '22:00:00'
+
+  action:
+    - wait_template: "{{ states.binary_sensor.porch_door.state == 'on' }}"
+      timeout: 00:05:00
+    - delay: 00:00:01
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.hallway_speaker
+        volume_level: 0.5
+    - service: tts.google_say
+      entity_id: media_player.hallway_speaker
+      data_template:
+        ##volume_level: .82
+        message: !include random_welcome/charlotte.yaml
+
+        ##########################################################
+        ## Man Cave Audio Notification
+        ##########################################################
+
+#- alias: Notification Audio - Man Cave
+
+ # trigger:
+  #  - platform: state
+   #   entity_id: binary_sensor.man_cave_door
+    #  from: 'off'
+     # to: 'on'
+
+  #condition:
+   # - condition: state
+    #  entity_id: input_boolean.alarm_tripped
+     # state: 'on'
+    #- condition: state
+     # entity_id: group.household
+      #state: 'not_home'
+    #- condition: state
+     # entity_id: input_boolean.enable_security
+      #state: 'on'
+
+  #action:
+   # - delay: 00:00:15
+    #- wait_template: "{{ states.enable_security == 'on' }}"
+     # timeout: 00:00:01
+    #- service: media_player.volume_set
+     # data_template:
+      #  entity_id: group.google_home
+       # volume_level: 1
+    #- service: tts.google_say
+     # entity_id: media_player.man_cave_home
+      #data:
+       # message: 'You are not Authorized to be here. Mug shot has been taken and the Police Has Been Notified!'
+
+
+        ##########################################################
+        ## Man Cave Door Audio Notification
+        ##########################################################
+
+- alias: 'Man Cave Door - Chris Not Home'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.man_cave_door
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.person_chris
+      state: 'not_home'
+
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+
+  action:
+    - delay: 00:00:15
+    - wait_template: "{{ states.enable_security == 'on' }}"
+      timeout: 00:00:01
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.man_cave_home
+        volume_level: 0.5
+    - service: tts.google_say
+      entity_id: media_player.man_cave_home
+      data:
+        message: 'You are not the master, what are you doing here, smile at the camera, even better get naked!'

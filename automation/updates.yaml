@@ -1,0 +1,20 @@
+#################################################################
+## Check for updates
+#################################################################
+
+        ##########################################################
+        ## Home Assistant
+        ##########################################################
+        
+  - alias: 'Home Assistant - Update Available Notifications'
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      - service: notify.telegram
+        data_template:
+         message: 'Update {{ states.updater.updater.state }} for Home Assistant
+                   is available and 
+                   check {{states.updater.updater.attributes.release_notes}} for 
+                   the latest changes.'

@@ -1,0 +1,10 @@
+
+
+trash_status:
+  alias: 'Check Trash Week'
+  sequence:
+  - service: tts.google_say
+    entity_id: group.google_home
+    data_template:
+      message: >-
+        The pool temperature is currently
