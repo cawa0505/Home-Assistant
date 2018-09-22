@@ -142,3 +142,4 @@ binary_sensor: !include binary_sensor.yaml
 input_boolean: !include input_boolean.yaml
 rest_command: !include rest_command.yaml
 input_select: !include input_select.yaml
+camera: !include cameras.yaml
