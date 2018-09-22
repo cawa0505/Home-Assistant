@@ -14,13 +14,13 @@
         from: 'off'
         to: 'on'
 
-      condition:
+    #  condition:
 
-         - condition: template
-           value_template: "{{ as_timestamp(now()) - as_timestamp(binary_sensor.front_door.last_updated) > 180 }}"
+    #     - condition: template
+      #     value_template: "{{ as_timestamp(now()) - as_timestamp(binary_sensor.front_door.last_updated) > 180 }}"
 
-         - condition: template
-           value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
+    #     - condition: template
+    #       value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
 
       action:
         #- service: tts.google_say
