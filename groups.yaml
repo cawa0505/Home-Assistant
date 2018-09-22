@@ -33,6 +33,7 @@ family:
 visitors:
     name: Visitors
     entities:
+        - group.person_charlotte
 
 calendar_events:
     name: Calendar Events
@@ -395,7 +396,6 @@ Alarm:
 Household:
     - group.person_chris
     - group.person_aimee
-    - group.person_charlotte
 
 Alarm_SafeList:
     - group.household
