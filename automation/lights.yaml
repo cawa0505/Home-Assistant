@@ -350,3 +350,34 @@
                 {%- if states(entity_id) == 'on' %}
                 {%- if loop.first %} {% elif loop.last %} and the {% else %}, the {% endif -%}{{ states[parts[0]][parts[1]].name }}{% endif -%}
               {%- endfor %}
+
+        ##########################################################
+        ## Turn on outside light at sunset
+        ##########################################################
+
+    - alias: 'Turn on outside light between sunset +1'
+      initial_state: on
+      trigger:
+        platform: sun
+        event: sunset
+        offset: '+01:00:00'
+
+      action:
+       - service: light.turn_on
+         entity_id:
+           - light.outside_light
+
+        ##########################################################
+        ## Turn off outside light at 00:00
+        ##########################################################
+
+    - alias: 'Turn off outside light at 00:00'
+      initial_state: on
+      trigger:
+        platform: time
+        at: '00:00:00'
+
+      action:
+       - service: light.turn_off
+         entity_id:
+           - light.outside_light
