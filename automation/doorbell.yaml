@@ -152,15 +152,15 @@
         ## Front Door Camera - Telegram Sound Detected
         ##########################################################
 
-    - alias: 'Front Door Camera - Telegram Sound Detected'
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id:  binary_sensor.front_door_camera_sound_detected
-        from: 'off'
-        to: 'on'
+   # - alias: 'Front Door Camera - Telegram Sound Detected'
+     # initial_state: on
+     # trigger:
+    #    platform: state
+     #   entity_id:  binary_sensor.front_door_camera_sound_detected
+     #   from: 'off'
+     #   to: 'on'
 
-      action:
-        - service: notify.telegram
-          data:
-           message: 'Loud bang detected at the front door'
+     # action:
+      #  - service: notify.telegram
+      #    data:
+      #     message: 'Loud bang detected at the front door'
