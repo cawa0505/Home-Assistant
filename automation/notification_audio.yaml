@@ -251,37 +251,3 @@
      # entity_id: media_player.man_cave_home
       #data:
        # message: 'You are not Authorized to be here. Mug shot has been taken and the Police Has Been Notified!'
-
-
-        ##########################################################
-        ## Man Cave Door Audio Notification
-        ##########################################################
-
-- alias: 'Man Cave Door - Chris Not Home'
-  initial_state: on
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.man_cave_door
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.person_chris
-      state: 'not_home'
-
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-
-  action:
-    - delay: 00:00:15
-    - wait_template: "{{ states.enable_security == 'on' }}"
-      timeout: 00:00:01
-    - service: media_player.volume_set
-      data_template:
-        entity_id: media_player.man_cave_home
-        volume_level: 0.5
-    - service: tts.google_say
-      entity_id: media_player.man_cave_home
-      data:
-        message: 'You are not the master, what are you doing here, smile at the camera, even better get naked!'
