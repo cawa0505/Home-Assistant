@@ -1,0 +1,10 @@
+#################################################################
+## Cameras
+#################################################################
+
+  - platform: yi
+    name: Man Cave
+    host: '192.168.86.52'
+    password: !secret yihome_camera
+    path: /home/camera/feed
+    ffmpeg_arguments: '-vf scale=800:450'
