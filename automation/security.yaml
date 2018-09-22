@@ -75,32 +75,42 @@
       state: 'on'
 
   action:
+    - wait_template: "{{ states.enable_security != 'off' }}"
+      timeout: '00:00:05'
+
     - service: notify.telegram
       data:
         message: 'No-one home - Alarm triggered - Front Door Open'
-    - delay: 00:00:03
+
     - service: media_player.volume_set
       data_template:
         entity_id: group.google_home
         volume_level: 1
+
     - service: tts.google_say
       entity_id: group.google_home
       data:
         message: 'I want to play a game, you have 30 seconds to find and disable the alarm before some crazy shit happens'
+
     - wait_template: "{{ states.enable_security != 'off' }}"
       timeout: 00:00:30
+
     - service: media_player.volume_set
       data_template:
         entity_id: group.google_home
         volume_level: 1
+
     - service: tts.google_say
       entity_id: group.google_home
       data:
         message: 'Game over - Mug shot has been taken and the Police Has Been Notified!'
+
     - wait_template: "{{ states.enable_security != 'off' }}"
       timeout: '00:00:30'
+
     - service: homeassistant.turn_on
       entity_id: input_boolean.alarm_tripped
+
     - service: light.turn_on
       entity_id:
         - light.hue_lights
@@ -108,12 +118,14 @@
        brightness_pct: 100
        color_name: "red"
        flash: long
+
     - service: light.turn_on
       entity_id:
         - light.hue_lights_exterior
       data:
        brightness_pct: 100
        flash: long
+
     - service: notify.telegram
       data:
         message: 'Alarm has sounded'
@@ -428,3 +440,30 @@
       entity_id: media_player.man_cave_home
       data:
         message: 'You are not the master, what are you doing here, smile at the camera, even better get naked!'
+
+        ##########################################################
+        ## Disarm Notification
+        ##########################################################
+        
+- alias: 'Disarm Notification'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.enable_security
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.master_security
+      state: 'on'
+
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 0.3
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'Alarm has been disarmed'
