@@ -10,7 +10,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door_camera__gate_activity
+        entity_id: binary_sensor.front_door_camera__garden_activity
         from: 'off'
         to: 'on'
 
@@ -52,7 +52,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera__gate_activity
+          entity_id: binary_sensor.front_door_camera__garden_activity
           from: 'off'
           to: 'on'
 
@@ -76,7 +76,7 @@
 
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera__gate_activity
+          entity_id: binary_sensor.front_door_camera__garden_activity
           from: 'on'
           to: 'off'
           for:
