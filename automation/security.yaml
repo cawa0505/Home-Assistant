@@ -385,6 +385,10 @@
       entity_id: group.google_home
       data:
         message: 'The rules of our game have been very clear. You need to abide by those rules.'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.man_cave_home
+        volume_level: 0.3        
 
         ##########################################################
         ## Disable Alarm Audio Notification
@@ -440,11 +444,15 @@
       entity_id: media_player.man_cave_home
       data:
         message: 'You are not the master, what are you doing here, smile at the camera, even better get naked!'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.man_cave_home
+        volume_level: 0.3
 
         ##########################################################
         ## Disarm Notification
         ##########################################################
-        
+
 - alias: 'Disarm Notification'
   initial_state: on
   trigger:
