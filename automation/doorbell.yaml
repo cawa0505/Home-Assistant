@@ -125,28 +125,28 @@
         ## Front Door Camera - TTS Sound Detected
         ##########################################################
 
-    - alias: 'Front Door Camera - TTS Sound Detected'
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id:  binary_sensor.front_door_camera_sound_detected
-        from: 'off'
-        to: 'on'
+#    - alias: 'Front Door Camera - TTS Sound Detected'
+    #  initial_state: on
+    #  trigger:
+    #    platform: state
+    #    entity_id:  binary_sensor.front_door_camera_sound_detected
+    #    from: 'off'
+    #    to: 'on'
 
-      condition:
-        - condition: time
-          after: '09:00:00'
-          before: '21:00:00'
-        - condition: state
-          entity_id: group.household
-          state: 'home'
+  #    condition:
+    #    - condition: time
+    #      after: '09:00:00'
+  #        before: '21:00:00'
+  #      - condition: state
+  #        entity_id: group.household
+  #        state: 'home'
 
-      action:
-        - service: tts.google_say
-          entity_id: group.motion_announcements
-          data_template:
+  #    action:
+    #    - service: tts.google_say
+    #      entity_id: group.motion_announcements
+    #      data_template:
           ##volume_level: .82
-            message: "Loud noise detected at the front door"
+      #      message: "Loud noise detected at the front door"
 
         ##########################################################
         ## Front Door Camera - Telegram Sound Detected
