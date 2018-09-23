@@ -3,48 +3,6 @@
 #################################################################
 
         ##########################################################
-        ## Alarm Audio Notification
-        ##########################################################
-
-- alias: Notification Audio - Alarm Audio
-
-  trigger:
-    - platform: state
-      entity_id: input_boolean.alarm_tripped
-      from: 'off'
-      to: 'on'
-
-  condition:
-    - condition: state
-      entity_id: group.alarm_safelist
-      state: 'not_home'
-    - condition: state
-      entity_id: input_boolean.enable_security
-      state: 'on'
-
-  action:
-    - delay: 00:00:03
-    - service: media_player.volume_set
-      data_template:
-        entity_id: group.google_home
-        volume_level: 1
-    - service: tts.google_say
-      entity_id: group.google_home
-      data:
-        message: 'I want to play a game, you have 30 seconds to find and disable the alarm before some crazy shit happens'
-    - delay: 00:00:30
-    - wait_template: "{{ states.enable_security == 'on' }}"
-      timeout: 00:00:01
-    - service: media_player.volume_set
-      data_template:
-        entity_id: group.google_home
-        volume_level: 1
-    - service: tts.google_say
-      entity_id: group.google_home
-      data:
-        message: 'Game over - Mug shot has been taken and the Police Has Been Notified!'
-
-        ##########################################################
         ## Panic Audio Notification
         ##########################################################
 
