@@ -8,3 +8,17 @@
     password: !secret yihome_camera
     path: /tmp/sd/record
     ffmpeg_arguments: '-vf scale=800:450'
+
+  - platform: yi
+    name: Downstairs
+    host: '192.168.86.40'
+    password: !secret yihome_camera
+    path: /tmp/sd/record
+    ffmpeg_arguments: '-vf scale=800:450'
+
+  - platform: yi
+    name: Upstairs
+    host: '192.168.86.45'
+    password: !secret yihome_camera
+    path: /tmp/sd/record
+    ffmpeg_arguments: '-vf scale=800:450'
