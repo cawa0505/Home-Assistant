@@ -387,3 +387,37 @@
        - service: light.turn_off
          entity_id:
            - light.outside_light
+
+        ##########################################################
+        ## Turn off Hallway Lamp at 23:00
+        ##########################################################
+
+    - alias: 'Turn off Hallway Lamp at 23:00'
+      initial_state: on
+      trigger:
+        platform: time
+        at: '23:00:00'
+
+      action:
+       - service: homeassistant.turn_off
+         entity_id: switch.hallway_lamp
+
+        ##########################################################
+        ## Turn off Hallway Lamp at 23:00
+        ##########################################################
+
+    - alias: 'Turn on Hallway Lamp at sunset'
+      initial_state: on
+      trigger:
+        platform: sun
+        event: sunset
+        offset: "+01:00:00"
+
+      condition:
+      - condition: state
+        entity_id: input_boolean.master_security
+        state: 'on'
+
+      action:
+       - service: homeassistant.turn_on
+         entity_id: switch.hallway_lamp
