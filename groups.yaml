@@ -24,11 +24,12 @@ cameras:
     entities:
         - camera.front_door
         - camera.man_cave
+        - camera.downstairs
+        - camera.upstairs
 family:
     name: Family
     entities:
         - group.person_keith
-        - group.person_terri
 
 visitors:
     name: Visitors
@@ -109,6 +110,7 @@ troubleshooting:
      - group.all_input_boolean
      - group.all_switches
      - group.all_lights
+     - group.all_scenes
 
 Sabnzbd:
     entities:
@@ -204,6 +206,10 @@ Battery Levels:
     - sensor.motion_upstairs_battery
     - sensor.motion_kitchen_battery
 
+security_doors:
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+
 Doors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
@@ -249,6 +255,7 @@ Interior:
       - light.upstairs_hallway
       - light.bottom_man_cave
       - light.man_cave_landing
+      - switch.hallway_lamp
 
 Interior Lights:
       - light.downstairs_hallway_light_2
@@ -256,6 +263,7 @@ Interior Lights:
       - light.upstairs_hallway
       - light.bottom_man_cave
       - light.man_cave_landing
+      - switch.hallway_lamp
 
 Exterior Lights:
       - light.porch_light
@@ -408,12 +416,6 @@ person_chris:
       - device_tracker.chris_android
       - device_tracker.oneplus_3t
 
-person_terri:
-   name: Terri
-   icon: mdi:account-multiple
-   entities:
-
-
 person_aimee:
   name: Aimee
   icon: mdi:account-multiple
@@ -457,6 +459,8 @@ Scenes:
     - scene.vacation
     - scene.vacation_disable_automation
     - scene.vacation_enable_automation
+    - scene.livingroom_dim
+    - scene.livingroom_normal
 
 
 Trash Schedule:
