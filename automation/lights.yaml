@@ -157,7 +157,7 @@
 
         #########################################################
         ## Man Cave Door - Closed - Turn on landing light
-        ##########################################################
+        #########################################################
 
     - alias: Man Cave Door - Closed - Turn on landing light
       initial_state: on
@@ -175,6 +175,11 @@
       action:
         - service: light.turn_on
           entity_id: light.man_cave_landing
+          data_template:
+            brightness: >
+              {% if now().hour > 20 %}64
+              {% else %}100
+              {% endif %}
 
         ##########################################################
         ## Front Door - Open
@@ -279,8 +284,9 @@
 
       action:
         - service: light.turn_on
-          entity_id:
-            - light.man_cave_landing
+          entity_id: light.man_cave_landing
+          data_template:
+            brightness: '{% if now().hour > 20 %}64{% else %}100{% endif %}'
 
         ##########################################################
         ## Upstairs motion - Turn off Man Cave Landing
@@ -313,9 +319,9 @@
 
       action:
         - delay: 00:02:00
-        - wait_template: "{{ states.group.household.state == 'not_home' }}"
-          timeout: 00:00:03
-        - service: notfy.telegram
+        - condition: template
+          value_template: "{{ is_state('group.household.state', 'not_home') }}"
+        - service: notify.telegram
           data_template:
             message: >
               The following lights are on:
@@ -339,9 +345,9 @@
 
       action:
         - delay: 00:02:00
-        - wait_template: "{{ states.group.household.state == 'not_home' }}"
-          timeout: 00:00:03
-        - service: notfy.telegram
+        - condition: template
+          value_template: "{{ is_state('group.household.state', 'not_home') }}"
+        - service: notify.telegram
           data_template:
             message: >
               The following lights are on:
