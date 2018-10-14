@@ -71,6 +71,9 @@ switch:
   - platform: tplink
     name: "Man Cave Fan"
     host: "192.168.86.47"
+  - platform: tplink
+    name: "Hallway Lamp"
+    host: "192.168.86.50"
 
 ffmpeg:
 
@@ -100,7 +103,7 @@ device_tracker:
       - 192.168.86.0/24
       - 192.168.87.0/24
     home_interval: 10
-    consider_home: 300
+    consider_home: 600
     interval_seconds: 30
 
 notify:
