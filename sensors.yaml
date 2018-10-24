@@ -94,7 +94,7 @@
     days: 2
 
   - platform: mqtt
-    name: "Man Cave temperature"
+    name: "Man Cave Temperature"
     state_topic: "smartthings/Man Cave Motion Sensor/temperature/state"
     device_class: temperature
     unit_of_measurement: '°C'
@@ -124,21 +124,21 @@
   - platform: template
     sensors:
       kitchen_temperature:
-        friendly_name: 'Kitchen temperature'
+        friendly_name: 'Kitchen Temperature'
         value_template: '{{states.sensor.motion_kitchen.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       upstairs_temperature:
-        friendly_name: 'Upstairs temperature'
+        friendly_name: 'Upstairs Temperature'
         value_template: '{{states.sensor.motion_upstairs.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       downstairs_temperature:
-        friendly_name: 'Downstairs temperature'
+        friendly_name: 'Downstairs Temperature'
         value_template: '{{states.sensor.motion_downstairs.attributes.temperature}}'
         unit_of_measurement: '°C'
 
@@ -171,6 +171,60 @@
       hpml10v2:
         value_template: '{% if is_state("device_tracker.hpml10v2", "home") %}Online{% else %}Offline{% endif %}'
         friendly_name: 'HP ML10v2'
+
+
+  - platform: mqtt
+    name: "Bedroom Temperature"
+    state_topic: "smartthings/Bedroom Sensor/temperature/state"
+    device_class: temperature
+    unit_of_measurement: '°C'
+    retain: true
+
+  - platform: mqtt
+    name: "Bedroom Humidity"
+    state_topic: "smartthings/Bedroom Sensor/humidity/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Small Bedroom Temperature"
+    state_topic: "smartthings/Small Bedroom Sensor/temperature/state"
+    device_class: temperature
+    unit_of_measurement: '°C'
+    retain: true
+
+  - platform: mqtt
+    name: "Small Bedroom Humidity"
+    state_topic: "smartthings/Small Bedroom Sensor/humidity/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Man Cave Temperature 1"
+    state_topic: "smartthings/Man Cave Sensor/temperature/state"
+    device_class: temperature
+    unit_of_measurement: '°C'
+    retain: true
+
+  - platform: mqtt
+    name: "Man Cave Humidity"
+    state_topic: "smartthings/Man Cave Sensor/humidity/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Living Room Temperature"
+    state_topic: "smartthings/Living Room Sensor/temperature/state"
+    device_class: temperature
+    unit_of_measurement: '°C'
+    retain: true
+
+  - platform: mqtt
+    name: "Living Room Humidity"
+    state_topic: "smartthings/Living Room Sensor/humidity/state"
+    unit_of_measurement: '%'
+    retain: true
+
 
   #- platform: synologydsm
    # host: 192.168.86.9
