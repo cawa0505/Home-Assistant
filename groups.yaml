@@ -67,6 +67,7 @@ sensors:
         - group.servers
         - group.family
         - group.internet
+        - group.humidity
 
 Temperatures:
      - sensor.heating_thermostat_temperature
@@ -74,6 +75,10 @@ Temperatures:
      - sensor.kitchen_temperature
      - sensor.upstairs_temperature
      - sensor.downstairs_temperature
+     - sensor.living_room_temperature
+     - sensor.bedroom_temperature
+     - sensor.small_bedroom_temperature
+     - sensor.man_cave_temperature_1
 
 bedrooms:
     name: Bedrooms
@@ -355,10 +360,13 @@ Thermostat:
     entities:
         - sensor.heating_thermostat_temperature
 
-
 Humidity:
     entities:
        - sensor.heating_thermostat_humidity
+       - sensor.living_room_humidity
+       - sensor.man_cave_humidity
+       - sensor.small_bedroom_humidity   
+       - sensor.bedroom_humidity            
 
 Automation On Demand:
     control: hidden
