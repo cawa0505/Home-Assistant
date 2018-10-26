@@ -242,6 +242,10 @@ Livingroom_Lights:
         - light.living_ceiling_light_3
         - light.living_wall_light_1
         - light.living_wall_light_2
+
+LivingRoom_TVLight:
+    name: "Living Room TV Light"
+    entities:
         - light.hue_livingroom_lightstrip
 
 automation:
@@ -365,8 +369,8 @@ Humidity:
        - sensor.heating_thermostat_humidity
        - sensor.living_room_humidity
        - sensor.man_cave_humidity
-       - sensor.small_bedroom_humidity   
-       - sensor.bedroom_humidity            
+       - sensor.small_bedroom_humidity
+       - sensor.bedroom_humidity
 
 Automation On Demand:
     control: hidden
