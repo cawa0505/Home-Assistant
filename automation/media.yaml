@@ -5,14 +5,14 @@
         ##########################################################
         ## Downloads
         ##########################################################
-        
+
     - alias: 'Downloads - Unrestricted'
       initial_state: on
       trigger:
         platform: state
         entity_id: input_boolean.disable_downloads
         to: 'on'
-        
+
       action:
         service: rest_command.speed_limit_unlimited
 
@@ -22,7 +22,7 @@
         platform: state
         entity_id: input_boolean.disable_downloads
         to: 'off'
-        
+
       action:
         service: rest_command.speed_limit_restricted
 
@@ -35,12 +35,12 @@
       trigger:
         platform: sun
         event: sunrise
-        
+
       condition:
         condition: state
         entity_id: group.household
         state: home
-        
+
       action:
         service: remote.send_command
         data:
@@ -48,7 +48,7 @@
           command:
             - CinemaDay
           device: 53468354
-                
+
         ##########################################################
         ## Cinema Night
         ##########################################################
@@ -58,12 +58,12 @@
       trigger:
         platform: sun
         event: sunset
-        
+
       condition:
         condition: state
         entity_id: group.household
         state: home
-        
+
       action:
         service: remote.send_command
         data:
@@ -71,7 +71,7 @@
           command:
            - CinemaNight
           device: 53468354
-    
+
 
         ##########################################################
         ## OSMC playing Above Horizon - Cinema Day
@@ -84,12 +84,12 @@
         entity_id: media_player.kodi
         to: 'paused'
         from: 'playing'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'above_horizon'
-         
+
       action:
          service: remote.send_command
          data:
@@ -99,32 +99,32 @@
           device: 53468354
 
         ##########################################################
-        ## OSMC Playing Below Horizon - Dim Lights
+        ## OSMC Playing Below Horizon
         ##########################################################
 
-    - alias: 'OSMC Playing Below Horizon - Dim Lights'
+    - alias: 'OSMC Playing Below Horizon'
       initial_state: on
       trigger:
         platform: state
         entity_id: media_player.kodi
         to: 'playing'
         from: 'idle'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
        - service: scene.turn_on
-         entity_id: scene.livingroom_dim
+         entity_id: scene.living_room_media_playing
        - service: remote.send_command
          data:
           entity_id: remote.living_room
           command:
-            - CinemaNight     
+            - CinemaNight
           device: 53468354
-         
+
         ##########################################################
         ## OSMC changed state - playing > paused
         ##########################################################
@@ -136,16 +136,16 @@
         entity_id: media_player.kodi
         to: 'paused'
         from: 'playing'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
          service: scene.turn_on
          entity_id: scene.livingroom_normal
-         
+
         ##########################################################
         ## OSMC changed state - paused > playing
         ##########################################################
@@ -161,15 +161,15 @@
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
          service: scene.turn_on
          entity_id: scene.livingroom_dim
-         
+
         ##########################################################
         ## OSMC Idle - Normal Lights
         ##########################################################
-     
+
     - alias: 'OSMC idle'
       initial_state: on
       trigger:
@@ -177,16 +177,16 @@
         entity_id: media_player.kodi
         to: 'idle'
         from: 'playing'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
          service: scene.turn_on
          entity_id: scene.livingroom_normal
-     
+
         ##########################################################
         ## Chromecast Playing Below Horizon - Dim lights
         ##########################################################
@@ -198,20 +198,20 @@
         entity_id: media_player.living_room_tv
         to: 'playing'
         from: 'idle'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
         - service: scene.turn_on
-          entity_id: scene.livingroom_dim
+          entity_id: scene.living_room_media_playing
         - service: remote.send_command
           data:
            entity_id: remote.living_room
            command:
-             - CinemaNight      
+             - CinemaNight
            device: 53468354
 
         ##########################################################
@@ -225,24 +225,26 @@
         entity_id: media_player.living_room_tv
         to: 'playing'
         from: 'idle'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'above_horizon'
-         
+
       action:
-         service: remote.send_command
-         data:
-          entity_id: remote.living_room
-          command:
-            - CinemaDay     
-          device: 53468354            
-     
+        - service: scene.turn_on
+          entity_id: scene.living_room_media_playing
+        - service: remote.send_command
+          data:
+           entity_id: remote.living_room
+           command:
+             - CinemaDay
+           device: 53468354
+
         ##########################################################
         ## Chromecase Idle - Normal Lights
         ##########################################################
-     
+
     - alias: 'Chomecast - idle'
       initial_state: on
       trigger:
@@ -250,13 +252,12 @@
         entity_id: media_player.living_room_tv
         to: 'off'
         from: 'playing'
-        
+
       condition:
          condition: state
          entity_id: sun.sun
          state: 'below_horizon'
-         
+
       action:
          service: scene.turn_on
-         entity_id: scene.livingroom_normal  
-             
+         entity_id: scene.livingroom_normal
