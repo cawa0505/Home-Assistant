@@ -22,16 +22,30 @@
         light.hue_lights_exterior:
             state: off
 
+  - name: Living Room Media playing
+    entities:
+      light.hue_lights:
+         state: on
+         brightness_pct: 70
+         hs_color: [27.797,69.412]
+         rgb_color: [255,160,77]
+         xy_color: [0.541,0.386]
+
+        light.Living_room:
+            state: on
+            brightness_pct: 20
+            transition: 2
+
   - name: Livingroom Dim
     entities:
-        group.livingroom_media:
+        light.Living_room:
             state: on
-            transition: 30
-            brightness_pct:
+            brightness_pct: 20
+            transition: 2
 
   - name: Livingroom Normal
     entities:
-        group.livingroom_media:
+        light.Living_room:
             state: on
-            transition: 2
             brightness_pct: 40
+            transition: 2
