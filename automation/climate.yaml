@@ -2,17 +2,20 @@
 ## Thermostat Automations
 #################################################################
 
-        ##########################################################
-        ## Nest Heating Off Detection
-        ##########################################################
 
-    - alias: 'Nest Heating'
+  #################################################################
+  ## Thermostat offline
+  #################################################################
+
+    - alias: 'Thermostat offline'
       initial_state: on
       trigger:
         platform: state
-        entity_id: sensor.heating_thermostat_operation_mode
+        from: 'on'
+        to: 'off'
+        entity_id: binary_sensor.heating_thermostat_online
+
       action:
-        - service: tts.google_say
-          data:
-            message: 'The heating state has changed to off.'
-          entity_id: media_player.man_cave_home     
+      - service: notify.telegram
+        data:
+         message: 'Thermostat is offline - please check heating'  
