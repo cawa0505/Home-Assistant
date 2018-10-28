@@ -206,7 +206,8 @@ Weather:
 
 Battery Levels:
     - sensor.man_cave_button__battery
-    - sensor.man_cave_motion__sensor_battery
+    - sensor.man_cave_motion_sensor__battery
+    - sensor.bathroom_motion_sensor__battery
     - sensor.alarm_button__battery
     - sensor.motion_downstairs_battery
     - sensor.motion_upstairs_battery
@@ -230,7 +231,6 @@ Motion Sensors:
     - binary_sensor.porch_door
     - binary_sensor.back_door
     - binary_sensor.front_door
-    - binary_sensor_bathroom
     - binary_sensor.bathroom_motion_sensor
     - binary_sensor.front_door_camera__garden_activity
     - binary_sensor.front_door_camera__gate_activity
@@ -349,6 +349,8 @@ Google_Home:
         - media_player.man_cave_home
         - media_player.kitchen_home
         - media_player.bedroom_2_home
+        - media_player.kitchen_display
+        - media_player.man_cave_room_display
 
 Man_Cave_Room:
     name: Man Cave
