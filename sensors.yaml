@@ -122,6 +122,13 @@
     retain: true
 
   - platform: mqtt
+    name: "Bathroom Motion Sensor - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Bathroom Motion Sensor/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
     name: "Alarm Button - Battery"
     icon: mdi:battery
     state_topic: "smartthings/Alarm Button/battery/state"
