@@ -79,6 +79,7 @@ Temperatures:
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
      - sensor.man_cave_temperature_1
+     - sensor.bathroom_temperature
 
 bedrooms:
     name: Bedrooms
@@ -224,11 +225,13 @@ Motion Sensors:
     - sensor.motion_downstairs
     - sensor.motion_upstairs
     - sensor.motion_kitchen
+    - binary_sensor.man_cave_motion_sensor
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
     - binary_sensor.front_door
-    - binary_sensor.man_cave_motion_sensor
+    - binary_sensor_bathroom
+    - binary_sensor.bathroom_motion_sensor
     - binary_sensor.front_door_camera__garden_activity
     - binary_sensor.front_door_camera__gate_activity
     - binary_sensor.front_door_camera__road_activity
@@ -242,6 +245,7 @@ Livingroom_Lights:
         - light.living_ceiling_light_3
         - light.living_wall_light_1
         - light.living_wall_light_2
+        - light.hue_livingroom_lightstrip
 
 LivingRoom_TVLight:
     name: "Living Room TV Light"
