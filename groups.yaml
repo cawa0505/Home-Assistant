@@ -105,6 +105,7 @@ All Input Boolean:
       - input_boolean.disable_intruder
       - input_boolean.disable_downloads
       - input_boolean.trash_reminders
+      - input_boolean.disable_light_automations
 
 troubleshooting:
     name: Troubleshooting
@@ -165,9 +166,9 @@ Pi Hole:
 Guest Bedroom:
     control: hidden
     entities:
-        - light.bedroom_2_light
+        - light.guest_bedroom
 
-outdoors:
+Outdoors:
     name: Outdoors
     view: yes
     icon: mdi:tree
