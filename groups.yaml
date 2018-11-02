@@ -105,7 +105,6 @@ All Input Boolean:
       - input_boolean.disable_intruder
       - input_boolean.disable_downloads
       - input_boolean.trash_reminders
-      - input_boolean.disable_light_automations
 
 troubleshooting:
     name: Troubleshooting
@@ -179,7 +178,7 @@ Outdoors:
 Bedroom:
     control: hidden
     entities:
-      - light.bedroom_light
+      - light.bedroom
 
 weatherdashboard:
     name: Weather
@@ -213,6 +212,8 @@ Battery Levels:
     - sensor.motion_downstairs_battery
     - sensor.motion_upstairs_battery
     - sensor.motion_kitchen_battery
+    - sensor.back_door_sensor__battery
+    - sensor.living_room_sensor__battery
 
 security_doors:
     - binary_sensor.back_door
@@ -280,8 +281,8 @@ Interior Lights:
       - switch.hallway_lamp
 
 Exterior Lights:
-      - light.porch_light
-      - light.outside_light
+      - light.porch
+      - light.outside
 
 living:
     name: Living
