@@ -101,6 +101,11 @@
         to: 'off'
         for: '00:03:00'
 
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'        
+
       action:
         service: light.turn_off
         entity_id:
@@ -150,7 +155,7 @@
         - service: light.turn_on
           entity_id:
              - light.man_cave_desk_strip
-             - light.man_cave_lamp
+          #   - light.man_cave_lamp
         - service: switch.turn_on
           entity_id:
              - switch.man_cave_console_lights
@@ -211,6 +216,11 @@
         to: 'off'
         for: '00:05:00'
 
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'
+
       action:
         - service: light.turn_off
           entity_id:
@@ -228,6 +238,11 @@
         entity_id: binary_sensor.front_door
         to: 'off'
         for: '00:15:00'
+
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'
 
       action:
         - service: light.turn_off
