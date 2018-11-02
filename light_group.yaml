@@ -11,11 +11,6 @@
           - light.bottom_man_cave
 
     - platform: group
-      name: Man Cave Landing
-      entities:
-          -  light.man_cave_landing
-
-    - platform: group
       name: Exterior
       entities:
           - light.porch_light
@@ -50,26 +45,6 @@
           - light.man_cave_desk_strip
           - light.man_cave_lamp
           - light.man_cave_light
-
-    - platform: group
-      name: Outside
-      entities:
-          - light.outside
-
-    - platform: group
-      name: Porch
-      entities:
-          - light.porch
-
-    - platform: group
-      name: Guest Room
-      entities:
-          - light.guest_room
-
-    - platform: group
-      name: Bedroom
-      entities:
-          - light.bedroom
 
     - platform: group
       name: Living room
