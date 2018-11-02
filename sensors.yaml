@@ -129,6 +129,20 @@
     retain: true
 
   - platform: mqtt
+    name: "Living Room Sensor - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Living Room Sensor/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Back Door Sensor - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Back Door/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
     name: "Alarm Button - Battery"
     icon: mdi:battery
     state_topic: "smartthings/Alarm Button/battery/state"
