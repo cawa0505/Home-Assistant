@@ -11,6 +11,11 @@
           - light.bottom_man_cave
 
     - platform: group
+      name: Man Cave Landing
+      entities:
+          -  light.man_cave_landing
+
+    - platform: group
       name: Exterior
       entities:
           - light.porch_light
@@ -47,6 +52,26 @@
           - light.man_cave_light
 
     - platform: group
+      name: Outside
+      entities:
+          - light.outside
+
+    - platform: group
+      name: Porch
+      entities:
+          - light.porch
+
+    - platform: group
+      name: Guest Room
+      entities:
+          - light.guest_room
+
+    - platform: group
+      name: Bedroom
+      entities:
+          - light.bedroom
+
+    - platform: group
       name: Living room
       entities:
           - light.living_ceiling_light_1
@@ -77,7 +102,7 @@
           transition: 1000
           use_music_mode: False
           save_on_change: False
-        192.168.87.43:
+        192.168.86.43:
           name: Man Cave Landing
           transition: 1000
           use_music_mode: False
