@@ -16,33 +16,12 @@
     payload_off: "held"
     retain: true
 
-  - platform: mqtt
-    name: "Porch Door"
-    state_topic: "smartthings/Porch Door/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    retain: true
-
-  - platform: mqtt
-    name: "Back Door"
-    state_topic: "smartthings/Back Door/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    retain: true
-
-  - platform: mqtt
-    name: "Man Cave Door"
-    state_topic: "smartthings/Man Cave Door/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    retain: true
-
-  - platform: mqtt
-    name: "Front Door"
-    state_topic: "smartthings/Front Door/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    retain: true
+  #- platform: mqtt
+   # name: "Man Cave Door"
+    #state_topic: "zigbee2mqtt/Xiaomi Aqara Man Cave Door/contact/state"
+    #payload_on: "true"
+    #payload_off: "false"
+   # retain: true
 
  # - platform: mqtt
  #   name: "Porch Motion"

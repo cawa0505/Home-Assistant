@@ -127,8 +127,8 @@
         - service: light.turn_on
           entity_id:
             - group.interior_lights
-            - light.outside_light
-            - light.porch_light
+            - light.outside
+            - light.porch
 
         ##########################################################
         ## Charlotte is home at sunset
@@ -151,8 +151,8 @@
         - service: light.turn_on
           entity_id:
             - group.interior_lights
-            - light.outside_light
-            - light.porch_light
+            - light.outside
+            - light.porch
 
         ##########################################################
         ## Aimee is home at sunset
@@ -175,8 +175,8 @@
         - service: light.turn_on
           entity_id:
             - group.interior_lights
-            - light.outside_light
-            - light.porch_light
+            - light.outside
+            - light.porch
 
         ##########################################################
         ## Visitors

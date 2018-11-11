@@ -16,6 +16,14 @@ default_view:
         - group.automation_on_demand
         - group.motion_sensors
         - group.calendar_events
+        - group.zigbee_group
+
+zigbee_group:
+  name: Zigbee
+  entities:
+    - input_boolean.zigbee_permit_join
+    - timer.zigbee_permit_join
+    - sensor.bridge_state
 
 cameras:
     name: Cameras
@@ -165,7 +173,8 @@ Pi Hole:
 Guest Bedroom:
     control: hidden
     entities:
-        - light.guest_bedroom
+        - light.guest_room
+        - media_player.guest_room_home
 
 Outdoors:
     name: Outdoors
@@ -179,6 +188,7 @@ Bedroom:
     control: hidden
     entities:
       - light.bedroom
+      - media_player.bedroom_home
 
 weatherdashboard:
     name: Weather
@@ -212,18 +222,16 @@ Battery Levels:
     - sensor.motion_downstairs_battery
     - sensor.motion_upstairs_battery
     - sensor.motion_kitchen_battery
-    - sensor.back_door_sensor__battery
-    - sensor.living_room_sensor__battery
 
 security_doors:
     - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.front_door_2
 
 Doors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.front_door_2
 Motion Sensors:
     - sensor.motion_downstairs
     - sensor.motion_upstairs
@@ -232,7 +240,7 @@ Motion Sensors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.front_door_2
     - binary_sensor.bathroom_motion_sensor
     - binary_sensor.front_door_camera__garden_activity
     - binary_sensor.front_door_camera__gate_activity
@@ -300,7 +308,7 @@ motion_announcements:
         entities:
           - media_player.hallway_home
           - media_player.man_cave_home
-          - media_player.kitchen_home
+          - media_player.bedroom_home
 
 Livingroom_Media:
   name: Livingroom Media lights
@@ -349,8 +357,8 @@ Google_Home:
         - media_player.hallway_home
         - media_player.living_room_home
         - media_player.man_cave_home
-        - media_player.kitchen_home
-        - media_player.bedroom_2_home
+        - media_player.bedroom_home
+        - media_player.guest_room_home
         - media_player.kitchen_display
         - media_player.man_cave_room_display
 
