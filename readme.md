@@ -1,11 +1,11 @@
 Using Home Assistant running on hassio to control all things smart.<br />
-Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
 <b>Kit list</b>
 
 <b>Controller:</b>
 
-Raspberry Pi 3 running Home Assistant
+Raspberry Pi 3 running Home Assistant<br />
+Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
 <b>Assistant:</b>
 
