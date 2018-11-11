@@ -137,7 +137,7 @@
              platform: homeassistant
              event: start
            action:
-           - service: notify.telegram
+           - service: notify.telegram_chris
              data:
                message: "Home Assistant has (re)started at {{ states('sensor.time') }}"
 

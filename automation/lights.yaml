@@ -51,7 +51,7 @@
       action:
         - service: light.turn_on
           entity_id:
-             - light.porch_light
+             - light.porch
 
         ##########################################################
         ## Porch Door - Open 10 mins
@@ -69,7 +69,7 @@
       action:
         - service: light.turn_off
           entity_id:
-             - light.porch_light
+             - light.porch
 
         ##########################################################
         ## Porch Door - Open 20 mins
@@ -87,7 +87,7 @@
       action:
         - service: light.turn_off
           entity_id:
-             - light.porch_light
+             - light.porch
 
         ##########################################################
         ## Porch Door - Closed
@@ -104,12 +104,12 @@
       condition:
         condition: state
         entity_id: input_boolean.disable_light_automations
-        state: 'off'        
+        state: 'off'
 
       action:
         service: light.turn_off
         entity_id:
-             - light.porch_light
+             - light.porch
 
         ##########################################################
         ## Porch Door - Open & Sunset
@@ -131,8 +131,8 @@
       action:
         - service: light.turn_on
           entity_id:
-             - light.porch_light
-             - light.outside_light
+             - light.porch
+             - light.outside
 
         #########################################################
         ## Man Cave Door - Open & Sunset
@@ -155,7 +155,7 @@
         - service: light.turn_on
           entity_id:
              - light.man_cave_desk_strip
-          #   - light.man_cave_lamp
+             - light.man_cave_lamp
         - service: switch.turn_on
           entity_id:
              - switch.man_cave_console_lights
@@ -194,14 +194,14 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door
+        entity_id: binary_sensor.front_door_2
         from: 'off'
         to: 'on'
 
       action:
         - service: light.turn_on
           entity_id:
-             - light.porch_light
+             - light.porch
 
 
         ##########################################################
@@ -212,7 +212,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door
+        entity_id: binary_sensor.front_door_2
         to: 'off'
         for: '00:05:00'
 
@@ -224,8 +224,8 @@
       action:
         - service: light.turn_off
           entity_id:
-             - light.outside_light
-             - light.porch_light
+             - light.outside
+             - light.porch
 
      ##########################################################
         ## Front Door - Closed - 15 mins
@@ -235,7 +235,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door
+        entity_id: binary_sensor.front_door_2
         to: 'off'
         for: '00:15:00'
 
@@ -247,8 +247,8 @@
       action:
         - service: light.turn_off
           entity_id:
-             - light.outside_light
-             - light.porch_light
+             - light.outside
+             - light.porch
 
         ##########################################################
         ## Front Door - Open & Sunset
@@ -258,7 +258,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door
+        entity_id: binary_sensor.front_door_2
         from: 'off'
         to: 'on'
 
@@ -270,8 +270,8 @@
       action:
         - service: light.turn_on
           entity_id:
-             - light.porch_light
-             - light.outside_light
+             - light.porch
+             - light.outside
              - group.interior_lights
 
         ##########################################################
@@ -386,7 +386,7 @@
       action:
        - service: light.turn_on
          entity_id:
-           - light.outside_light
+           - light.outside
 
         ##########################################################
         ## Turn off outside light at 00:00
@@ -401,7 +401,7 @@
       action:
        - service: light.turn_off
          entity_id:
-           - light.outside_light
+           - light.outside
 
         ##########################################################
         ## Turn off Hallway Lamp at 23:00

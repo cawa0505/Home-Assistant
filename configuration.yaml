@@ -78,9 +78,19 @@ switch:
 ffmpeg:
 
 mqtt:
-  broker: localhost
-  discovery: true
-  discovery_prefix: smartthings
+  #broker: localhost
+  #discovery: true
+  #discovery_prefix: smartthings
+
+ broker: 192.168.86.41 # This will have to be your mqtt broker
+ discovery: true
+ username: !secret mqtt_username
+ password: !secret mqtt_password
+
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600 # Updated this to the number of seconds you wish 
 
 device_tracker:
   - platform: bluetooth_tracker
@@ -95,7 +105,7 @@ device_tracker:
     scan_interval: 15
     hosts:
       Aimee_iPhone: 192.168.86.98
-      Chris_Android: 192.168.86.99
+      Chris_Android: 192.168.86.56
       charlotesiphonelan: 192.168.86.55
 
   - platform: nmap_tracker

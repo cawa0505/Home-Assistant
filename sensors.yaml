@@ -90,8 +90,19 @@
       - wanted
       - series
       - queue
-
     days: 2
+
+  - platform: mqtt
+    name: "Man Cave Temperature 1"
+    state_topic: "zigbee2mqtt/Man Cave Temp Sensor"
+    unit_of_measurement: '°C'
+    value_template: "{{ value_json.temperature }}"
+    retain: true
+
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireles
 
   - platform: mqtt
     name: "Man Cave Temperature"
@@ -228,7 +239,7 @@
     retain: true
 
   - platform: mqtt
-    name: "Man Cave Temperature 1"
+    name: "Man Cave Temperature 12"
     state_topic: "smartthings/Man Cave Sensor/temperature/state"
     device_class: temperature
     unit_of_measurement: '°C'

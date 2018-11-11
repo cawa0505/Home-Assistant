@@ -166,9 +166,6 @@
       entity_id: group.alarm_safelist
       state: 'not_home'
     - condition: state
-      entity_id: input_boolean.enable_security
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.master_security
       state: 'off'
 
@@ -289,6 +286,8 @@
       state: 'on'
 
   action:
+    - wait_template: "{{ states.binary_sensor.porch_door.state == 'on' }}"
+      timeout: 00:03:00
     - service: media_player.volume_set
       data_template:
         entity_id: group.google_home

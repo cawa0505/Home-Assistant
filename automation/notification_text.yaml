@@ -5,20 +5,20 @@
     #################################################################
     ## Servers Notifications
     #################################################################
-        
+
 - alias: 'Man Cave Door - Chris Not Home'
   initial_state: on
   trigger:
     - platform: state
       entity_id: binary_sensor.man_cave_door
       to: 'on'
-        
+
   condition:
     - condition: state
       entity_id: group.person_chris
       state: 'not_home'
-       
+
   action:
     - service: notify.telegram
       data:
-       message: 'Someone has entered the Man Cave 2'
+       message: 'Someone has entered the Man Cave'

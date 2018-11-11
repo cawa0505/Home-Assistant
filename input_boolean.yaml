@@ -30,11 +30,17 @@
 
   disable_intruder:
     name: Intruder Detected
-    
+
   disable_downloads:
     name: Disable Downloads
-    
+
   trash_reminders:
     name: Trash Reminders
-   
-   
+
+  disable_light_automations:
+    name: Disable Light Automations
+
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
