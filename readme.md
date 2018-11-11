@@ -1,4 +1,4 @@
-Using Home Assistant running on hassio to control all things smart.
+Using Home Assistant running on hassio to control all things smart.<br />
 Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
 Kit list
