@@ -1,23 +1,23 @@
 Using Home Assistant running on hassio to control all things smart.<br />
 Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
-Kit list
+<b>Kit list</b>
 
-Controller:
+<b>Controller:</b>
 
 Raspberry Pi 3 running Home Assistant
 
-Assistant:
+<b>Assistant:</b>
 
 1x Google Home
 4x Google Home Minis
 2x Google Home Hubs
 
-Internet:
+<b>Internet:</b>
 
 3x Google Wifis
 
-Cameras:
+<b>Cameras:</b>
 
 Nest Hello Door Bell
 1x YI 7200p Home Camera (Running yi-hackv3)
@@ -25,7 +25,7 @@ Nest Hello Door Bell
 1x YI 720p Dome Camera (Running yi-hackv3)
 1x YI 1080p Outdoor Camera (not hacked yet)
 
-Lights:
+<b>Lights:</b>
 
 Philips Hue - numerous of bulbs
 4x Philips Hue Light dimmers
@@ -34,28 +34,28 @@ Philips Hue - numerous of bulbs
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp
 
-Sensors:
+<b>Sensors:</b>
 
 4x Aqara temperature humidity Sensor
 6x Xiaomi Aqara Door/Window Sensor
 3x Philips Hue Motion sensors
 
-Plugs:
+<b>Plugs:</b>
 
 1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring
 3x TP-Link HS100 - Kasa Smart Wi-Fi Plug
 1x Sonoff Plug
 
-Buttons:
+<b>Buttons:</b>
 
 1x Xiaomi Magic Cube Controller
 2x Xiaomi Buttons
 
-Ad Blocker:
+<b>Ad Blocker:</b>
 
 Pi Hole running on Raspberry Pi 1
 
-Media:
+<b>Media:</b>
 
 1x Logitech Harmony Elite
 1x Vero 4K (used for Kodi)
