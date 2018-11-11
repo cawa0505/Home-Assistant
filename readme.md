@@ -27,7 +27,7 @@ Nest Hello Door Bell
 
 <b>Lights:</b>
 
-Philips Hue - numerous of bulbs<br /><br />
+Philips Hue - numerous of bulbs<br />
 4x Philips Hue Light dimmers<br />
 1x Philips Hue Strip + extension<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
