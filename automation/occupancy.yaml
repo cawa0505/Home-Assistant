@@ -213,7 +213,7 @@
             - group.all_lights
 
         ##########################################################
-        ## Nll home - turn off outside lights
+        ## All home - turn off outside lights
         ##########################################################
 
     - alias: 'All home - turn off outside light'
@@ -231,52 +231,3 @@
         - service: light.turn_off
           entity_id:
             - group.exterior_lights
-
-        ##########################################################
-        ## Man Cave Door closed and no motion - Turn off lights
-        ##########################################################
-
-    - alias: 'Man Cave Door Closed, no motion - Turn off lights'
-      initial_state: on
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.man_cave_motion_sensor
-          to: 'off'
-          for: '00:03:00'
-
-      condition:
-         condition: state
-         entity_id: binary_sensor.man_cave_door
-         state: 'off'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-            - group.man_cave_lights
-        - service: switch.turn_off
-          entity_id:
-             - switch.man_cave_console_lights
-
-        ##########################################################
-        ## Man Cave Door Open, Sunrise - Turn on lights
-        ##########################################################
-
-    - alias: 'Man Cave Door open, sunrise - Turn on lights'
-      initial_state: on
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.man_cave_door
-          to: 'on'
-
-      condition:
-         condition: state
-         entity_id:  sun.sun
-         state: 'above_horizon'
-
-      action:
-        - service: light.turn_on
-          entity_id:
-            - light.man_cave_desk_strip
-        - service: switch.turn_on
-          entity_id:
-             - switch.man_cave_console_lights

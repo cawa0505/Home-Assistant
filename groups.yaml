@@ -86,7 +86,6 @@ Temperatures:
      - sensor.living_room_temperature
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
-     - sensor.man_cave_temperature_1
      - sensor.bathroom_temperature
 
 bedrooms:
