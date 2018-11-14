@@ -156,7 +156,6 @@
           entity_id:
              - light.man_cave_desk_strip
              - light.man_cave_lamp
-             - light.man_cave_light
         - service: switch.turn_on
           entity_id:
              - switch.man_cave_console_lights
