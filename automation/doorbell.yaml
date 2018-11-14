@@ -63,7 +63,7 @@
 
       action:
         - service: light.turn_on
-          entity_id: light.outside_light
+          entity_id: light.outside
           data:
             brightness_pct: 100
 
@@ -92,75 +92,4 @@
       action:
         - service: light.turn_off
           entity_id:
-            -  light.outside_light
-
-        ##########################################################
-        ## Front Door Camera - TTS Garden Motion
-        ##########################################################
-
-#    - alias: 'Front Door Camera - TTS Garden Motion'
-#      initial_state: on
-  #    trigger:
-  #      platform: state
-  #      entity_id:  binary_sensor.front_door_camera__gate_activity
-  #      from: 'off'
-    #    to: 'on'
-
-#      condition:
-#      - condition: time
-  #      after: '09:00:00'
-  #      before: '21:00:00'
-#      - condition: state
-  #      entity_id: group.household
-  #      state: 'home'
-
-#      action:
-  #      - service: tts.google_say
-    #      entity_id: group.motion_announcements
-      #    data_template:
-          ##volume_level: .82
-    #        message: "Motion has been detected in the front garden"
-
-        ##########################################################
-        ## Front Door Camera - TTS Sound Detected
-        ##########################################################
-
-#    - alias: 'Front Door Camera - TTS Sound Detected'
-    #  initial_state: on
-    #  trigger:
-    #    platform: state
-    #    entity_id:  binary_sensor.front_door_camera_sound_detected
-    #    from: 'off'
-    #    to: 'on'
-
-  #    condition:
-    #    - condition: time
-    #      after: '09:00:00'
-  #        before: '21:00:00'
-  #      - condition: state
-  #        entity_id: group.household
-  #        state: 'home'
-
-  #    action:
-    #    - service: tts.google_say
-    #      entity_id: group.motion_announcements
-    #      data_template:
-          ##volume_level: .82
-      #      message: "Loud noise detected at the front door"
-
-        ##########################################################
-        ## Front Door Camera - Telegram Sound Detected
-        ##########################################################
-
-   # - alias: 'Front Door Camera - Telegram Sound Detected'
-     # initial_state: on
-     # trigger:
-    #    platform: state
-     #   entity_id:  binary_sensor.front_door_camera_sound_detected
-     #   from: 'off'
-     #   to: 'on'
-
-     # action:
-      #  - service: notify.telegram
-      #    data:
-      #     message: 'Loud bang detected at the front door'
+            -  light.outside
