@@ -3,7 +3,7 @@
 #################################################################
 
     #################################################################
-    ## Servers Notifications
+    ## Man Cave Door - Chris Not Home
     #################################################################
 
 - alias: 'Man Cave Door - Chris Not Home'
@@ -22,3 +22,22 @@
     - service: notify.telegram
       data:
        message: 'Someone has entered the Man Cave'
+
+ 
+        ##########################################################
+        ## Front door left open
+        ##########################################################
+
+         - alias: 'Front door left open > 10'
+           initial_state: true
+           trigger:
+             platform: state
+             entity_id: binary_sensor.front_door_2
+             to: 'on'
+             for: '00:10:00'
+
+           action:
+           - service: notify.telegram
+             data:
+              message: 'The front door has been left opened for more than 10 minutes'
+      
