@@ -4,620 +4,222 @@
 
 title: Home
 views:
-  - title: default_view
-    icon: mdi:home
+  - title: Dashboard
+    icon: mdi:view-dashboard
     cards:
-      - type: entities
-        title: Interior Lights
-        show_header_toggle: true
-        entities:
-          - light.downstairs_hallway_light_2
-          - light.upstairs_hallway
-          - light.bottom_man_cave
-          - light.man_cave_landing
-          - switch.hallway_lamp
-      - type: picture-entity
-        title: Front Door
-        entity: camera.front_door
-        camera_image: camera.front_door
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Man Cave
-        entity: camera.man_cave
-        camera_image: camera.man_cave
-        show_info: true
-        tap_action: dialog
-      - type: entities
-        title: Chris
-        show_header_toggle: true
-        entities:
-          - device_tracker.chris_android
-          - device_tracker.oneplus_3t
-      - type: entities
-        title: Aimee
-        show_header_toggle: true
-        entities:
-          - device_tracker.aimee_iphone
-          - device_tracker.aimees_iphone
-      - type: entities
-        title: Climate Control
-        show_header_toggle: false
-        entities:
-          - climate.heating
-      - type: entities
-        title: Automation On Demand
-        show_header_toggle: false
-        entities:
-          - automation.trash_and_recycle_pickup_reminder
-          - input_select.trash_pickup_day
-          - input_select.recycle_pickup_week
-          - input_select.recycle_pickup_day
-          - sensor.trash_day
-          - sensor.recycle_day
-          - sensor.recycle_pickup_week
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: true
-        entities:
-          - sensor.motion_downstairs
-          - sensor.motion_upstairs
-          - sensor.motion_kitchen
-          - binary_sensor.man_cave_motion_sensor
-          - binary_sensor.man_cave_door
-          - binary_sensor.porch_door
-          - binary_sensor.back_door
-          - binary_sensor.front_door
-          - binary_sensor.bathroom_motion_sensor
-          - binary_sensor.front_door_camera__garden_activity
-          - binary_sensor.front_door_camera__gate_activity
-          - binary_sensor.front_door_camera_motion_detected
-      - type: entities
-        title: Calendar Events
-        show_header_toggle: true
-        entities:
-          - calendar.contacts
-          - calendar.family
-          - calendar.chris_starks_facebook_events
-          - calendar.chris_stark_main
-          - calendar.holidays_in_united_kingdom
-          - calendar.liverpool
-          - calendar.my_meetups
-          - calendar.work
-      - type: entities
-        title: Zigbee
-        show_header_toggle: true
-        entities:
-          - input_boolean.zigbee_permit_join
-          - sensor.bridge_state
-  - title: Cameras
-    icon: mdi:camera
-    cards:
-      - type: picture-entity
-        title: Front Door
-        entity: camera.front_door
-        camera_image: camera.front_door
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Man Cave
-        entity: camera.man_cave
-        camera_image: camera.man_cave
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Downstairs
-        entity: camera.downstairs
-        camera_image: camera.downstairs
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Upstairs
-        entity: camera.upstairs
-        camera_image: camera.upstairs
-        show_info: true
-        tap_action: dialog
-  - title: Sensors
-    icon: mdi:gauge
-    cards:
-      - type: picture-entity
-        title: Front Door
-        entity: camera.front_door
-        camera_image: camera.front_door
-        show_info: true
-        tap_action: dialog
-      - type: entities
-        title: Battery Levels
-        show_header_toggle: true
-        entities:
-          - sensor.man_cave_button__battery
-          - sensor.man_cave_motion_sensor__battery
-          - sensor.bathroom_motion_sensor__battery
-          - sensor.alarm_button__battery
-          - sensor.motion_downstairs_battery
-          - sensor.motion_upstairs_battery
-          - sensor.motion_kitchen_battery
-      - type: entities
-        title: Door Bell Status
-        show_header_toggle: true
-        entities:
-          - binary_sensor.front_door_camera__garden_activity
-          - binary_sensor.front_door_camera__gate_activity
-          - binary_sensor.front_door_camera_motion_detected
-          - binary_sensor.front_door_camera_online
-          - binary_sensor.front_door_camera_person_detected
-          - binary_sensor.front_door_camera_sound_detected
-      - type: entities
-        title: Nest Thermostat
-        show_header_toggle: true
-        entities:
-          - binary_sensor.heating_thermostat_online
-          - climate.heating
-          - sensor.heating_thermostat_temperature
-          - sensor.heating_thermostat_target
-          - sensor.heating_thermostat_operation_mode
-          - binary_sensor.heating_thermostat_fan
-          - binary_sensor.heating_thermostat_has_leaf
-          - binary_sensor.heating_thermostat_is_locked
-          - binary_sensor.heating_thermostat_is_using_emergency_heat
-          - sensor.heating_thermostat_humidity
-          - sensor.heating_thermostat_hvac_state
-      - type: entities
-        title: Chris
-        show_header_toggle: true
-        entities:
-          - device_tracker.chris_android
-          - device_tracker.oneplus_3t
-      - type: entities
-        title: Aimee
-        show_header_toggle: true
-        entities:
-          - device_tracker.aimee_iphone
-          - device_tracker.aimees_iphone
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: true
-        entities:
-          - sensor.motion_downstairs
-          - sensor.motion_upstairs
-          - sensor.motion_kitchen
-          - binary_sensor.man_cave_motion_sensor
-          - binary_sensor.man_cave_door
-          - binary_sensor.porch_door
-          - binary_sensor.back_door
-          - binary_sensor.front_door
-          - binary_sensor.bathroom_motion_sensor
-          - binary_sensor.front_door_camera__garden_activity
-          - binary_sensor.front_door_camera__gate_activity
-          - binary_sensor.front_door_camera_motion_detected
-      - type: entities
-        title: Pi Hole
-        show_header_toggle: true
-        entities:
-          - sensor.pihole_ads_blocked_today
-          - sensor.pihole_ads_percentage_blocked_today
-          - sensor.pihole_dns_queries_cached
-          - sensor.pihole_dns_queries_forwarded
-          - sensor.pihole_dns_queries_today
-          - sensor.pihole_dns_unique_clients
-          - sensor.pihole_dns_unique_domains
-          - sensor.pihole_domains_blocked
-      - type: entities
-        title: Temperatures
-        show_header_toggle: true
-        entities:
-          - sensor.heating_thermostat_temperature
-          - sensor.man_cave_temperature
-          - sensor.kitchen_temperature
-          - sensor.upstairs_temperature
-          - sensor.downstairs_temperature
-          - sensor.living_room_temperature
-          - sensor.bedroom_temperature
-          - sensor.small_bedroom_temperature
-          - sensor.man_cave_temperature_1
-          - sensor.bathroom_temperature
-      - type: entities
-        title: Monitored Devices
-        show_header_toggle: true
-        entities:
-          - device_tracker.aimeesaplewatchlan
-          - device_tracker.rubylan
-      - type: entities
-        title: Servers
-        show_header_toggle: true
-        entities:
-          - sensor.hpml10v2
-          - device_tracker.freenas
-          - device_tracker.pihole
-      - type: entities
-        title: Keith
-        show_header_toggle: true
-        entities:
-          - device_tracker.aimeedad
-      - type: entities
-        title: Internet
-        show_header_toggle: true
-        entities:
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
-          - sensor.speedtest_ping
-      - type: entities
-        title: Humidity
-        show_header_toggle: true
-        entities:
-          - sensor.heating_thermostat_humidity
-          - sensor.living_room_humidity
-          - sensor.man_cave_humidity
-          - sensor.small_bedroom_humidity
-          - sensor.bedroom_humidity
-  - title: Bedrooms
-    icon: mdi:hotel
-    cards: []
-  - title: HTPC
-    cards:
-      - type: entities
-        title: Radarr
-        show_header_toggle: true
-        entities:
-          - sensor.radarr_movies
-          - sensor.radarr_status
-          - sensor.radarr_upcoming
-      - type: entities
-        title: Sonarr
-        show_header_toggle: true
-        entities:
-          - sensor.sonarr_upcoming
-          - sensor.sonarr_queue
-          - sensor.sonarr_series
-          - sensor.sonarr_wanted
-  - title: Troubleshooting
-    icon: mdi:none
-    cards:
-      - type: entities
-        title: all devices
-        show_header_toggle: true
-        entities:
-          - device_tracker.chris_android
-          - device_tracker.aimee_iphone
-          - device_tracker.oneplus_3t
-          - device_tracker.aukey_sks1
-          - device_tracker.aimees_iphone
-          - device_tracker.charlottes_iphone
-          - device_tracker.freenas
-          - device_tracker.hpml10v2
-          - device_tracker.pihole
-          - device_tracker.oneplus_3tlan
-          - device_tracker.starkerslan
-          - device_tracker.ringlan
-          - device_tracker.aimeesipadlan
-          - device_tracker.aimeesaplewatchlan
-          - device_tracker.rubylan
-          - device_tracker.charlotesiphonelan
-          - device_tracker.tv_ue32j5500
-          - device_tracker.000c296f611c
-          - device_tracker.minint4qb75i1lan
-          - device_tracker.000c292f0109
-          - device_tracker.chromecastultralan_2
-          - device_tracker.freenaslan
-          - device_tracker.000c29dcb43c
-          - device_tracker.minint0chkd78lan
-          - device_tracker.mi_bluetooth_speaker
-          - device_tracker.lon2nbk100
-          - device_tracker.techwood_tv
-          - device_tracker.a_w
-          - device_tracker.aimeedad
-          - device_tracker.000c29732d55
-          - device_tracker.csmgmtlan
-          - device_tracker.000c293581b9
-          - device_tracker.ubuntuserverlan
-          - device_tracker.005056803a11
-          - device_tracker.ubuntuserverlan_2
-          - device_tracker.ubuntuserverlan_3
-          - device_tracker.android5cb4e767a8b145e5lan
-          - device_tracker.samsunggalaxys7lan
-          - device_tracker.iphonelan
-          - device_tracker.ac3743a18d56
-          - device_tracker.f04f7c5f9dea
-          - device_tracker.ollieiphone
-          - device_tracker.sways_ipod
-          - device_tracker.lon2nbk250lan
-          - device_tracker.man_cave_home
-          - device_tracker.desktopemc74s6lan
-          - device_tracker.link_ov15uzn
-          - device_tracker.googlehomeminilan_2
-          - device_tracker.nesthellolan
-          - device_tracker.googlehomeminilan_3
-          - device_tracker.ataylorpclan
-          - device_tracker.esp_45b1a7lan
-          - device_tracker.edifier_r1280db
-          - device_tracker.man_cave_home_2
-          - device_tracker.8bitdo_nes30_pro
-          - device_tracker.pro_controller
-          - device_tracker.yicameradownstairslan
-          - device_tracker.yihackv3lan
-          - device_tracker.yeelinklightcolor1_miio57705273lan
-          - device_tracker.esp_a7e2b8lan
-          - device_tracker.bt4807
-          - device_tracker.0c8c24031c2f
-          - device_tracker.hs100lan_2
-          - device_tracker.ubuntuserverlan_4
-          - device_tracker.10a4bee89bc3
-          - device_tracker.googlehomehublan
-          - device_tracker.googlehomehublan_2
-          - device_tracker.oneplus_3tlan_2
-          - device_tracker.000c2979bbb1
-          - device_tracker.000c29b4dfd2
-          - device_tracker.vw_bt_7501
-          - device_tracker.yeelinklightmono1_miio56771929lan
-          - device_tracker.yeelinklightcolor2_miio99357115lan
-      - type: entities
-        title: Scenes
-        show_header_toggle: true
-        entities:
-          - scene.security
-          - scene.disable_security
-          - scene.livingroom_dim
-          - scene.livingroom_normal
-      - type: entities
-        title: All Input Boolean
-        show_header_toggle: true
-        entities:
-          - input_boolean.panic_mode
-          - input_boolean.master_security
-          - input_boolean.alarm_tripped
-          - input_boolean.enable_security
-          - input_boolean.disable_intruder
-          - input_boolean.disable_downloads
-          - input_boolean.trash_reminders
-      - type: entities
-        title: all switches
-        show_header_toggle: false
-        entities:
-          - switch.hallway_lamp
-          - switch.man_cave_console_lights
-          - switch.man_cave_fan
-          - switch.man_cave_servers
-      - type: entities
-        title: all lights
-        show_header_toggle: true
-        entities:
-          - light.bedroom
-          - light.bottom_man_cave
-          - light.downstairs_hallway_light_2
-          - light.downstairs_light
-          - light.exterior
-          - light.guest_room
-          - light.hue_lights_exterior
-          - light.hue_lights
-          - light.hue_livingroom_lightstrip
-          - light.interior
-          - light.kitchen_light_1
-          - light.kitchen_light_2
-          - light.living_ceiling_light_1
-          - light.living_ceiling_light_2
-          - light.living_ceiling_light_3
-          - light.living_wall_light_1
-          - light.living_wall_light_2
-          - light.living_room
-          - light.man_cave
-          - light.man_cave_desk_light
-          - light.man_cave_desk_strip
-          - light.man_cave_lamp
-          - light.man_cave_landing
-          - light.man_cave_light
-          - light.outside
-          - light.porch
-          - light.upstairs_hallway
-          - light.yeelight_lights
-          - light.yeelight_color2_7c49ebb7ff9d
-          - light.yeelight_white_34ce008867fa
-  - title: Outdoors
-    icon: mdi:tree
-    cards:
-      - type: picture-entity
-        title: Front Door
-        entity: camera.front_door
-        camera_image: camera.front_door
-        show_info: true
-        tap_action: dialog
-  - title: Weather
-    icon: mdi:weather-partlycloudy
-    cards:
-      - type: entities
-        title: Thermostat
-        show_header_toggle: true
-        entities:
-          - sensor.heating_thermostat_temperature
-      - type: entities
-        title: Humidity
-        show_header_toggle: true
-        entities:
-          - sensor.heating_thermostat_humidity
-          - sensor.living_room_humidity
-          - sensor.man_cave_humidity
-          - sensor.small_bedroom_humidity
-          - sensor.bedroom_humidity
-      - type: entities
-        title: Weather
-        show_header_toggle: true
-        entities:
-          - sun.sun
-          - sensor.moon
-          - sensor.met_office_feels_like_temperature
-          - sensor.met_office_humidity
-          - sensor.met_office_probability_of_precipitation
-          - sensor.met_office_temperature
-          - sensor.met_office_uv
-          - sensor.met_office_visibility
-          - sensor.met_office_visibility_distance
-          - sensor.met_office_weather
-          - sensor.met_office_wind_direction
-          - sensor.met_office_wind_gust
-          - sensor.met_office_wind_speed
-  - title: Automation
-    icon: mdi:robot
-    cards:
-      - type: entities
-        title: all automations
-        show_header_toggle: true
-        entities:
-          - automation.aimee_is_home
-          - automation.aimee_is_home_at_sunset__turn_on_lights
-          - automation.all_home__turn_off_outside_light
-          - automation.arm_alarm
-          - automation.birthday
-          - automation.both_away__max_sab_speed
-          - automation.both_away__max_sab_speed_2
-          - automation.charlotte_is_home
-          - automation.charlotte_is_home_at_sunset__turn_on_lights
-          - automation.chomecast__idle
-          - automation.chris_is_home
-          - automation.chris_is_home_at_sunset__turn_on_lights
-          - automation.chromecast_playing_above_horizon__cinema_day
-          - automation.chromecast_playing_below_horizon__dim_lights
-          - automation.cinema_day
-          - automation.cinema_night
-          - automation.disable_master_security
-          - automation.disable_zigbee_joining
-          - automation.disable_zigbee_joining_by_timer
-          - automation.disarm_alarm
-          - automation.disarm_notification
-          - automation.downloads__restrict
-          - automation.downloads__unrestricted
-          - automation.enable_master_security
-          - automation.enable_zigbee_joining
-          - automation.front_door__closed
-          - automation.front_door__closed__15_mins
-          - automation.front_door__open
-          - automation.front_door__open__sunset
-          - automation.front_door_motion__turn_off_lights
-          - automation.front_door_motion__turn_on_outside_light
-          - automation.front_door_left_open__10
-          - automation.harmony_off
-          - automation.home_assistant__update_available_notifications
-          - automation.keith_has_arrived
-          - automation.lights__on
-          - automation.lights_off
-          - automation.man_cave_button_presed__on
-          - automation.man_cave_button_pressed__off
-          - automation.man_cave_door__chris_not_home
-          - automation.man_cave_door__chris_not_home_2
-          - automation.man_cave_door__closed__turn_on_landing_light
-          - automation.man_cave_door__open__sunset
-          - automation.man_cave_door_closed_no_motion__turn_off_lights
-          - automation.man_cave_door_open_sunrise__turn_on_lights
-          - automation.netflix_playing_at_sunset
-          - automation.no_one_home__hue_lights_on
-          - automation.no_one_home__lights_on
-          - automation.no_one_home__turn_off_all_lights
-          - automation.notification_audio__disable_alarm_audio
-          - automation.notification_audio__disable_alarm_audio_button
-          - automation.notification_audio__panic_audio
-          - automation.notify_for_new_devices
-          - automation.osmc_playing_below_horizon
-          - automation.osmc_idle
-          - automation.osmc_paused
-          - automation.osmc_playing_above_horizon__cinema_day
-          - automation.osmc_playing_from_paused
-          - automation.on_startup
-          - automation.party__set_living_room_to_random_color
-          - automation.porch_door__closed
-          - automation.porch_door__open
-          - automation.porch_door__open__sunset
-          - automation.porch_door__open__10_mins
-          - automation.porch_door__open__20_mins
-          - automation.recycle_pickup_day_changed
-          - automation.recycle_pickup_week_changed
-          - automation.remind_later
-          - automation.reset_trash_reminders
-          - automation.restore_trash_recycle_settings_on_startup
-          - automation.security__panic_mode
-          - automation.security__shut_off_alarm_manually
-          - automation.security_doors__open
-          - automation.security_doors_open__not_home
-          - automation.someone_is_home__limit_sab_speed
-          - automation.someone_is_home__limit_sab_speed_2
-          - automation.status
-          - automation.telegram__help
-          - automation.telegram_start
-          - automation.telegram_test
-          - automation.temperatures
-          - automation.thermostat_offline
-          - automation.trash_pickup_day_changed
-          - automation.trash_and_recycle_bin_left_outside_already
-          - automation.trash_and_recycle_pickup_reminder
-          - automation.turn_off_hallway_lamp_at_2300
-          - automation.turn_off_outside_light_at_0000
-          - automation.turn_on_hallway_lamp_at_sunset
-          - automation.turn_on_outside_light_between_sunset_1
-          - automation.upstairs_motion__turn_off_man_cave_landing
-          - automation.upstairs_motion__turn_on_man_cave_landing
-          - automation.visitors_arrive
-          - automation.watch_tv_below_horizon__dim_lights
-      - type: entities
-        title: Alarm
-        show_header_toggle: false
-        entities:
-          - input_boolean.master_security
-          - input_boolean.enable_security
-          - input_boolean.panic_mode
-          - input_boolean.alarm_tripped
-  - title: Living
-    icon: mdi:sofa
-    cards:
-      - type: entities
-        title: Living Room Lights
-        show_header_toggle: true
-        entities:
-          - light.living_ceiling_light_1
-          - light.living_ceiling_light_2
-          - light.living_ceiling_light_3
-          - light.living_wall_light_1
-          - light.living_wall_light_2
-          - light.hue_livingroom_lightstrip
-      - type: media-control
-        entity: media_player.living_room_tv
-      - type: media-control
-        entity: media_player.living_room_home
-      - type: media-control
-        entity: media_player.kodi
-  - title: Dining
-    icon: mdi:silverware-variant
-    cards:
-      - type: entities
-        title: Kitchen Lights
-        show_header_toggle: true
-        entities:
-          - light.kitchen_light_1
-          - light.kitchen_light_2
-  - title: Google Home Devices
-    icon: mdi:music
-    cards:
-      - type: media-control
-        entity: media_player.hallway_home
-      - type: media-control
-        entity: media_player.living_room_home
-      - type: media-control
-        entity: media_player.kitchen_home
-      - type: media-control
-        entity: media_player.bedroom_2_home
-      - type: media-control
-        entity: media_player.kitchen_display
-      - type: media-control
-        entity: media_player.man_cave_room_display
-  - title: Man Cave
-    icon: mdi:google-controller
-    cards:
-      - type: entities
-        title: Man Cave Lights
-        show_header_toggle: true
-        entities:
-          - light.man_cave_desk_light
-          - light.man_cave_desk_strip
-          - light.man_cave_lamp
-          - light.man_cave_light
-      - type: entities
-        title: Man Cave Switches
-        show_header_toggle: true
-        entities:
-          - switch.man_cave_console_lights
+    #Column 1
+      - type: vertical-stack
+        cards:
+        #Row 1
+          - type: picture-glance
+            image: /local/images/nest-thermostat.jpg
+            aspect_ratio: 327x216
+            title: Living room
+            entities:
+              - entity: media_player.kodi
+              - entity: switch.table_lamp_switch
+                icon: mdi:lamp
+              - entity: light.floor_lamp_dimmer_level
+                icon: mdi:floor-lamp
+              - entity: light.fireplace
+                icon: mdi:fire
+              - entity: light.tv
+                icon: mdi:television-classic
+#              - entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
+#              - entity: switch.fish_tank_train
+#                icon: mdi:train
+          #Row 2
+#          - type: glance
+#            show_name: false
+#            entities:
+#              - entity: device_tracker.daves_iphone
+#              - entity: device_tracker.beckys_iphone
+#              - entity: sensor.trash_day
+#              - entity: sensor.recycle_day
+          #Row 3a          
+          - type: horizontal-stack
+            cards:
+              #Column 3a
+              - type: picture-glance
+                image: /local/images/andrews_room.jpg
+                aspect_ratio: 159x107
+                title: AJ
+                entities:
+                  - entity: light.andrews_bed
+                  - entity: switch.fish_tank_lights
+                  - entity: switch.fish_tank_treasure_chest
+              #Column 3b    
+              - type: picture-glance
+                image: /local/images/emilys_room.jpg
+                aspect_ratio: 159x107
+                title: Ems
+                entities:
+                  - entity: light.andrews_bed
+          #Row 3b
+          - type: horizontal-stack
+            cards:
+              #Column 3a
+              - type: picture-entity
+                entity: camera.driveway
+                show_name: false
+                show_state: false
+              #Column 3b
+              - type: picture-glance
+                camera_image: camera.back_garden
+                entities:
+                - light.garden_lhs
+                - light.garden_rhs
+          #Row 4
+          - type: glance
+            show_name: false 
+            entities:
+              - entity: group.person_chris
+              - entity: group.person_aimee
+              - entity: sensor.trash_day
+              - entity: sensor.recycle_day
+              - entity: input_boolean.trash_reminders
+             
+    #Column 2
+      - type: vertical-stack
+        cards:
+          #Row 1
+          - type: picture-glance
+            image: /local/images/kitchen.jpg
+            aspect_ratio: 327x216
+            title: Kitchen
+            entities:
+              - entity: light.counter_led_strip
+              - entity: light.dining_led_strip_left
+              - entity: light.dining_led_strip_right
+              - entity: media_player.kitchen
+          #Row 2
+#          - type: glance
+#            show_name: false
+#            entities:
+#              - entity: device_tracker.daves_iphone
+#                name: Dave
+#              - entity: device_tracker.beckys_iphone
+#                name: Becky
+#              - entity: sensor.trash_day
+#                name: Black
+#              - entity: sensor.recycle_day
+#                name: Blue
+          #Row 3
+          - type: picture-elements
+            image: /local/images/nest-thermostat.jpg
+            aspect_ratio: 327x111
+            elements:
+              - type: icon
+                icon: mdi:fish
+                entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 7%
+                  color: white
+              - type: state-label
+                entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
+                style:
+                  top: 95%
+                  left: 7%
+                  color: white
+              - type: icon
+                icon: mdi:sofa
+                entity: sensor.heating_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 24%
+                  color: white
+              - type: state-label
+                entity: sensor.heating_thermostat_temperature
+                style:
+                  top: 95%
+                  left: 24%
+                  color: white
+              - type: icon
+                icon: mdi:silverware-fork-knife
+                entity: sensor.kitchen_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 41%
+                  color: white
+              - type: state-label
+                entity: sensor.kitchen_temperature
+                style:
+                  top: 95%
+                  left: 41%
+                  color: white
+              - type: icon
+                icon: mdi:human-male-female
+                entity: sensor.master_bedroom_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 58% 
+                  color: white
+              - type: state-label
+                entity: sensor.master_bedroom_temperature
+                style:
+                  top: 95%
+                  left: 58%
+                  color: white
+              - type: icon
+                icon: mdi:human-male-boy
+                entity: sensor.andrews_room_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 75% 
+                  color: white
+              - type: state-label
+                entity: sensor.andrews_room_temperature
+                style:
+                  top: 95%
+                  left: 75%
+                  color: white
+              - type: icon
+                icon: mdi:human-female-girl
+                entity: sensor.emilys_room_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 90% 
+                  color: white
+              - type: state-label
+                entity: sensor.front_room_temperature_2
+                style:
+                  top: 95%
+                  left: 92%
+                  color: white
+          #Row 4
+          - type: glance
+            show_name: false
+            entities:
+              - entity: group.person_chris
+                name: Chris
+              - entity: group.person_aimee
+                name: Aimee
+              - entity: sensor.trash_day
+                name: Black
+              - entity: sensor.recycle_day
+                name: Blue
+              - entity: input_boolean.fire_power
+                icon: mdi:fire
+                name: Fire Flame
+                
+    #Column 3
+      - type: vertical-stack
+        cards:
+          #Row 1
+          - type: picture-glance
+            image: /local/images/bedroom.jpg
+            aspect_ratio: 327x216
+            title: Love Shack
+            entities:
+              - entity: light.daves_lamp_candle
+              - entity: light.beckys_lamp_candle
+          #Row 2
+          - type: weather-forecast
+            entity: sensor.met_office_weather
