@@ -1,11 +1,3 @@
 zigbee_permit_join:
   name: Time remaining
   duration: 600 # Updated this to the number of seconds you wish 
-
-outside_light:
-  name: Outside Light Timer
-  duration: 600
-
-porch_light:
-  name: Porch Light Timer
-  duration: 600
