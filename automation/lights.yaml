@@ -53,64 +53,7 @@
           entity_id:
              - light.porch
 
-        ##########################################################
-        ## Porch Door - Open 10 mins
-        ##########################################################
-
-    - alias: Porch Door - Open - 10 mins
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.porch_door
-        from: 'off'
-        to: 'on'
-        for: '00:10:00'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-             - light.porch
-
-        ##########################################################
-        ## Porch Door - Open 20 mins
-        ##########################################################
-
-    - alias: Porch Door - Open - 20 mins
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.porch_door
-        from: 'off'
-        to: 'on'
-        for: '00:20:00'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-             - light.porch
-
-        ##########################################################
-        ## Porch Door - Closed
-        ##########################################################
-
-    - alias: Porch Door - Closed
-      trigger:
-        platform: state
-        entity_id: binary_sensor.porch_door
-        from: 'to'
-        to: 'off'
-        for: '00:03:00'
-
-      condition:
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'
-
-      action:
-        service: light.turn_off
-        entity_id:
-             - light.porch
-
+ 
         ##########################################################
         ## Porch Door - Open & Sunset
         ##########################################################
@@ -132,7 +75,7 @@
         - service: light.turn_on
           entity_id:
              - light.porch
-             - light.outside
+             - light.outside       
 
         #########################################################
         ## Man Cave Door - Open & Sunset
@@ -244,56 +187,9 @@
         to: 'on'
 
       action:
-        - service: light.turn_on
-          entity_id:
-             - light.porch
-
-
-        ##########################################################
-        ## Front Door - Closed
-        ##########################################################
-
-    - alias: Front Door - Closed
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.front_door_2
-        to: 'off'
-        for: '00:05:00'
-
-      condition:
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-             - light.outside
-             - light.porch
-
-     ##########################################################
-        ## Front Door - Closed - 15 mins
-        ##########################################################
-
-    - alias: Front Door - Closed - 15 mins
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.front_door_2
-        to: 'off'
-        for: '00:15:00'
-
-      condition:
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-             - light.outside
-             - light.porch
+        - service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.porch_light   
 
         ##########################################################
         ## Front Door - Open & Sunset
@@ -313,10 +209,14 @@
         state: below_horizon
 
       action:
+        - service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.outside_light    
+        - service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.porch_light                  
         - service: light.turn_on
           entity_id:
-             - light.porch
-             - light.outside
              - group.interior_lights
 
         ##########################################################
@@ -327,7 +227,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: sensor.motion_upstairs
+          entity_id: sensor.upstairs_motion_sensor
           to: 'on'
 
       condition:
@@ -356,7 +256,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: sensor.motion_upstairs
+          entity_id: sensor.upstairs_motion_sensor
           to: 'off'
           for: '00:03:00'
 
@@ -428,6 +328,11 @@
         event: sunset
         offset: '+01:00:00'
 
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'        
+
       action:
        - service: light.turn_on
          entity_id:
@@ -443,6 +348,11 @@
         platform: time
         at: '00:00:00'
 
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'
+
       action:
        - service: light.turn_off
          entity_id:
@@ -457,6 +367,11 @@
       trigger:
         platform: time
         at: '23:00:00'
+
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'
 
       action:
        - service: homeassistant.turn_off
@@ -478,6 +393,33 @@
         entity_id: input_boolean.master_security
         state: 'on'
 
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'       
+
       action:
        - service: homeassistant.turn_on
          entity_id: switch.hallway_lamp
+
+        ##########################################################
+        ## Exterior_Doors closed for 10 mins
+        ##########################################################
+
+    - alias: Exterior Doors Closed for 10 mins
+      trigger:
+        platform: state
+        entity_id: group.exterior_doors
+        from: 'on'
+        to: 'off'
+        for: '00:10:00'
+
+      condition:
+        condition: state
+        entity_id: input_boolean.disable_light_automations
+        state: 'off'
+
+      action:
+        service: light.turn_off
+        entity_id:
+             - light.porch
+             - light.outside
