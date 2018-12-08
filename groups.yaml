@@ -246,6 +246,10 @@ security_doors:
     - binary_sensor.back_door
     - binary_sensor.front_door_2
 
+exterior_doors:
+    - binary_sensor.porch_door
+    - binary_sensor.front_door_2
+
 Doors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
