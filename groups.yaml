@@ -17,6 +17,13 @@ default_view:
         - group.motion_sensors
         - group.calendar_events
         - group.zigbee_group
+        - group.timers
+
+timers:
+    name: Timers
+    entities:
+        - timer.porch_light
+        - timer.outside_light
 
 zigbee_group:
   name: Zigbee
@@ -83,10 +90,9 @@ Temperatures:
      - sensor.kitchen_temperature
      - sensor.upstairs_temperature
      - sensor.downstairs_temperature
-     - sensor.living_room_temperature
+     - sensor.front_room_temperature_2
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
-     - sensor.bathroom_temperature
 
 bedrooms:
     name: Bedrooms
@@ -95,6 +101,14 @@ bedrooms:
     entities:
       - group.bedroom
       - group.guest_bedroom
+      - group.small_bedroom
+
+Downstairs Toilet:
+    - light.hue_downstairs_toilet
+
+Small Bedroom:
+    - sensor.bedroom_temperature
+    - light.hue_small_bedroom
 
 HTPC:
     name: HTPC
@@ -112,6 +126,8 @@ All Input Boolean:
       - input_boolean.disable_intruder
       - input_boolean.disable_downloads
       - input_boolean.trash_reminders
+      - input_boolean.porch_light
+      - input_boolean.outside_light
 
 troubleshooting:
     name: Troubleshooting
@@ -188,6 +204,7 @@ Bedroom:
     entities:
       - light.bedroom
       - media_player.bedroom_home
+      - sensor.bedroom_temperature
 
 weatherdashboard:
     name: Weather
@@ -215,12 +232,15 @@ Weather:
 
 Battery Levels:
     - sensor.man_cave_button__battery
-    - sensor.man_cave_motion_sensor__battery
-    - sensor.bathroom_motion_sensor__battery
     - sensor.alarm_button__battery
     - sensor.motion_downstairs_battery
     - sensor.motion_upstairs_battery
     - sensor.motion_kitchen_battery
+    - sensor.back_door_sensor__battery
+    - sensor.man_cave_button__battery
+    - sensor.motion_dining_room_battery
+    - sensor.back_door_sensor__battery
+
 
 security_doors:
     - binary_sensor.back_door
@@ -231,16 +251,16 @@ Doors:
     - binary_sensor.porch_door
     - binary_sensor.back_door
     - binary_sensor.front_door_2
+    
 Motion Sensors:
-    - sensor.motion_downstairs
-    - sensor.motion_upstairs
-    - sensor.motion_kitchen
-    - binary_sensor.man_cave_motion_sensor
+    - sensor.downstairs_motion_sensor
+    - sensor.dining_room_motion_sensor
+    - sensor.upstairs_motion_sensor
+    - sensor.kitchen_motion_sensor
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
     - binary_sensor.front_door_2
-    - binary_sensor.bathroom_motion_sensor
     - binary_sensor.front_door_camera__garden_activity
     - binary_sensor.front_door_camera__gate_activity
     - binary_sensor.front_door_camera__road_activity
@@ -272,7 +292,7 @@ automation:
 Interior:
     control: hidden
     entities:
-      - light.downstairs_hallway_light_2
+      - light.hue_downstairs_hallway_2
       - light.hallway
       - light.upstairs_hallway
       - light.bottom_man_cave
@@ -280,7 +300,7 @@ Interior:
       - switch.hallway_lamp
 
 Interior Lights:
-      - light.downstairs_hallway_light_2
+      - light.hue_downstairs_hallway_2
       - light.hallway
       - light.upstairs_hallway
       - light.bottom_man_cave
@@ -335,6 +355,7 @@ dining:
     icon: mdi:silverware-variant
     entities:
       - group.kitchen_lights
+      - group.dining_room_Lights
 
 Internet:
   - sensor.speedtest_download
@@ -374,6 +395,18 @@ Kitchen_Lights:
     entities:
         - light.kitchen_light_1
         - light.kitchen_light_2
+
+Dining_Room_Lights:
+    name: Dining Room Lights
+    entities:
+        - light.hue_dining_room_1
+        - light.hue_dining_room_2
+        - light.hue_dining_room_3
+
+Utility_Room_Lights:
+    name: Utility Room Lights
+        - light.hue_utility
+       
 
 Thermostat:
     entities:
@@ -441,7 +474,8 @@ person_chris:
   icon: mdi:account-multiple
   entities:
       - device_tracker.chris_android
-      - device_tracker.oneplus_3t
+      - device_tracker.oneplus_6t_bluetooth
+      - device_tracker.19216886250_64a2f9b71cc1
 
 person_aimee:
   name: Aimee
@@ -449,6 +483,7 @@ person_aimee:
   entities:
       - device_tracker.aimee_iphone
       - device_tracker.aimees_iphone
+      - device_tracker.19216886250_80b03dc3f653
 
 person_keith:
   name: Keith
