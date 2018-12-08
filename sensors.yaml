@@ -98,20 +98,6 @@
     icon: mdi:router-wireles
 
   - platform: mqtt
-    name: "Man Cave Temperature"
-    state_topic: "smartthings/Man Cave Motion Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
-
-  - platform: mqtt
-    name: "Bathroom Temperature"
-    state_topic: "smartthings/Bathroom Motion Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
-
-  - platform: mqtt
     name: "Man Cave Button - Battery"
     icon: mdi:battery
     state_topic: "smartthings/Man Cave Button/battery/state"
@@ -122,20 +108,6 @@
     name: "Man Cave Motion Sensor - Battery"
     icon: mdi:battery
     state_topic: "smartthings/Man Cave Motion Sensor/battery/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Bathroom Motion Sensor - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Bathroom Motion Sensor/battery/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Living Room Sensor - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Living Room Sensor/battery/state"
     unit_of_measurement: '%'
     retain: true
 
@@ -157,28 +129,36 @@
     sensors:
       kitchen_temperature:
         friendly_name: 'Kitchen Temperature'
-        value_template: '{{states.sensor.motion_kitchen.attributes.temperature}}'
+        value_template: '{{states.sensor.kitchens_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
+
+  - platform: template
+    sensors:
+      dining_room_temperature:
+        friendly_name: 'Dining Room Temperature'
+        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+       
 
   - platform: template
     sensors:
       upstairs_temperature:
         friendly_name: 'Upstairs Temperature'
-        value_template: '{{states.sensor.motion_upstairs.attributes.temperature}}'
+        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       downstairs_temperature:
         friendly_name: 'Downstairs Temperature'
-        value_template: '{{states.sensor.motion_downstairs.attributes.temperature}}'
+        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       motion_downstairs_battery:
         friendly_name: 'Motion Downstairs Battery'
-        value_template: '{{states.sensor.motion_downstairs.attributes.battery}}'
+        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
 
@@ -186,7 +166,7 @@
     sensors:
       motion_upstairs_battery:
         friendly_name: 'Motion Upstairs Battery'
-        value_template: '{{states.sensor.motion_upstairs.attributes.battery}}'
+        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
 
@@ -194,9 +174,17 @@
     sensors:
       motion_kitchen_battery:
         friendly_name: 'Motion Kitchen battery'
-        value_template: '{{states.sensor.motion_kitchen.attributes.battery}}'
+        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
+
+  - platform: template
+    sensors:
+      motion_dining_room_battery:
+        friendly_name: 'Motion Dining Room battery'
+        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery       
 
   - platform: template
     sensors:
@@ -205,58 +193,18 @@
         friendly_name: 'HP ML10v2'
 
 
-  - platform: mqtt
-    name: "Bedroom Temperature"
-    state_topic: "smartthings/Bedroom Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
+  #- platform: mqtt
+  #  name: "Bedroom Temperature"
+  #  state_topic: "smartthings/Bedroom Sensor/temperature/state"
+  #  device_class: temperature
+  #  unit_of_measurement: '°C'
+  #  retain: true
 
-  - platform: mqtt
-    name: "Bedroom Humidity"
-    state_topic: "smartthings/Bedroom Sensor/humidity/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Small Bedroom Temperature"
-    state_topic: "smartthings/Small Bedroom Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
-
-  - platform: mqtt
-    name: "Small Bedroom Humidity"
-    state_topic: "smartthings/Small Bedroom Sensor/humidity/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Man Cave Temperature 12"
-    state_topic: "smartthings/Man Cave Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
-
-  - platform: mqtt
-    name: "Man Cave Humidity"
-    state_topic: "smartthings/Man Cave Sensor/humidity/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Living Room Temperature"
-    state_topic: "smartthings/Living Room Sensor/temperature/state"
-    device_class: temperature
-    unit_of_measurement: '°C'
-    retain: true
-
-  - platform: mqtt
-    name: "Living Room Humidity"
-    state_topic: "smartthings/Living Room Sensor/humidity/state"
-    unit_of_measurement: '%'
-    retain: true
-
+  #- platform: mqtt
+  #  name: "Bedroom Humidity"
+  #  state_topic: "smartthings/Bedroom Sensor/humidity/state"
+  #  unit_of_measurement: '%'
+  #  retain: true
 
   #- platform: synologydsm
    # host: 192.168.86.9
