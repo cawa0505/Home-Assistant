@@ -130,3 +130,28 @@
       data_template:
         ##volume_level: .82
         message: !include random_welcome/charlotte.yaml
+
+
+- alias: 'Washing Machine on'
+  initial_state: on
+  trigger:
+    platform: state
+    from: 'vibration'
+    entity_id: sensor.washing_machine
+
+  action:    
+    - delay: '00:10:00'
+
+    - condition: template
+      value_template: "{{ not is_state('sensor.washing_machine', 'vibration') }}"
+        
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 0.2
+
+    - service: tts.google_say
+      entity_id: group.google_home
+      data:
+        message: 'The washing machine has finished'
+
