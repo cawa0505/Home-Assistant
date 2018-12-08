@@ -389,13 +389,13 @@
         offset: "+01:00:00"
 
       condition:
-      - condition: state
-        entity_id: input_boolean.master_security
-        state: 'on'
+        - condition: state
+          entity_id: input_boolean.master_security
+          state: 'on'
 
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'       
+        - condition: state
+          entity_id: input_boolean.disable_light_automations
+          state: 'off'       
 
       action:
        - service: homeassistant.turn_on
