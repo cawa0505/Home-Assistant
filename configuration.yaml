@@ -69,11 +69,17 @@ switch:
     name: "Man Cave Console Lights"
     host: "192.168.86.35"
   - platform: tplink
-    name: "Man Cave Fan"
-    host: "192.168.86.47"
+    name: "Christmas Tree Lights"
+    host: "192.168.86.63"
   - platform: tplink
     name: "Hallway Lamp"
     host: "192.168.86.50"
+  - platform: tplink
+    name: Twig Light Left
+    host: "192.168.86.64"
+  - platform: tplink
+    name: Twig Light Right
+    host: "192.168.86.65"
 
 ffmpeg:
 
@@ -87,16 +93,14 @@ mqtt:
  username: !secret mqtt_username
  password: !secret mqtt_password
 
-timer:
-  zigbee_permit_join:
-    name: Time remaining
-    duration: 600 # Updated this to the number of seconds you wish 
-
 device_tracker:
   - platform: bluetooth_tracker
     interval_seconds: 15
     consider_home: 150
     track_new_devices: true
+
+  - platform: googlehome
+    host:   192.168.86.250
 
   - platform: ping
     track_new_devices: true
@@ -158,3 +162,4 @@ input_boolean: !include input_boolean.yaml
 rest_command: !include rest_command.yaml
 input_select: !include input_select.yaml
 camera: !include cameras.yaml
+timer: !include timers.yaml
