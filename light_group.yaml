@@ -5,7 +5,7 @@
     - platform: group
       name: Interior
       entities:
-          - light.downstairs_hallway_light_2
+          - light.hue_downstairs_hallway_2
           - light.hallway
           - light.upstairs_hallway
           - light.bottom_man_cave
@@ -13,13 +13,13 @@
     - platform: group
       name: Exterior
       entities:
-          - light.porch_light
-          - light.outside_light
+          - light.porch
+          - light.outside
 
     - platform: group
       name: Hue lights
       entities:
-          - light.downstairs_hallway_light_2
+          - light.hue_downstairs_hallway_2
           - light.hallway
           - light.upstairs_hallway
           - light.bottom_man_cave
@@ -27,8 +27,8 @@
     - platform: group
       name: Hue Lights Exterior
       entities:
-          - light.porch_light
-          - light.outside_light
+          - light.porch
+          - light.outside
 
     - platform: group
       name: Yeelight Lights
@@ -55,6 +55,13 @@
           - light.living_wall_light_1
           - light.living_wall_light_2
 
+    - platform: group
+      name: Dining Room
+      entities:
+          - light.hue_dining_room_1
+          - light.hue_dining_room_2
+          - light.hue_dining_room_3         
+          
     - platform: yeelight
       devices:
         192.168.86.32:
