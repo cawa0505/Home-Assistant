@@ -38,12 +38,13 @@ Philips Hue - numerous of bulbs<br />
 
 4x Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
-3x Philips Hue Motion sensors
+4x Philips Hue Motion sensors<br />
+1x Xiaomi Aqara Vibration Sensor
 
 <b>Plugs:</b>
 
 1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring<br />
-3x TP-Link HS100 - Kasa Smart Wi-Fi Plug<br />
+5x TP-Link HS100 - Kasa Smart Wi-Fi Plug<br />
 1x Sonoff Plug
 
 <b>Buttons:</b>
@@ -60,6 +61,10 @@ Pi Hole running on Raspberry Pi 1
 1x Logitech Harmony Elite<br />
 1x Vero 4K (used for Kodi)<br />
 1x Chromecast Ultra<br />
+1x Chromecast (3rd generation)<br />
 2x Chromecast (2nd generation)<br />
 1x Chromecast (1st generation)<br />
-Plex running as a VM (CentOS) on a Dell T20 server 
+Plex running as a VM (CentOS) on a Dell T20 server<br />
+1x HP Microserver N54L running FreeNAS<br />
+1x HP Microserver Gen 8 running unRaid<br />
+1x HP ML110 G7 running unRaid
