@@ -44,11 +44,3 @@
     name: Allow devices to join
     initial: off
     icon: mdi:cellphone-wireless
-  
-  outside_light:
-    name: Exterior Lights 
-    initial: off
-
-  porch_light:
-    name: Porch Light
-    initial: off    
