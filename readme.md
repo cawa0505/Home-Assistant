@@ -38,12 +38,12 @@ Philips Hue - numerous of bulbs<br />
 
 4x Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
-3x Philips Hue Motion sensors
+4x Philips Hue Motion sensors
 
 <b>Plugs:</b>
 
 1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring<br />
-3x TP-Link HS100 - Kasa Smart Wi-Fi Plug<br />
+5x TP-Link HS100 - Kasa Smart Wi-Fi Plug<br />
 1x Sonoff Plug
 
 <b>Buttons:</b>
