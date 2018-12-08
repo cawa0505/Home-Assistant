@@ -468,10 +468,16 @@ Alarm:
 Household:
     - group.person_chris
     - group.person_aimee
+    - away_mode
 
 Alarm_SafeList:
     - group.household
     - group.family
+
+googlehome_bt_tracker
+    entities:
+      - device_tracker.19216886250_80b03dc3f653  
+      - device_tracker.19216886250_80b03dc3f653      
 
 person_chris:
   name: Chris
