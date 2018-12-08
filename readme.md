@@ -65,6 +65,6 @@ Pi Hole running on Raspberry Pi 1
 2x Chromecast (2nd generation)<br />
 1x Chromecast (1st generation)<br />
 Plex running as a VM (CentOS) on a Dell T20 server<br />
-1x HP Microserver N54L running FreeNas<br />
+1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
 1x HP ML110 G7 running unRaid
