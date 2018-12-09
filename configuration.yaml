@@ -84,10 +84,6 @@ switch:
 ffmpeg:
 
 mqtt:
-  #broker: localhost
-  #discovery: true
-  #discovery_prefix: smartthings
-
  broker: 192.168.86.41 # This will have to be your mqtt broker
  discovery: true
  username: !secret mqtt_username
