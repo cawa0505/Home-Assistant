@@ -416,3 +416,20 @@
         entity_id:
              - light.porch
              - light.outside
+
+        ##########################################################
+        ## Small Bedroom Button Press
+        ##########################################################
+
+    - alias: Small Bedroom Button Press
+      trigger:
+        platform: mqtt
+        topic: 'zigbee2mqtt/Small Bedroom Button'
+
+      condition:
+        condition: template
+        value_template: "{{ 'single' == trigger.payload_json.click }}"          
+
+      action:
+        - service: light.toggle
+          entity_id: light.hue_small_bedroom
