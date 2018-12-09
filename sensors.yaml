@@ -129,7 +129,7 @@
     sensors:
       kitchen_temperature:
         friendly_name: 'Kitchen Temperature'
-        value_template: '{{states.sensor.kitchens_motion_sensor.attributes.temperature}}'
+        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
 # Nest away status
