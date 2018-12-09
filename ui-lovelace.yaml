@@ -12,18 +12,17 @@ views:
         cards:
         #Row 1
           - type: picture-glance
-            image: /local/images/nest-thermostat.jpg
+            image: /local/images/front_room.jpg
             aspect_ratio: 327x216
             title: Living room
             entities:
               - entity: media_player.kodi
-              - entity: switch.table_lamp_switch
+              - entity: switch.twig_light_left
                 icon: mdi:lamp
-              - entity: light.floor_lamp_dimmer_level
-                icon: mdi:floor-lamp
-              - entity: light.fireplace
-                icon: mdi:fire
-              - entity: light.tv
+              - entity: switch.twig_light_right
+                icon: mdi:lamp
+              - entity: group.livingroom_lights
+              - entity: light.hue_livingroom_lightstrip
                 icon: mdi:television-classic
 #              - entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
 #              - entity: switch.fish_tank_train
@@ -41,34 +40,33 @@ views:
             cards:
               #Column 3a
               - type: picture-glance
-                image: /local/images/andrews_room.jpg
+                image: /local/images/guest_room.jpg
                 aspect_ratio: 159x107
-                title: AJ
+                title: Guest Room
                 entities:
-                  - entity: light.andrews_bed
-                  - entity: switch.fish_tank_lights
-                  - entity: switch.fish_tank_treasure_chest
+                  - entity: light.guest_room
+ 
               #Column 3b    
               - type: picture-glance
-                image: /local/images/emilys_room.jpg
+                image: /local/images/small_bedroom.jpg
                 aspect_ratio: 159x107
-                title: Ems
+                title: Small Bedroom
                 entities:
-                  - entity: light.andrews_bed
+                  - entity: light.hue_small_bedroom
           #Row 3b
           - type: horizontal-stack
             cards:
               #Column 3a
               - type: picture-entity
-                entity: camera.driveway
+                entity: camera.front_door
                 show_name: false
                 show_state: false
               #Column 3b
               - type: picture-glance
-                camera_image: camera.back_garden
+                camera_image: camera.man_cave
                 entities:
-                - light.garden_lhs
-                - light.garden_rhs
+                - light.man_cave
+
           #Row 4
           - type: glance
             show_name: false 
@@ -88,10 +86,8 @@ views:
             aspect_ratio: 327x216
             title: Kitchen
             entities:
-              - entity: light.counter_led_strip
-              - entity: light.dining_led_strip_left
-              - entity: light.dining_led_strip_right
-              - entity: media_player.kitchen
+              - entity: group.dining
+              - entity: media_player.kitchen_display
           #Row 2
 #          - type: glance
 #            show_name: false
@@ -110,29 +106,29 @@ views:
             aspect_ratio: 327x111
             elements:
               - type: icon
-                icon: mdi:fish
-                entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
+                icon: mdi:thermostat
+                entity: sensor.heating_thermostat_temperature
                 tap_action: more-info
                 style:
                   top: 82%
                   left: 7%
                   color: white
               - type: state-label
-                entity: sensor.fibaro_system_fgk101_door_opening_sensor_temperature
+                entity: sensor.heating_thermostat_temperature
                 style:
                   top: 95%
                   left: 7%
                   color: white
               - type: icon
                 icon: mdi:sofa
-                entity: sensor.heating_temperature
+                entity: sensor.front_room_temperature_2
                 tap_action: more-info
                 style:
                   top: 82%
                   left: 24%
                   color: white
               - type: state-label
-                entity: sensor.heating_thermostat_temperature
+                entity: sensor.front_room_temperature_2
                 style:
                   top: 95%
                   left: 24%
@@ -153,42 +149,42 @@ views:
                   color: white
               - type: icon
                 icon: mdi:human-male-female
-                entity: sensor.master_bedroom_temperature
+                entity: sensor.bedroom_temperature
                 tap_action: more-info
                 style:
                   top: 82%
                   left: 58% 
                   color: white
               - type: state-label
-                entity: sensor.master_bedroom_temperature
+                entity: sensor.bedroom_temperature
                 style:
                   top: 95%
                   left: 58%
                   color: white
               - type: icon
                 icon: mdi:human-male-boy
-                entity: sensor.andrews_room_temperature
+                entity: sensor.small_bedroom_temperature
                 tap_action: more-info
                 style:
                   top: 82%
                   left: 75% 
                   color: white
               - type: state-label
-                entity: sensor.andrews_room_temperature
+                entity: sensor.small_bedroom_temperature
                 style:
                   top: 95%
                   left: 75%
                   color: white
               - type: icon
-                icon: mdi:human-female-girl
-                entity: sensor.emilys_room_temperature
+                icon: mdi:door-open
+                entity: sensor.upstairs_temperature
                 tap_action: more-info
                 style:
                   top: 82%
                   left: 90% 
                   color: white
               - type: state-label
-                entity: sensor.front_room_temperature_2
+                entity: sensor.upstairs_temperature
                 style:
                   top: 95%
                   left: 92%
@@ -205,7 +201,7 @@ views:
                 name: Black
               - entity: sensor.recycle_day
                 name: Blue
-              - entity: input_boolean.fire_power
+              - entity: input_boolean.disable_light_automations
                 icon: mdi:fire
                 name: Fire Flame
                 
@@ -218,8 +214,12 @@ views:
             aspect_ratio: 327x216
             title: Love Shack
             entities:
-              - entity: light.daves_lamp_candle
-              - entity: light.beckys_lamp_candle
+              - entity: light.bedroom
+              - entity: media_player.bedroom_home
           #Row 2
-          - type: weather-forecast
-            entity: sensor.met_office_weather
+          - type: entities
+            entities:
+              - input_boolean.master_security
+              - input_boolean.enable_security
+              - input_boolean.disable_light_automations
+              - input_boolean.turn_on_all_lights
