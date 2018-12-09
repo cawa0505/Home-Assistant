@@ -44,3 +44,6 @@
     name: Allow devices to join
     initial: off
     icon: mdi:cellphone-wireless
+
+  turn_on_all_lights:
+    name: Turn on all lights
