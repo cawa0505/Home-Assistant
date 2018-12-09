@@ -83,6 +83,7 @@ sensors:
         - group.family
         - group.internet
         - group.humidity
+        - group.wireless_buttons
 
 Temperatures:
      - sensor.heating_thermostat_temperature
@@ -117,6 +118,10 @@ HTPC:
       - group.sabnzbd
       - group.radarr
       - group.sonarr
+
+Wireless Buttons:
+    entities:
+      - sensor.small_bedroom_button
 
 All Input Boolean:
       - input_boolean.panic_mode
