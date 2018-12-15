@@ -1,0 +1,328 @@
+#################################################################
+## Sensors
+#################################################################
+
+  - platform: sabnzbd
+    name: Sabnzbd
+    host: 192.168.86.6
+    port: 8080
+    ssl: false
+    api_key: !secret sabnzbd_api
+    monitored_variables:
+      - "current_status"
+      - "speed"
+      - "queue_size"
+      - "queue_remaining"
+      - "disk_size"
+      - "disk_free"
+
+  - platform: pi_hole
+    host: 192.168.86.95:80
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
+
+  - platform: hue
+    ip_address: 192.168.86.46
+    token: !secret hue_api
+
+  - platform: metoffice
+    api_key: !secret metoffice_api
+    monitored_conditions:
+      - weather
+      - temperature
+      - feels_like_temperature
+      - wind_speed
+      - wind_direction
+      - wind_gust
+      - visibility
+      - visibility_distance
+      - uv
+      - precipitation
+      - humidity
+
+  - platform: moon
+
+  - platform: google_wifi
+
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 2
+      - 4
+      - 6
+      - 8
+      - 10
+      - 12
+      - 14
+      - 16
+      - 18
+      - 20
+      - 22
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+  - platform: radarr
+    host: 192.168.86.6
+    port: 7878
+    api_key: !secret radarr_api
+    monitored_conditions:
+      - upcoming
+      - movies
+      - status
+    days: 2
+
+  - platform: sonarr
+    host: 192.168.86.6
+    port: 8989
+    api_key: !secret sonarr_api
+    monitored_conditions:
+      - upcoming
+      - wanted
+      - series
+      - queue
+    days: 2
+
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireles
+
+  - platform: mqtt
+    name: "Man Cave Button - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Man Cave Button/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Man Cave Motion Sensor - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Man Cave Motion Sensor/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Back Door Sensor - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Back Door/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: mqtt
+    name: "Alarm Button - Battery"
+    icon: mdi:battery
+    state_topic: "smartthings/Alarm Button/battery/state"
+    unit_of_measurement: '%'
+    retain: true
+
+  - platform: template
+    sensors:
+      kitchen_temperature:
+        friendly_name: 'Kitchen Temperature'
+        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+
+# Nest away status
+  - platform: template
+    sensors:
+      away_mode:
+        friendly_name: "Nest Location"   
+        value_template: "{% if is_state('binary_sensor.home_away', 'off') %}home{% else %}not_home{% endif %}"
+
+  - platform: template
+    sensors:
+      dining_room_temperature:
+        friendly_name: 'Dining Room Temperature'
+        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+       
+
+  - platform: template
+    sensors:
+      upstairs_temperature:
+        friendly_name: 'Upstairs Temperature'
+        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+
+  - platform: template
+    sensors:
+      downstairs_temperature:
+        friendly_name: 'Downstairs Temperature'
+        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+
+  - platform: template
+    sensors:
+      motion_downstairs_battery:
+        friendly_name: 'Motion Downstairs Battery'
+        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery
+
+  - platform: template
+    sensors:
+      motion_upstairs_battery:
+        friendly_name: 'Motion Upstairs Battery'
+        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery
+
+  - platform: template
+    sensors:
+      motion_kitchen_battery:
+        friendly_name: 'Motion Kitchen battery'
+        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery
+
+  - platform: template
+    sensors:
+      motion_dining_room_battery:
+        friendly_name: 'Motion Dining Room battery'
+        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery       
+
+  - platform: template
+    sensors:
+      hpml10v2:
+        value_template: '{% if is_state("device_tracker.hpml10v2", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'HP ML10v2'
+
+  - platform: min_max
+    name: Average House Temp
+    type: mean
+    entity_ids:
+      - sensor.heating_thermostat_temperature
+      - sensor.man_cave_temperature
+      - sensor.kitchen_temperature
+      - sensor.upstairs_temperature
+      - sensor.downstairs_temperature
+      - sensor.front_room_temperature_2
+      - sensor.bedroom_temperature
+      - sensor.small_bedroom_temperature
+      - sensor.dining_room_temperature
+
+ ###############################################################################
+#  Sensor Definitions
+###############################################################################
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+  - platform: mqtt
+    state_topic: "/home/trashpickupday"
+    name: "Trash Pickup Day"
+    value_template: "{{ value }}"
+    qos: 1
+  - platform: mqtt
+    state_topic: "/home/recyclepickupday"
+    name: "Recycle Pickup Day"
+    value_template: "{{ value }}"
+    qos: 1
+  - platform: mqtt
+    state_topic: "/home/recyclepickupweek"
+    name: "Recycle Pickup Week"
+    value_template: "{{ value }}"
+    qos: 1
+
+###############################################################################
+# Sensor to hold info about current week is an odd week or an even week of the year
+###############################################################################
+  - platform: template
+    sensors:
+      current_week:
+        value_template: >-
+          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+          {%- if (as_timestamp(today) | timestamp_custom('%U', true) | int ) % 2 == 0 -%}
+            Even Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
+          {%- else -%}
+            Odd Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
+          {%- endif -%}
+###############################################################################
+# Trash  - Pickup schedule is EVERY week.
+# Set the day to a day before the actual day leaving time for reminders
+###############################################################################
+  - platform: template
+    sensors:
+      trash_day:
+        value_template: >-
+          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+          {%- set pickupDay = states.sensor.trash_pickup_day.state | lower -%}
+          {%- if as_timestamp(today)| timestamp_custom('%A', true) | lower == pickupDay -%}
+            yes
+          {%- else -%}
+            no
+          {%- endif -%}
+###############################################################################
+# Recycle - Pickup schedule is every other week.
+# Set the day to a day before the actual day leaving time for reminders
+###############################################################################
+  - platform: template
+    sensors:
+      recycle_day:
+        value_template: >-
+          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+          {%- set pickupDay = states.sensor.recycle_pickup_day.state | lower -%}
+          {% if states.input_select.recycle_pickup_week.state | lower == "even weeks" %}
+            {%- set evenWeekPickup = "true" %}
+          {% else %}
+            {%- set evenWeekPickup = "false" %}
+          {% endif %}
+          {%- macro day_of_week(timestamp) -%}
+            {{ as_timestamp(timestamp)| timestamp_custom('%A', true) | lower }}
+          {%- endmacro %}
+          {%- macro week_number_of_year() -%}
+            {{ as_timestamp(today) | timestamp_custom('%U', true) | int }}
+          {%- endmacro %}
+          {%- macro is_it_this_week() -%}
+            {%- if as_timestamp(today) | timestamp_custom('%U', true) | int % 2 == 0 -%}
+              {%- if evenWeekPickup == "true" -%}
+                true
+              {%- else -%}
+                false
+              {%- endif -%}
+            {%- else -%}
+              {%- if evenWeekPickup == "true" -%}
+                false
+              {%- else -%}
+                true
+              {%- endif -%}
+            {%- endif -%}
+          {%- endmacro -%}
+          {%- macro is_it_today() -%}
+          {%- if is_it_this_week() == "true" -%}
+            {%- if day_of_week(today) | lower == pickupDay -%}
+              yes
+            {%- else -%}
+              no
+            {%- endif -%}
+          {%- else -%}
+            no
+          {%- endif -%}
+          {%- endmacro -%}
+          {{- is_it_today() -}}
