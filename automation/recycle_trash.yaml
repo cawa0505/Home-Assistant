@@ -1,4 +1,11 @@
 ###############################################################################
+#   @author         :   Mahasri Kalavala
+#   @date           :   04/15/2017
+#   @package        :   Trash & Recycle
+#   @description    :   Trash & Recycle Pickup Scheduler and Reminder
+###############################################################################
+
+###############################################################################
 #  The schedule can be changed via UI. The updated schedules are saved in MQTT
 #  The input_selects don't maintain state automatically - hence this code
 #  These automations are hidden - no interaction with user is required.
