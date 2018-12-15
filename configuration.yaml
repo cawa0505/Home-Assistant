@@ -19,9 +19,7 @@ config:
 
 http:
     api_password: !secret api_password
-  #  base_url: !secret public_url
-  #  ssl_certificate: !secret http_ssl_certificate
-  #  ssl_key: !secret http_ssl_key
+
 updater:
 discovery:
 conversation:
@@ -48,9 +46,7 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
- # - platform: amazon_polly
-   # aws_access_key_id: !secret aws_access_key_id
-   # aws_secret_access_key: !secret aws_secret_access_key
+
 google:
   client_id: !secret google_id
   client_secret: !secret google_secret
@@ -60,26 +56,6 @@ hue:
      - host: 192.168.86.46
        allow_unreachable: true
        allow_hue_groups: false
-
-switch:
-  - platform: tplink
-    name: "Man Cave Servers"
-    host: "192.168.86.178"
-  - platform: tplink
-    name: "Man Cave Console Lights"
-    host: "192.168.86.35"
-  - platform: tplink
-    name: "Christmas Tree Lights"
-    host: "192.168.86.63"
-  - platform: tplink
-    name: "Hallway Lamp"
-    host: "192.168.86.50"
-  - platform: tplink
-    name: Twig Light Left
-    host: "192.168.86.64"
-  - platform: tplink
-    name: Twig Light Right
-    host: "192.168.86.65"
 
 ffmpeg:
 
@@ -137,6 +113,8 @@ telegram_bot:
         - !secret telegram_chris_chat
         - !secret telegram_aimee_chat
 
+ios:
+
 remote:
   - platform: harmony
     name: Living room
@@ -163,3 +141,4 @@ rest_command: !include rest_command.yaml
 input_select: !include input_select.yaml
 camera: !include cameras.yaml
 timer: !include timers.yaml
+switch: !include switch.yaml
