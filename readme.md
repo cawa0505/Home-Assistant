@@ -1,5 +1,10 @@
 Using Home Assistant running on hassio to control all things smart.<br />
 
+<b>Special thanks to the follow github pages</b>
+
+<a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
+<a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.
+
 <b>Kit list</b>
 
 <b>Controller:</b>
@@ -68,8 +73,3 @@ Plex running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
 1x HP ML110 G7 running unRaid
-
-<b>Special thanks to the follow github pages</b>
-
-geekofweek/homeassistant - Loads of great automations, my config files are based on this<br />
-skalavala/smarthome - Trash & Recycle automation is from here
