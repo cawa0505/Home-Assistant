@@ -68,3 +68,8 @@ Plex running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
 1x HP ML110 G7 running unRaid
+
+<b>Special thanks to the follow github pages</b>
+
+geekofweek/homeassistant - Loads of great automations, my config files are based on this<br />
+skalavala/smarthome - Trash & Recycle automation is from here
