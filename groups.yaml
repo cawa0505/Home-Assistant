@@ -94,6 +94,8 @@ Temperatures:
      - sensor.front_room_temperature_2
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
+     - sensor.dining_room_temperature
+     - sensor.average_house_temp
 
 bedrooms:
     name: Bedrooms
