@@ -1,14 +1,22 @@
-
-trash:
-  friendly_name: Garage Status
-  icon: mdi:text-to-speech
-  hidden: false
-
-trash_status:
-  alias: 'Check Trash Week'
-  sequence:
-  - service: tts.google_say
-    entity_id: group.google_home
-    data_template:
-      message: >-
-        The pool temperature is currently
+#################################################################
+## Switches
+#################################################################
+ 
+  - platform: tplink
+    name: "Man Cave Servers"
+    host: "192.168.86.178"
+  - platform: tplink
+    name: "Man Cave Console Lights"
+    host: "192.168.86.35"
+  - platform: tplink
+    name: "Christmas Tree Lights"
+    host: "192.168.86.63"
+  - platform: tplink
+    name: "Hallway Lamp"
+    host: "192.168.86.50"
+  - platform: tplink
+    name: Twig Light Left
+    host: "192.168.86.64"
+  - platform: tplink
+    name: Twig Light Right
+    host: "192.168.86.65"
