@@ -12,7 +12,7 @@
         platform: event
         event_type: device_tracker_new_device
       action:
-        - service: notify.telegram
+        - service: notify.telegram_chris
           data_template:
             message: >
               New device:
