@@ -47,3 +47,6 @@
 
   turn_on_all_lights:
     name: Turn on all lights
+
+  party_mode:
+    name: Party Mode   
