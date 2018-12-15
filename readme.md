@@ -1,5 +1,10 @@
 Using Home Assistant running on hassio to control all things smart.<br />
 
+<b>Special thanks to the follow github pages</b>
+
+<a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
+<a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.
+
 <b>Kit list</b>
 
 <b>Controller:</b>
@@ -19,7 +24,7 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 
 <b>Cameras:</b>
 
-Nest Hello Door Bell
+Nest Hello Door Bell<br />
 1x YI 7200p Home Camera (Running yi-hackv3)<br />
 1x YI 1080p Dome Camera (Running yi-hackv3)<br />
 1x YI 720p Dome Camera (Running yi-hackv3)<br />
