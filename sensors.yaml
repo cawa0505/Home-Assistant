@@ -132,6 +132,13 @@
         value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
+  - platform: template
+    sensors:
+      dining_room_temperature:
+        friendly_name: 'Dining Room Temperature'
+        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+
 # Nest away status
   - platform: template
     sensors:
@@ -199,6 +206,19 @@
         value_template: '{% if is_state("device_tracker.hpml10v2", "home") %}Online{% else %}Offline{% endif %}'
         friendly_name: 'HP ML10v2'
 
+  - platform: min_max
+    name: Average House Temp
+    type: mean
+    entity_ids:
+      - sensor.heating_thermostat_temperature
+      - sensor.man_cave_temperature
+      - sensor.kitchen_temperature
+      - sensor.upstairs_temperature
+      - sensor.downstairs_temperature
+      - sensor.front_room_temperature_2
+      - sensor.bedroom_temperature
+      - sensor.small_bedroom_temperature
+      - sensor.dining_room_temperature
 
   #- platform: mqtt
   #  name: "Bedroom Temperature"
