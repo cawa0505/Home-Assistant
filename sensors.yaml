@@ -132,13 +132,6 @@
         value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
-  - platform: template
-    sensors:
-      dining_room_temperature:
-        friendly_name: 'Dining Room Temperature'
-        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
 # Nest away status
   - platform: template
     sensors:
@@ -220,29 +213,7 @@
       - sensor.small_bedroom_temperature
       - sensor.dining_room_temperature
 
-  #- platform: mqtt
-  #  name: "Bedroom Temperature"
-  #  state_topic: "smartthings/Bedroom Sensor/temperature/state"
-  #  device_class: temperature
-  #  unit_of_measurement: '°C'
-  #  retain: true
-
-  #- platform: mqtt
-  #  name: "Bedroom Humidity"
-  #  state_topic: "smartthings/Bedroom Sensor/humidity/state"
-  #  unit_of_measurement: '%'
-  #  retain: true
-
-  #- platform: synologydsm
-   # host: 192.168.86.9
-   # username: admin
-  #  password: hurricxne
-  #  monitored_conditions:
-  #    - cpu_total_load
-  #    - memory_real_usage
-   #   - network_up
-
-###############################################################################
+ ###############################################################################
 #  Sensor Definitions
 ###############################################################################
 
