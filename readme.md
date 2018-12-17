@@ -1,6 +1,6 @@
 Using Home Assistant running on hassio to control all things smart.<br />
 
-<b>Special thanks to the follow github pages</b>
+<b>Special thanks to the following github pages</b>
 
 <a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
 <a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.
@@ -12,7 +12,7 @@ Using Home Assistant running on hassio to control all things smart.<br />
 Raspberry Pi 3 running Home Assistant<br />
 Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
-<b>Assistant:</b>
+<b>Assistants:</b>
 
 1x Google Home<br />
 4x Google Home Minis<br />
