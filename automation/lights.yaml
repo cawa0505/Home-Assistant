@@ -2,40 +2,6 @@
 ## Lights Automations
 #################################################################
 
-    - alias: 'Man Cave Button Presed - on'
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.man_cave_button
-        from: 'off'
-        to: 'on'
-
-      action:
-        - service: light.turn_on
-          entity_id:
-            - light.man_cave_lamp
-            - light.man_cave_desk_strip
-        - service: switch.turn_on
-          entity_id:
-             - switch.man_cave_console_lights
-
-    - alias: 'Man Cave Button Pressed - off'
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.man_cave_button
-        from: 'on'
-        to: 'off'
-
-      action:
-        - service: light.turn_off
-          entity_id:
-            - light.man_cave_lamp
-            - light.man_cave_desk_strip
-        - service: switch.turn_off
-          entity_id:
-             - switch.man_cave_console_lights
-
         ##########################################################
         ## Porch Door - Open
         ##########################################################
@@ -398,6 +364,7 @@
         ##########################################################
 
     - alias: Exterior Doors Closed for 10 mins
+      initial_state: on
       trigger:
         platform: state
         entity_id: group.exterior_doors
@@ -422,6 +389,7 @@
         ##########################################################
 
     - alias: Small Bedroom Button Press
+      initial_state: on    
       trigger:
         platform: mqtt
         topic: 'zigbee2mqtt/Small Bedroom Button'
