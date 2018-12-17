@@ -6,29 +6,39 @@
         ## Front Door Motion
         ##########################################################
 
-  #  - alias: 'Front Door Motion'
-  #    initial_state: on
- #     trigger:
-  #      platform: state
-   #     entity_id: binary_sensor.front_door_camera__garden_activity
-    #    from: 'off'
-   #     to: 'on'
-#
-    #  condition:
+    - alias: 'Front Door Motion'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door_camera__garden_activity
+        from: 'off'
+        to: 'on'
 
-    #     - condition: template
-      #     value_template: "{{ as_timestamp(now()) - as_timestamp(binary_sensor.front_door.last_updated) > 180 }}"
+      condition:
 
-    #     - condition: template
-    #       value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door_2.last_changed) > 180 }}"
 
-  #    action:
-        #- service: tts.google_say
-          #data:
-          #  message: 'There is motion at the front door.'
-         # entity_id: media_player.man_cave_home
-      #  - service: notify.telegram_chris
-       #   data:
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
+
+        - condition: time
+          after: '08:00:00'
+          before: '21:00:00'
+
+        - condition: state
+          entity_id: group.household
+          state: 'home'
+
+      action:
+        - service: tts.google_say
+          data:
+            message: 'Motion detected at the front door'
+            entity_id:
+              - media_player.man_cave_home
+              - media_player.living_room_home
+       # - service: notify.telegram_chris
+        #  data:
        #     message: 'Motion detected at the front door'
       #  - service: camera.snapshot
         #  data:
@@ -52,7 +62,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera__garden_activity
+          entity_id: binary_sensor.front_door_camera_motion_detected
           from: 'off'
           to: 'on'
 
@@ -76,7 +86,7 @@
 
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera__garden_activity
+          entity_id: binary_sensor.front_door_camera_motion_detected
           from: 'on'
           to: 'off'
           for:
