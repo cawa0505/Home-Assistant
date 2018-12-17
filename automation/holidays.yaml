@@ -3,6 +3,25 @@
 #################################################################
 
       ##########################################################
+      ## Someone is home, turn on Christmas Tree Lights at 07.00
+      ##########################################################
+
+    - alias: 'Someone is home, turn on the Christmas Tree lights'
+      initial_state: on
+      trigger:
+        platform: time
+        at: '07:00:00'
+      
+      condition:
+        condition: state
+        entity_id: group.household
+        state: 'home'
+
+      action:
+        - service: homeassistant.turn_on
+          entity_id: switch.christmas_tree_lights
+
+      ##########################################################
       ## Someone is home, turn on Christmas Tree Lights
       ##########################################################
 
