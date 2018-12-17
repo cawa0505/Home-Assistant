@@ -7,23 +7,16 @@ default_view:
     icon: mdi:home
     entities:
         - persistent_notification.1
+        - group.trash_status
+        - group.household
         - group.interior_lights
         - camera.front_door
         - camera.man_cave
         - group.exterior_lights
-        - group.household
         - group.climate_control
         - group.automation_on_demand
         - group.motion_sensors
-        - group.calendar_events
         - group.zigbee_group
-        - group.timers
-
-timers:
-    name: Timers
-    entities:
-        - timer.porch_light
-        - timer.outside_light
 
 zigbee_group:
   name: Zigbee
@@ -56,7 +49,6 @@ calendar_events:
     entities:
         - calendar.contacts
         - calendar.family
-        - calendar.chris_starks_facebook_events
         - calendar.chris_stark_main
         - calendar.holidays_in_united_kingdom
         - calendar.liverpool
@@ -273,8 +265,7 @@ Motion Sensors:
     - binary_sensor.back_door
     - binary_sensor.front_door_2
     - binary_sensor.front_door_camera__garden_activity
-    - binary_sensor.front_door_camera__gate_activity
-    - binary_sensor.front_door_camera__road_activity
+    - binary_sensor.front_door_camera__road_activity_2
     - binary_sensor.front_door_camera_motion_detected
 
 Livingroom_Lights:
@@ -304,7 +295,7 @@ Interior:
     control: hidden
     entities:
       - light.hue_downstairs_hallway_2
-      - light.hallway
+      - light.downstairs_light
       - light.upstairs_hallway
       - light.bottom_man_cave
       - light.man_cave_landing
@@ -312,7 +303,7 @@ Interior:
 
 Interior Lights:
       - light.hue_downstairs_hallway_2
-      - light.hallway
+      - light.downstairs_light
       - light.upstairs_hallway
       - light.bottom_man_cave
       - light.man_cave_landing
@@ -432,17 +423,16 @@ Humidity:
        - sensor.bedroom_humidity
 
 Automation On Demand:
-    control: hidden
     entities:
-       - automation.trash_and_recycle_pickup_reminder
+       - group.trash_automation
 
-trash_automation:
-       - input_select.trash_pickup_day
-       - input_select.recycle_pickup_week
-       - input_select.recycle_pickup_day
-       - sensor.trash_day
-       - sensor.recycle_day
-       - sensor.recycle_pickup_week
+Trash Status:
+    control: hidden
+    name: Trash Status
+    entities:
+        - sensor.trash_day
+        - sensor.recycle_day
+        - input_boolean.trash_reminders
 
 nest_hermostat:
     name: Nest Thermostat
@@ -475,9 +465,11 @@ Alarm:
       - input_boolean.alarm_tripped
 
 Household:
-    - group.person_chris
-    - group.person_aimee
-    - sensor.away_mode
+    control: hidden
+    entities:
+      - group.person_chris
+      - group.person_aimee
+      - sensor.away_mode
 
 Alarm_SafeList:
     - group.household
