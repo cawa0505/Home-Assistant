@@ -75,9 +75,9 @@ device_tracker:
     consider_home: 150
     track_new_devices: true
 
-  - platform: googlehome
-    host: 192.168.86.250
-    track_new_devices: false   
+ # - platform: googlehome
+  #  host: 192.168.86.250
+   # track_new_devices: false   
 
   - platform: ping
     track_new_devices: true
