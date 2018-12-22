@@ -83,7 +83,7 @@ Temperatures:
      - sensor.kitchen_temperature
      - sensor.upstairs_temperature
      - sensor.downstairs_temperature
-     - sensor.front_room_temperature_2
+     - sensor.front_room_temperature
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
      - sensor.dining_room_temperature
@@ -98,20 +98,19 @@ bedrooms:
       - group.guest_bedroom
       - group.small_bedroom
 
+Bathroom:
+    name: Bathroom
+    view: yes
+    icon: mdi:hot-tub
+    entities:
+        - group.bathroom_lights
+
 Downstairs Toilet:
     - light.hue_downstairs_toilet
 
 Small Bedroom:
     - sensor.bedroom_temperature
     - light.hue_small_bedroom
-
-HTPC:
-    name: HTPC
-    view: yes
-    entities:
-      - group.sabnzbd
-      - group.radarr
-      - group.sonarr
 
 Wireless Buttons:
     entities:
@@ -127,18 +126,6 @@ All Input Boolean:
       - input_boolean.trash_reminders
       - input_boolean.porch_light
       - input_boolean.outside_light
-
-troubleshooting:
-    name: Troubleshooting
-    view: yes
-    icon: mdi:none
-    entities:
-     - group.all_devices
-     - group.scenes
-     - group.all_input_boolean
-     - group.all_switches
-     - group.all_lights
-     - group.all_scenes
 
 Sabnzbd:
     entities:
@@ -205,15 +192,6 @@ Bedroom:
       - media_player.bedroom_home
       - sensor.bedroom_temperature
 
-weatherdashboard:
-    name: Weather
-    view: yes
-    icon: mdi:weather-partlycloudy
-    entities:
-      - group.thermostat
-      - group.humidity
-      - group.weather
-
 Weather:
     - sun.sun
     - sensor.moon
@@ -243,17 +221,17 @@ Battery Levels:
 
 security_doors:
     - binary_sensor.back_door
-    - binary_sensor.front_door_2
+    - binary_sensor.front_door
 
 exterior_doors:
     - binary_sensor.porch_door
-    - binary_sensor.front_door_2
+    - binary_sensor.front_door
 
 Doors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
-    - binary_sensor.front_door_2
+    - binary_sensor.front_door
     
 Motion Sensors:
     - sensor.downstairs_motion_sensor
@@ -263,7 +241,7 @@ Motion Sensors:
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
-    - binary_sensor.front_door_2
+    - binary_sensor.front_door
     - binary_sensor.front_door_camera__garden_activity
     - binary_sensor.front_door_camera__road_activity_2
     - binary_sensor.front_door_camera_motion_detected
@@ -282,14 +260,6 @@ LivingRoom_TVLight:
     name: "Living Room TV Light"
     entities:
         - light.hue_livingroom_lightstrip
-
-automation:
-    name: Automation
-    view: yes
-    icon: mdi:robot
-    entities:
-      - group.all_automations
-      - group.alarm
 
 Interior:
     control: hidden
@@ -371,19 +341,6 @@ Internet:
   - sensor.google_wifi_local_ip
   - sensor.google_wifi_new_version
 
-Google_Home:
-    name: Google Home Devices
-    view: yes
-    icon: mdi:music
-    entities:
-        - media_player.hallway_home
-        - media_player.living_room_home
-        - media_player.man_cave_home
-        - media_player.bedroom_home
-        - media_player.guest_room_home
-        - media_player.kitchen_display
-        - media_player.man_cave_room_display
-
 Man_Cave_Room:
     name: Man Cave
     view: yes
@@ -392,11 +349,20 @@ Man_Cave_Room:
         - group.man_cave_lights
         - group.man_cave_switches
 
+Bathroom_Lights:
+    name: Bathroom Lights
+    entities:
+        - light.bathroom_1
+        - light.bathroom_2
+        - light.bathroom_3
+        - light.bathroom_4        
+
 Kitchen_Lights:
     name: Kitchen Lights
     entities:
         - light.kitchen_light_1
         - light.kitchen_light_2
+        - light.kitchen_3
 
 Dining_Room_Lights:
     name: Dining Room Lights
@@ -561,3 +527,54 @@ Date Time:
       - sensor.internet_time
       - sensor.rocket_launch_time
       - sensor.beat
+
+weatherdashboard:
+    name: Weather
+    view: yes
+    icon: mdi:weather-partlycloudy
+    entities:
+      - group.thermostat
+      - group.humidity
+      - group.weather
+
+automation:
+    name: Automation
+    view: yes
+    icon: mdi:robot
+    entities:
+      - group.all_automations
+      - group.alarm
+
+Google_Home:
+    name: Google Home Devices
+    view: yes
+    icon: mdi:google-home
+    entities:
+        - media_player.hallway_home
+        - media_player.living_room_home
+        - media_player.man_cave_home
+        - media_player.bedroom_home
+        - media_player.guest_room_home
+        - media_player.kitchen_display
+        - media_player.man_cave_room_display      
+
+htpc:
+    name: HTPC
+    view: yes
+    icon: mdi:youtube
+    entities:
+      - group.sabnzbd
+      - group.radarr
+      - group.sonarr      
+
+troubleshooting:
+    name: Troubleshooting
+    view: yes
+    icon: mdi:none
+    entities:
+     - group.all_devices
+     - group.scenes
+     - group.all_input_boolean
+     - group.all_switches
+     - group.all_lights
+     - group.all_scenes
