@@ -68,6 +68,12 @@ mqtt:
  discovery: true
  username: !secret mqtt_username
  password: !secret mqtt_password
+ birth_message:
+   topic: 'hass/status'
+   payload: 'online'
+ will_message:
+   topic: 'hass/status'
+   payload: 'offline' 
 
 device_tracker:
   - platform: bluetooth_tracker
