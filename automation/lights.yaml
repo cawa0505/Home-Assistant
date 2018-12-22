@@ -134,6 +134,8 @@
               {% if now().hour > 20 %}64
               {% else %}100
               {% endif %}
+        - service: light.turn_on
+          entity_id: light.upstairs_hallway        
 
         ##########################################################
         ## Front Door - Open
@@ -143,7 +145,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door_2
+        entity_id: binary_sensor.front_door
         from: 'off'
         to: 'on'
 
@@ -161,7 +163,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door_2
+        entity_id: binary_sensor.front_door
         from: 'off'
         to: 'on'
 
@@ -216,7 +218,7 @@
         - platform: state
           entity_id: sensor.upstairs_motion_sensor
           to: 'off'
-          for: '00:03:00'
+          for: '00:02:00'
 
       action:
         - service: light.turn_off
@@ -276,47 +278,6 @@
               {%- endfor %}
 
         ##########################################################
-        ## Turn on outside light at sunset
-        ##########################################################
-
-    - alias: 'Turn on outside light between sunset +1'
-      initial_state: on
-      trigger:
-        platform: sun
-        event: sunset
-        offset: '+01:00:00'
-
-      condition:
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'        
-
-      action:
-       - service: light.turn_on
-         entity_id:
-           - light.outside
-
-        ##########################################################
-        ## Turn off outside light at 00:00
-        ##########################################################
-
-    - alias: 'Turn off outside light at 00:00'
-      initial_state: on
-      trigger:
-        platform: time
-        at: '00:00:00'
-
-      condition:
-        condition: state
-        entity_id: input_boolean.disable_light_automations
-        state: 'off'
-
-      action:
-       - service: light.turn_off
-         entity_id:
-           - light.outside
-
-        ##########################################################
         ## Turn off Hallway Lamp at 23:00
         ##########################################################
 
@@ -336,7 +297,7 @@
          entity_id: switch.hallway_lamp
 
         ##########################################################
-        ## Turn off Hallway Lamp at 23:00
+        ## Turn on Hallway Lamp at 23:00
         ##########################################################
 
     - alias: 'Turn on Hallway Lamp at sunset'
@@ -344,16 +305,12 @@
       trigger:
         platform: sun
         event: sunset
-        offset: "+01:00:00"
+        offset: '+00:00:00'       
 
       condition:
-        - condition: state
-          entity_id: input_boolean.master_security
-          state: 'on'
-
-        - condition: state
-          entity_id: input_boolean.disable_light_automations
-          state: 'off'       
+         condition: state
+         entity_id: input_boolean.disable_light_automations
+         state: 'off'       
 
       action:
        - service: homeassistant.turn_on
