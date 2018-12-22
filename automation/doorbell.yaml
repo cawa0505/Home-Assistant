@@ -17,7 +17,7 @@
       condition:
 
         - condition: template
-          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door_2.last_changed) > 180 }}"
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door.last_changed) > 180 }}"
 
         - condition: template
           value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
@@ -53,6 +53,42 @@
        #       photo:
         #         - file: "/config/camera_snapshot/frontdoor.jpg"
         #           capture: "Snapshot"
+
+       ##########################################################
+        ## Front Door Person Detected
+        ##########################################################
+
+    - alias: 'Front Door Person Detected'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.front_door_camera_person_detected
+        from: 'off'
+        to: 'on'
+
+      condition:
+
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door.last_changed) > 180 }}"
+
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
+
+        - condition: time
+          after: '08:00:00'
+          before: '21:00:00'
+
+        - condition: state
+          entity_id: group.household
+          state: 'home'
+
+      action:
+        - service: tts.google_say
+          data:
+            message: 'Motion detected at the front door'
+            entity_id:
+              - media_player.man_cave_home
+              - media_player.living_room_home
 
         ##########################################################
         ## Turn On Outside Light when Motion Detected
@@ -95,9 +131,20 @@
             seconds: 0
 
       condition:
+
+        - condition: state
+          entity_id: input_boolean.disable_light_automations
+          state: 'off'    
+
         - condition: state
           entity_id: sun.sun
           state: 'below_horizon'
+
+        - condition: state
+          entity_id: group.exterior_doors
+          state: 'off'
+          for:
+            minutes: 10
 
       action:
         - service: light.turn_off
