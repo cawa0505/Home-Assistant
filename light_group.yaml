@@ -60,7 +60,15 @@
       entities:
           - light.hue_dining_room_1
           - light.hue_dining_room_2
-          - light.hue_dining_room_3         
+          - light.hue_dining_room_3     
+
+    - platform: group   
+      name: Bathroom
+      entities:
+        - light.bathroom_1
+        - light.bathroom_2
+        - light.bathroom_3
+        - light.bathroom_4
           
     - platform: yeelight
       devices:
