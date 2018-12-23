@@ -39,7 +39,7 @@ Philips Hue - numerous of bulbs<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
 2x TRÅDFRI  LED bulb GU10 400 lumen<br />
-1x TRÅDFRI  LED bulb E27 600 lumen<br />
+1x TRÅDFRI  LED bulb E27 600 lumen (Acting as router for zigbee2mqtt)<br />
 
 <b>Sensors:</b>
 
