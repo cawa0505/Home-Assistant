@@ -20,7 +20,7 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 
 <b>Internet:</b>
 
-3x Google Wifis
+3x Google Wifi
 
 <b>Cameras:</b>
 
@@ -57,7 +57,7 @@ Philips Hue - numerous of bulbs<br />
 <b>Buttons:</b>
 
 1x Xiaomi Magic Cube Controller<br />
-2x Xiaomi Buttons
+2x Xiaomi Wireless Button
 
 <b>Ad Blocker:</b>
 
