@@ -43,7 +43,7 @@ Philips Hue - numerous of bulbs<br />
 
 <b>Sensors:</b>
 
-4x Aqara temperature humidity Sensor<br />
+4x Xiaomi Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
 4x Philips Hue Motion sensors<br />
 1x Xiaomi Aqara Vibration Sensor
