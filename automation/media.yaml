@@ -44,7 +44,7 @@
       action:
         service: remote.send_command
         data:
-          entity_id: remote.living_room
+          entity_id: remote.front_room
           command:
             - CinemaDay
           device: 53468354
@@ -67,11 +67,10 @@
       action:
         service: remote.send_command
         data:
-          entity_id: remote.living_room
+          entity_id: remote.front_room
           command:
            - CinemaNight
           device: 53468354
-
 
         ##########################################################
         ## OSMC playing Above Horizon - Cinema Day
@@ -93,7 +92,7 @@
       action:
          service: remote.send_command
          data:
-          entity_id: remote.living_room
+          entity_id: remote.front_room
           command:
             - CinemaDay
           device: 53468354
@@ -120,7 +119,7 @@
          entity_id: scene.living_room_media_playing
        - service: remote.send_command
          data:
-          entity_id: remote.living_room
+          entity_id: remote.front_room
           command:
             - CinemaNight
           device: 53468354
@@ -209,7 +208,7 @@
           entity_id: scene.living_room_media_playing
         - service: remote.send_command
           data:
-           entity_id: remote.living_room
+           entity_id: remote.front_room
            command:
              - CinemaNight
            device: 53468354
@@ -236,7 +235,7 @@
           entity_id: scene.living_room_media_playing
         - service: remote.send_command
           data:
-           entity_id: remote.living_room
+           entity_id: remote.front_room
            command:
              - CinemaDay
            device: 53468354
@@ -270,7 +269,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: remote.living_room
+        entity_id: remote.front_room
         to: 'Watch TV'
 
       condition:
@@ -283,7 +282,7 @@
           entity_id: scene.living_room_media_playing
         - service: remote.send_command
           data:
-           entity_id: remote.living_room
+           entity_id: remote.front_room
            command:
              - CinemaNight
            device: 53468354
@@ -302,7 +301,7 @@
       action:
         - service: remote.send_command
           data:
-           entity_id: remote.living_room
+           entity_id: remote.front_room
            command:
              - Pause
            device: 53468354
