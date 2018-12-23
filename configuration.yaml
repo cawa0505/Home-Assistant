@@ -29,7 +29,9 @@ map:
 sun:
 
 recorder:
-  purge_keep_days: 3
+  db_url: !secret mariadb_url
+  purge_interval: 1
+  purge_keep_days: 7
 
 
 #################################################################
@@ -127,12 +129,31 @@ ios:
 
 remote:
   - platform: harmony
-    name: Living room
+    name: Front room
     host: 192.168.86.30
 
 weather:
   - platform: metoffice
     api_key: !secret metoffice_api
+
+sabnzbd:
+  api_key: !secret sabnzbd_api
+  host: 192.168.86.6
+  name: sabnzbd
+  port: 8080
+  ssl: false
+  sensors:
+    - current_status
+    - speed
+    - queue_size
+    - queue_remaining
+    - disk_size
+    - disk_free
+    - queue_count
+    - day_size
+    - week_size
+    - month_size
+    - total_size
 
 #################################################################
 ## Includes
