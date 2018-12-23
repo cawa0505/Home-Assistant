@@ -16,7 +16,6 @@ default_view:
         - group.climate_control
         - group.automation_on_demand
         - group.motion_sensors
-        - group.zigbee_group
 
 zigbee_group:
   name: Zigbee
@@ -129,13 +128,18 @@ All Input Boolean:
 
 Sabnzbd:
     entities:
-      - sensor.sabnzbd_disk
-      - sensor.sabnzbd_disk_free
-      - sensor.sabnzbd_left
-      - sensor.sabnzbd_queue
-      - sensor.sabnzbd_queue_count
-      - sensor.sabnzbd_speed
-      - sensor.sabnzbd_status
+        - sensor.sabnzbd_daily_total
+        - sensor.sabnzbd_disk
+        - sensor.sabnzbd_disk_free
+        - sensor.sabnzbd_left
+        - sensor.sabnzbd_monthly_total
+        - sensor.sabnzbd_queue
+        - sensor.sabnzbd_queue_count
+        - sensor.sabnzbd_speed
+        - sensor.sabnzbd_status
+        - sensor.sabnzbd_total
+        - sensor.sabnzbd_weekly_total
+
 
 Radarr:
     entities:
@@ -565,7 +569,8 @@ htpc:
     entities:
       - group.sabnzbd
       - group.radarr
-      - group.sonarr      
+      - group.sonarr
+      - group.hassio_pi     
 
 troubleshooting:
     name: Troubleshooting
@@ -578,3 +583,15 @@ troubleshooting:
      - group.all_switches
      - group.all_lights
      - group.all_scenes
+     - group.zigbee_group
+
+hassio_pi:
+  name: Pi
+  entities:
+    - sensor.cpu_use
+    - sensor.cpu_temp
+    - sensor.disk_use_
+    #- sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.ram_use_percent
+    - sensor.last_boot
