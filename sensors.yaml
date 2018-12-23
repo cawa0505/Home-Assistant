@@ -2,20 +2,6 @@
 ## Sensors
 #################################################################
 
-  - platform: sabnzbd
-    name: Sabnzbd
-    host: 192.168.86.6
-    port: 8080
-    ssl: false
-    api_key: !secret sabnzbd_api
-    monitored_variables:
-      - "current_status"
-      - "speed"
-      - "queue_size"
-      - "queue_remaining"
-      - "disk_size"
-      - "disk_free"
-
   - platform: pi_hole
     host: 192.168.86.95:80
     monitored_conditions:
@@ -212,6 +198,25 @@
       - sensor.bedroom_temperature
       - sensor.small_bedroom_temperature
       - sensor.dining_room_temperature
+
+  - platform: command_line
+    name: CPU Temp
+    command: "/bin/cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "ºC"
+    value_template: '{{ value | multiply(0.001) }}'
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: memory_use_percent
+      - type: processor_use
+      - type: last_boot
+      #- type: network_in
+      #  arg: eth0
+      #- type: network_out
+      #  arg: eth0    
 
  ###############################################################################
 #  Sensor Definitions
