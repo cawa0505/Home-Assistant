@@ -37,7 +37,9 @@ Philips Hue - numerous of bulbs<br />
 1x Philips Hue Strip + extension<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
-1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp
+1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
+2x TRÅDFRI  LED bulb GU10 400 lumen<br />
+1x TRÅDFRI  LED bulb E27 600 lumen<br />
 
 <b>Sensors:</b>
 
