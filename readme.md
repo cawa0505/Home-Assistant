@@ -20,7 +20,7 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 
 <b>Internet:</b>
 
-3x Google Wifis
+3x Google Wifi
 
 <b>Cameras:</b>
 
@@ -37,14 +37,16 @@ Philips Hue - numerous of bulbs<br />
 1x Philips Hue Strip + extension<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
-1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp
+1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
+2x TRÅDFRI  LED bulb GU10 400 lumen<br />
+1x TRÅDFRI  LED bulb E27 600 lumen (Acting as router for zigbee2mqtt)<br />
 
 <b>Sensors:</b>
 
-4x Aqara temperature humidity Sensor<br />
+4x Xiaomi Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
 4x Philips Hue Motion sensors<br />
-1x Xiaomi Aqara Vibration Sensor
+1x Xiaomi Aqara Vibration Sensor (Washing machine)
 
 <b>Plugs:</b>
 
@@ -55,7 +57,7 @@ Philips Hue - numerous of bulbs<br />
 <b>Buttons:</b>
 
 1x Xiaomi Magic Cube Controller<br />
-2x Xiaomi Buttons
+2x Xiaomi Wireless Button
 
 <b>Ad Blocker:</b>
 
@@ -72,4 +74,4 @@ Pi Hole running on Raspberry Pi 1
 Plex running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
-1x HP ML110 G7 running unRaid
+1x HP ML110 G7 running unRaid | Docker containers running Tautulli, OpenVPN, Sabnzbd, Sonarr, Radarr & Duck DNS.
