@@ -46,7 +46,7 @@ Philips Hue - numerous of bulbs<br />
 4x Xiaomi Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
 5x Philips Hue Motion sensors<br />
-1x Xiaomi Aqara Vibration Sensor (Washing machine)
+1x Xiaomi Aqara Vibration Sensor (Washing machine)<br />
 1x Xiaomi MiJia Honeywell smoke detector
 
 <b>Plugs:</b>
