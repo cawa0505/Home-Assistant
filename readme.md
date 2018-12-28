@@ -33,7 +33,7 @@ Nest Hello Door Bell<br />
 <b>Lights:</b>
 
 Philips Hue - numerous of bulbs<br />
-4x Philips Hue Light dimmers<br />
+5x Philips Hue Light dimmers<br />
 1x Philips Hue Strip + extension<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
@@ -45,8 +45,9 @@ Philips Hue - numerous of bulbs<br />
 
 4x Xiaomi Aqara temperature humidity Sensor<br />
 6x Xiaomi Aqara Door/Window Sensor<br />
-4x Philips Hue Motion sensors<br />
+5x Philips Hue Motion sensors<br />
 1x Xiaomi Aqara Vibration Sensor (Washing machine)
+1x Xiaomi MiJia Honeywell smoke detector
 
 <b>Plugs:</b>
 
