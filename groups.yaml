@@ -16,6 +16,12 @@ default_view:
         - group.climate_control
         - group.automation_on_demand
         - group.motion_sensors
+        - group.chris_room_location
+
+chris_room_location:
+    name: Chris Room Location
+    entities:
+        input_select.chris_room_location
 
 zigbee_group:
   name: Zigbee
@@ -82,10 +88,11 @@ Temperatures:
      - sensor.kitchen_temperature
      - sensor.upstairs_temperature
      - sensor.downstairs_temperature
-     - sensor.front_room_temperature
+     - sensor.living_room_temperature
      - sensor.bedroom_temperature
      - sensor.small_bedroom_temperature
      - sensor.dining_room_temperature
+     - sensor.bathroom_temperature
      - sensor.average_house_temp
 
 bedrooms:
@@ -108,7 +115,7 @@ Downstairs Toilet:
     - light.hue_downstairs_toilet
 
 Small Bedroom:
-    - sensor.bedroom_temperature
+    - sensor.small_bedroom_temperature
     - light.hue_small_bedroom
 
 Wireless Buttons:
@@ -217,11 +224,17 @@ Battery Levels:
     - sensor.motion_downstairs_battery
     - sensor.motion_upstairs_battery
     - sensor.motion_kitchen_battery
-    - sensor.back_door_sensor__battery
-    - sensor.man_cave_button__battery
+    - sensor.back_door_battery
     - sensor.motion_dining_room_battery
-    - sensor.back_door_sensor__battery
-
+    - sensor.porch_door_battery
+    - sensor.front_door_battery
+    - sensor.motion_bathroom_battery
+    - sensor.man_cave_door_battery
+    - sensor.dining_room_switch_battery
+    - sensor.guest_room_switch_battery
+    - sensor.living_room_switch_battery
+    - sensor.downstairs_toilet_switch_battery
+    - sensor.bathroom_room_switch_battery
 
 security_doors:
     - binary_sensor.back_door
@@ -242,6 +255,7 @@ Motion Sensors:
     - sensor.dining_room_motion_sensor
     - sensor.upstairs_motion_sensor
     - sensor.kitchen_motion_sensor
+    - sensor.bathroom_motion_sensor
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
@@ -391,6 +405,7 @@ Humidity:
        - sensor.man_cave_humidity
        - sensor.small_bedroom_humidity
        - sensor.bedroom_humidity
+       - sensor.living_room_humidity
 
 Automation On Demand:
     entities:
@@ -439,7 +454,6 @@ Household:
     entities:
       - group.person_chris
       - group.person_aimee
-      - sensor.away_mode
 
 Alarm_SafeList:
     - group.household
@@ -457,6 +471,12 @@ person_chris:
       - device_tracker.chris_android
       - device_tracker.oneplus_6t_bluetooth
       - device_tracker.19216886250_64a2f9b71cc1
+      - device_tracker.chris_bt_bedroom
+      - device_tracker.chris_bt_guestroom
+      - device_tracker.chris_bt_hallway
+      - device_tracker.chris_bt_kitchen
+      - device_tracker.chris_bt_livingroom
+      - device_tracker.chris_bt_mancave
 
 person_aimee:
   name: Aimee
@@ -556,7 +576,6 @@ Google_Home:
     entities:
         - media_player.hallway_home
         - media_player.living_room_home
-        - media_player.man_cave_home
         - media_player.bedroom_home
         - media_player.guest_room_home
         - media_player.kitchen_display
@@ -588,10 +607,15 @@ troubleshooting:
 hassio_pi:
   name: Pi
   entities:
-    - sensor.cpu_use
     - sensor.cpu_temp
-    - sensor.disk_use_
+    - sensor.disk_use_percent_
     #- sensor.disk_use_home
-    - sensor.ram_free
+    - sensor.memory_use_percent
     - sensor.ram_use_percent
     - sensor.last_boot
+    - sensor.processor_use
+    - sensor.network_in_eth0
+    - sensor.network_out_eth0
+    - sensor.load_1m
+    - sensor.load_5m
+    - sensor.load_15m
