@@ -83,33 +83,9 @@
     state_topic: "zigbee2mqtt/bridge/state"
     icon: mdi:router-wireles
 
-  - platform: mqtt
-    name: "Man Cave Button - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Man Cave Button/battery/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Man Cave Motion Sensor - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Man Cave Motion Sensor/battery/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Back Door Sensor - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Back Door/battery/state"
-    unit_of_measurement: '%'
-    retain: true
-
-  - platform: mqtt
-    name: "Alarm Button - Battery"
-    icon: mdi:battery
-    state_topic: "smartthings/Alarm Button/battery/state"
-    unit_of_measurement: '%'
-    retain: true
+#################################################################
+## Temperatures
+#################################################################
 
   - platform: template
     sensors:
@@ -118,12 +94,6 @@
         value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
-# Nest away status
-  - platform: template
-    sensors:
-      away_mode:
-        friendly_name: "Nest Location"   
-        value_template: "{% if is_state('binary_sensor.home_away', 'off') %}home{% else %}not_home{% endif %}"
 
   - platform: template
     sensors:
@@ -142,10 +112,44 @@
 
   - platform: template
     sensors:
+      bathroom_temperature:
+        friendly_name: 'Upstairs Temperature'
+        value_template: '{{states.sensor.bathroom_motion_sensor.attributes.temperature}}'
+        unit_of_measurement: '°C'
+
+  - platform: template
+    sensors:
       downstairs_temperature:
         friendly_name: 'Downstairs Temperature'
         value_template: '{{states.sensor.downstairs_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
+
+
+  - platform: min_max
+    name: Average House Temp
+    type: mean
+    entity_ids:
+      - sensor.heating_thermostat_temperature
+      - sensor.man_cave_temperature
+      - sensor.kitchen_temperature
+      - sensor.upstairs_temperature
+      - sensor.downstairs_temperature
+      - sensor.living_room_temperature
+      - sensor.bedroom_temperature
+      - sensor.small_bedroom_temperature
+      - sensor.dining_room_temperature
+      - sensor.bathroom_temperature
+
+# Nest away status
+  - platform: template
+    sensors:
+      away_mode:
+        friendly_name: "Nest Location"   
+        value_template: "{% if is_state('binary_sensor.home_away', 'off') %}home{% else %}not_home{% endif %}"
+ 
+#################################################################
+## Batteries
+#################################################################
 
   - platform: template
     sensors:
@@ -154,6 +158,14 @@
         value_template: '{{states.sensor.downstairs_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
+
+  - platform: template
+    sensors:
+      motion_bathroom_battery:
+        friendly_name: 'Motion Bathroom Battery'
+        value_template: '{{states.sensor.bathroom_motion_sensor.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery       
 
   - platform: template
     sensors:
@@ -177,27 +189,92 @@
         friendly_name: 'Motion Dining Room battery'
         value_template: '{{states.sensor.dining_room_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
-        device_class: battery       
+        device_class: battery      
+
+  - platform: template
+    sensors:
+      dining_room_switch_battery:
+        friendly_name: 'Dining Room Switch battery'
+        value_template: '{{states.sensor.dining_room_switch.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery   
+
+  - platform: template
+    sensors:
+      bathroom_room_switch_battery:
+        friendly_name: 'Bathroom Switch battery'
+        value_template: '{{states.sensor.bathroom_switch.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery    
+
+  - platform: template
+    sensors:
+      downstairs_toilet_switch_battery:
+        friendly_name: 'Downstairs Toilet Switch battery'
+        value_template: '{{states.sensor.downstairs_toilet_switch.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery 
+
+  - platform: template
+    sensors:
+      living_room_switch_battery:
+        friendly_name: 'Living Room Switch battery'
+        value_template: '{{states.sensor.living_room_switch.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery     
+
+  - platform: template
+    sensors:
+      guest_room_switch_battery:
+        friendly_name: 'Guest Room Switch battery'
+        value_template: '{{states.sensor.guest_room_switch.attributes.battery}}'
+        unit_of_measurement: '%'
+        device_class: battery      
+
+#################################################################
+## Google Home RSSI
+#################################################################
+
+  - platform: template
+    sensors:
+      kitchen_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_kitchen.attributes.rssi }}'
+
+  - platform: template
+    sensors:
+      bedroom_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_bedroom.attributes.rssi }}'
+
+  - platform: template
+    sensors:
+      guestroom_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_guestroom.attributes.rssi }}'
+
+  - platform: template
+    sensors:
+      mancave_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_mancave.attributes.rssi }}'
+
+  - platform: template
+    sensors:
+      livingroom_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_livingroom.attributes.rssi }}'
+
+  - platform: template
+    sensors:
+      hallway_chris_gh_rssi:
+        value_template: '{{ states.device_tracker.chris_bt_hallway.attributes.rssi }}'
+
+ #################################################################
+## MISC
+#################################################################
+       
 
   - platform: template
     sensors:
       hpml10v2:
         value_template: '{% if is_state("device_tracker.hpml10v2", "home") %}Online{% else %}Offline{% endif %}'
         friendly_name: 'HP ML10v2'
-
-  - platform: min_max
-    name: Average House Temp
-    type: mean
-    entity_ids:
-      - sensor.heating_thermostat_temperature
-      - sensor.man_cave_temperature
-      - sensor.kitchen_temperature
-      - sensor.upstairs_temperature
-      - sensor.downstairs_temperature
-      - sensor.front_room_temperature_2
-      - sensor.bedroom_temperature
-      - sensor.small_bedroom_temperature
-      - sensor.dining_room_temperature
 
   - platform: command_line
     name: CPU Temp
@@ -209,16 +286,29 @@
     resources:
       - type: disk_use_percent
         arg: /
+      - type: disk_use
+        arg: /
+      - type: disk_free
+        arg: /
       - type: memory_free
       - type: memory_use_percent
       - type: processor_use
       - type: last_boot
-      #- type: network_in
-      #  arg: eth0
-      #- type: network_out
-      #  arg: eth0    
+      - type: load_1m      
+      - type: load_5m
+      - type: load_15m
+     # - type: process
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0    
+      - type: memory_use
+      - type: memory_free
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
 
- ###############################################################################
+###############################################################################
 #  Sensor Definitions
 ###############################################################################
 
