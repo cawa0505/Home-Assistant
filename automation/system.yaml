@@ -1,0 +1,53 @@
+#################################################################
+## System
+#################################################################
+
+        ##########################################################
+        ## Set theme on HA start
+        ##########################################################
+
+  - alias: Set theme at startup
+    initial_state: 'on'
+    trigger:
+     - platform: homeassistant
+       event: start
+    action:
+      service: frontend.set_theme
+      data:
+        name: slate
+
+        ##########################################################
+        ## Home Assistant
+        ##########################################################
+        
+  - alias: 'Home Assistant - Update Available Notifications'
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      - service: notify.telegram
+        data_template:
+         message: 'Update {{ states.updater.updater.state }} for Home Assistant
+                   is available and 
+                   check {{states.updater.updater.attributes.release_notes}} for 
+                   the latest changes.'       
+
+        ##########################################################
+        ##  Daily Snapshot
+        ##########################################################
+
+  - alias: Daily snapshot
+    trigger:
+      platform: time
+      at: '02:00:00'
+
+    condition:
+      condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'off'
+
+    action:
+      service: hassio.snapshot_full
+      data_template:
+        name: automated backup {{ now().strftime('%d-%m-%Y') }}  
