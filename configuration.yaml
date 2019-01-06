@@ -14,6 +14,7 @@ homeassistant:
   - /config/camera_snapshot
 
 frontend:
+  themes: !include themes.yaml
 
 config:
 
@@ -77,36 +78,6 @@ mqtt:
    topic: 'hass/status'
    payload: 'offline' 
 
-device_tracker:
-  - platform: bluetooth_tracker
-    interval_seconds: 10
-    consider_home: 150
-    track_new_devices: true
-
- # - platform: googlehome
-  #  host: 192.168.86.250
-   # track_new_devices: false   
-
-  - platform: ping
-    track_new_devices: true
-   #interval_seconds: 5
-    consider_home: 300
-    scan_interval: 10
-    hosts:
-      Aimee_iPhone: 192.168.86.98
-      Chris_Android: 192.168.86.56
-      charlotesiphonelan: 192.168.86.55
-
-  - platform: nmap_tracker
-    track_new_devices: true
-    scan_options: " --privileged -sP "
-    hosts:
-      - 192.168.86.0/24
-      - 192.168.87.0/24
-    home_interval: 10
-    consider_home: 600
-    interval_seconds: 10
-
 notify:
   - name: telegram
     platform: telegram
@@ -126,6 +97,9 @@ telegram_bot:
         - !secret telegram_aimee_chat
 
 ios:
+
+influxdb:
+  host: 192.168.86.6
 
 remote:
   - platform: harmony
@@ -173,3 +147,4 @@ input_select: !include input_select.yaml
 camera: !include cameras.yaml
 timer: !include timers.yaml
 switch: !include switch.yaml
+device_tracker: !include device_tracker.yaml
