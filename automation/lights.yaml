@@ -110,8 +110,11 @@
               {% if now().hour > 20 %}64
               {% else %}100
               {% endif %}
+
         - service: light.turn_on
-          entity_id: light.upstairs_hallway        
+          entity_id: light.upstairs_hallway   
+          data_template:
+            brightness: 75    
 
         ##########################################################
         ## Front Door - Open
@@ -284,9 +287,13 @@
         offset: '+00:00:00'       
 
       condition:
-         condition: state
-         entity_id: input_boolean.disable_light_automations
-         state: 'off'       
+        - condition: state
+          entity_id: input_boolean.disable_light_automations
+          state: 'off'    
+
+        - condition: state
+          entity_id: group.household
+          state: 'home'
 
       action:
        - service: homeassistant.turn_on
