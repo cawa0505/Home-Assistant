@@ -16,7 +16,6 @@ default_view:
         - group.climate_control
         - group.automation_on_demand
         - group.motion_sensors
-        - group.chris_room_location
 
 chris_room_location:
     name: Chris Room Location
@@ -70,7 +69,8 @@ sensors:
         - group.door_bell
         - group.occupancy
         - group.door_bell_status
-        - group.nest_hermostat
+        - group.nest_thermostat
+        - group.tado
         - group.household
         - group.motion_sensors
         - group.pi_hole
@@ -164,8 +164,6 @@ Sonarr:
 Door Bell Status:
      entities:
        - binary_sensor.front_door_camera__garden_activity
-       - binary_sensor.front_door_camera__gate_activity
-       - binary_sensor.front_door_camera__road_activity
        - binary_sensor.front_door_camera_motion_detected
        - binary_sensor.front_door_camera_online
        - binary_sensor.front_door_camera_person_detected
@@ -251,11 +249,11 @@ Doors:
     - binary_sensor.front_door
     
 Motion Sensors:
-    - sensor.downstairs_motion_sensor
-    - sensor.dining_room_motion_sensor
-    - sensor.upstairs_motion_sensor
-    - sensor.kitchen_motion_sensor
-    - sensor.bathroom_motion_sensor
+    - binary_sensor.downstairs_motion_sensor
+    - binary_sensor.dining_room_motion_sensor
+    - binary_sensor.upstairs_motion_sensor
+    - binary_sensor.kitchen_motion_sensor
+    - binary_sensor.bathroom_motion_sensor
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
@@ -407,9 +405,9 @@ Humidity:
        - sensor.bedroom_humidity
        - sensor.living_room_humidity
 
-Automation On Demand:
-    entities:
-       - group.trash_automation
+#Automation On Demand:
+   # entities:
+      # - group.trash_automation
 
 Trash Status:
     control: hidden
@@ -419,7 +417,7 @@ Trash Status:
         - sensor.recycle_day
         - input_boolean.trash_reminders
 
-nest_hermostat:
+nest_thermostat:
     name: Nest Thermostat
     entities:
         - binary_sensor.heating_thermostat_online
@@ -434,6 +432,13 @@ nest_hermostat:
         - sensor.heating_thermostat_humidity
         - sensor.heating_thermostat_hvac_state
 
+tado:
+    name: Tado
+    entities:
+        - climate.man_cave
+        - sensor.home_tado_bridge_status
+        - sensor.man_cave_tado_mode
+
 Climate Control:
     control: hidden
     entities:
@@ -444,8 +449,6 @@ Alarm:
     entities:
       - input_boolean.master_security
       - input_boolean.enable_security
-      - automation.security__motion_alarm
-      - automation.security__door_alarm
       - input_boolean.panic_mode
       - input_boolean.alarm_tripped
 
@@ -470,13 +473,7 @@ person_chris:
   entities:
       - device_tracker.chris_android
       - device_tracker.oneplus_6t_bluetooth
-      - device_tracker.19216886250_64a2f9b71cc1
-      - device_tracker.chris_bt_bedroom
-      - device_tracker.chris_bt_guestroom
-      - device_tracker.chris_bt_hallway
-      - device_tracker.chris_bt_kitchen
-      - device_tracker.chris_bt_livingroom
-      - device_tracker.chris_bt_mancave
+      - device_tracker.hue_oneplus_oneplus_a6013
 
 person_aimee:
   name: Aimee
@@ -484,8 +481,8 @@ person_aimee:
   entities:
       - device_tracker.aimee_iphone
       - device_tracker.aimees_iphone
-      - device_tracker.19216886250_80b03dc3f653
-
+      - device_tracker.hue_aimees_iphone
+ 
 person_keith:
   name: Keith
   icon: mdi:account-multiple
