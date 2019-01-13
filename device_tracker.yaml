@@ -1,0 +1,90 @@
+  - platform: hue
+    track_new_devices: false
+
+  - platform: bluetooth_tracker
+    track_new_devices: false  
+    interval_seconds: 10
+    consider_home: 150
+    
+# Hallway Speaker
+#  - platform: googlehome
+ #   host: 192.168.86.250
+#    rssi_threshold: -100
+#    interval_seconds: 5
+ #   consider_home: 10
+  #  new_device_defaults:
+    #  track_new_devices: false
+
+ # Kitchen Speaker
+  #- platform: googlehome
+  #  host: 192.168.86.51
+ #   rssi_threshold: -100
+   # interval_seconds: 5
+  #  consider_home: 10
+ #   new_device_defaults:
+  #    track_new_devices: false
+
+# Man Cave Speaker
+ # - platform: googlehome
+   # host: 192.168.86.59
+   # rssi_threshold: -100
+  # interval_seconds: 5
+  #  consider_home: 10
+#    new_device_defaults:
+ #   track_new_devices: false
+
+# Bedroom Speaker
+#  - platform: googlehome
+  #  host: 192.168.86.101
+  #  rssi_threshold: -100
+  #  interval_seconds: 5
+  #  consider_home: 10
+  #  new_device_defaults:
+  #    track_new_devices: false
+
+ # Guest Room Speaker
+ # - platform: googlehome
+  #  host: 192.168.86.38
+  #  rssi_threshold: -100
+   # interval_seconds: 5
+  #  consider_home: 10
+  #  new_device_defaults:
+  #    track_new_devices: false   
+
+ # Living Room Speaker
+ # - platform: googlehome
+  #  host: 192.168.86.179
+  #  rssi_threshold: -100
+  #  interval_seconds: 5
+  #  consider_home: 10
+  #  new_device_defaults:
+   #   track_new_devices: false
+
+  - platform: ping
+    track_new_devices: false
+   #interval_seconds: 5
+    consider_home: 300
+    scan_interval: 1
+    hosts:
+      Aimee_iPhone: 192.168.86.98
+      Chris_Android: 192.168.86.56
+      charlotesiphonelan: 192.168.86.55
+
+  - platform: nmap_tracker
+    track_new_devices: false
+    scan_options: " --privileged -sP "
+    hosts:
+      - 192.168.86.0-20
+    home_interval: 1
+    consider_home: 300
+    interval_seconds: 15
+
+  - platform: nmap_tracker
+    track_new_devices: false
+    scan_options: " --privileged -sP "
+    hosts:
+      - 192.168.86.25-255
+      - 192.168.87.0/24
+    home_interval: 10
+    consider_home: 300
+    interval_seconds: 60
