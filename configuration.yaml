@@ -23,6 +23,10 @@ http:
 
 updater:
 discovery:
+   ignore:
+   - sabnzbd
+   - yeelight
+
 conversation:
 history:
 logbook:
@@ -96,8 +100,6 @@ telegram_bot:
         - !secret telegram_chris_chat
         - !secret telegram_aimee_chat
 
-ios:
-
 influxdb:
   host: 192.168.86.6
 
@@ -106,28 +108,13 @@ remote:
     name: Front room
     host: 192.168.86.30
 
+tado:
+  username: !secret tado_user
+  password: !secret tado_password  
+
 weather:
   - platform: metoffice
     api_key: !secret metoffice_api
-
-sabnzbd:
-  api_key: !secret sabnzbd_api
-  host: 192.168.86.6
-  name: sabnzbd
-  port: 8080
-  ssl: false
-  sensors:
-    - current_status
-    - speed
-    - queue_size
-    - queue_remaining
-    - disk_size
-    - disk_free
-    - queue_count
-    - day_size
-    - week_size
-    - month_size
-    - total_size
 
 #################################################################
 ## Includes
