@@ -203,6 +203,30 @@
             - light.porch            
 
         ##########################################################
+        # Tado state change to home
+        ##########################################################
+
+    - alias: 'Tado state change to homee'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: sensor.man_cave_tado_mode
+
+      condition:
+         condition: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id: 
+            - group.interior_lights
+            - light.outside
+            - light.porch    
+
+        ##########################################################
         # Nest detect someone Home
         ##########################################################
 
@@ -274,7 +298,7 @@
       - service: media_player.volume_set
         data_template:
           entity_id: media_player.man_cave_room_display
-          volume_level: 0.5              
+          volume_level: 0.3            
 
       - service: media_player.volume_set
         data_template:
