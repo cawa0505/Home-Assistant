@@ -55,6 +55,11 @@ Philips Hue - numerous of bulbs<br />
 5x TP-Link HS100 - Kasa Smart Wi-Fi Plug<br />
 1x Sonoff Plug
 
+<b>Thermostat:</b>
+
+1x Nest Thermostat<br />
+1x Tado Smart Radiator Thermostat (Used in Man Cave - will prob invest in some more)<br />
+
 <b>Buttons:</b>
 
 1x Xiaomi Magic Cube Controller<br />
