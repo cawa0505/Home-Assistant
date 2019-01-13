@@ -1,9 +1,11 @@
 #################################################################
 ## Sensors
 #################################################################
+  
+  - platform: hue
 
   - platform: pi_hole
-    host: 192.168.86.95:80
+    host: 192.168.86.95
     monitored_conditions:
       - ads_blocked_today
       - ads_percentage_today
@@ -36,6 +38,25 @@
   - platform: moon
 
   - platform: google_wifi
+
+  - platform: sabnzbd
+    api_key: !secret sabnzbd_api
+    host: 192.168.86.6
+    name: sabnzbd
+    port: 8080
+    ssl: false
+    sensors:
+      - current_status
+      - speed
+      - queue_size
+      - queue_remaining
+      - disk_size
+      - disk_free
+      - queue_count
+      - day_size
+      - week_size
+      - month_size
+      - total_size
 
   - platform: speedtest
     minute: 30
@@ -91,15 +112,21 @@
     sensors:
       kitchen_temperature:
         friendly_name: 'Kitchen Temperature'
-        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.temperature}}'
+        value_template: '{{states.binary_sensor.kitchen_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
+  - platform: template
+    sensors:
+      man_cave_tvr:
+        friendly_name: 'Man Cave TVR'
+        value_template: '{{states.climate.man_cave.attributes.temperature}}'
+        unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       dining_room_temperature:
         friendly_name: 'Dining Room Temperature'
-        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.temperature}}'
+        value_template: '{{states.binary_sensor.dining_room_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
        
 
@@ -107,21 +134,21 @@
     sensors:
       upstairs_temperature:
         friendly_name: 'Upstairs Temperature'
-        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.temperature}}'
+        value_template: '{{states.binary_sensor.upstairs_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       bathroom_temperature:
-        friendly_name: 'Upstairs Temperature'
-        value_template: '{{states.sensor.bathroom_motion_sensor.attributes.temperature}}'
+        friendly_name: 'Bathroom Temperature'
+        value_template: '{{states.binary_sensor.bathroom_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
   - platform: template
     sensors:
       downstairs_temperature:
         friendly_name: 'Downstairs Temperature'
-        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.temperature}}'
+        value_template: '{{states.binary_sensor.downstairs_motion_sensor.attributes.temperature}}'
         unit_of_measurement: '°C'
 
 
@@ -155,7 +182,7 @@
     sensors:
       motion_downstairs_battery:
         friendly_name: 'Motion Downstairs Battery'
-        value_template: '{{states.sensor.downstairs_motion_sensor.attributes.battery}}'
+        value_template: '{{states.binary_sensor.downstairs_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
 
@@ -163,7 +190,7 @@
     sensors:
       motion_bathroom_battery:
         friendly_name: 'Motion Bathroom Battery'
-        value_template: '{{states.sensor.bathroom_motion_sensor.attributes.battery}}'
+        value_template: '{{states.binary_sensor.bathroom_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery       
 
@@ -171,7 +198,7 @@
     sensors:
       motion_upstairs_battery:
         friendly_name: 'Motion Upstairs Battery'
-        value_template: '{{states.sensor.upstairs_motion_sensor.attributes.battery}}'
+        value_template: '{{states.binary_sensor.upstairs_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
 
@@ -179,7 +206,7 @@
     sensors:
       motion_kitchen_battery:
         friendly_name: 'Motion Kitchen battery'
-        value_template: '{{states.sensor.kitchen_motion_sensor.attributes.battery}}'
+        value_template: '{{states.binary_sensor.kitchen_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery
 
@@ -187,7 +214,7 @@
     sensors:
       motion_dining_room_battery:
         friendly_name: 'Motion Dining Room battery'
-        value_template: '{{states.sensor.dining_room_motion_sensor.attributes.battery}}'
+        value_template: '{{states.binary_sensor.dining_room_motion_sensor.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery      
 
@@ -203,7 +230,7 @@
     sensors:
       bathroom_room_switch_battery:
         friendly_name: 'Bathroom Switch battery'
-        value_template: '{{states.sensor.bathroom_switch.attributes.battery}}'
+        value_template: '{{states.binary_sensor.bathroom_switch.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery    
 
@@ -235,37 +262,37 @@
 ## Google Home RSSI
 #################################################################
 
-  - platform: template
-    sensors:
-      kitchen_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_kitchen.attributes.rssi }}'
+ # - platform: template
+  #  sensors:
+  #    kitchen_chris_gh_rssi:
+   #     value_template: '{{ states.device_tracker.chris_bt_kitchen.attributes.rssi }}'
 
-  - platform: template
-    sensors:
-      bedroom_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_bedroom.attributes.rssi }}'
+ # - platform: template
+ #   sensors:
+ #     bedroom_chris_gh_rssi:
+ #       value_template: '{{ states.device_tracker.chris_bt_bedroom.attributes.rssi }}'
 
-  - platform: template
-    sensors:
-      guestroom_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_guestroom.attributes.rssi }}'
+ # - platform: template
+   # sensors:
+   #   guestroom_chris_gh_rssi:
+    #    value_template: '{{ states.device_tracker.chris_bt_guestroom.attributes.rssi }}'
 
-  - platform: template
-    sensors:
-      mancave_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_mancave.attributes.rssi }}'
+ # - platform: template
+ #   sensors:
+    #  mancave_chris_gh_rssi:
+    #    value_template: '{{ states.device_tracker.chris_bt_mancave.attributes.rssi }}'
 
-  - platform: template
-    sensors:
-      livingroom_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_livingroom.attributes.rssi }}'
+ # - platform: template
+   # sensors:
+   #   livingroom_chris_gh_rssi:
+    #    value_template: '{{ states.device_tracker.chris_bt_livingroom.attributes.rssi }}'
 
-  - platform: template
-    sensors:
-      hallway_chris_gh_rssi:
-        value_template: '{{ states.device_tracker.chris_bt_hallway.attributes.rssi }}'
+ # - platform: template
+  #  sensors:
+  #    hallway_chris_gh_rssi:
+   #     value_template: '{{ states.device_tracker.chris_bt_hallway.attributes.rssi }}'
 
- #################################################################
+#################################################################
 ## MISC
 #################################################################
        
@@ -311,20 +338,19 @@
 ###############################################################################
 #  Sensor Definitions
 ###############################################################################
-
   - platform: time_date
     display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'time_date'
-      - 'time_utc'
-      - 'beat'
+      - time
+      - date
+      - date_time
+      - time_date
+      - time_utc
+
   - platform: mqtt
     state_topic: "/home/trashpickupday"
     name: "Trash Pickup Day"
     value_template: "{{ value }}"
-    qos: 1
+    qos: 1  
   - platform: mqtt
     state_topic: "/home/recyclepickupday"
     name: "Recycle Pickup Day"
@@ -343,9 +369,9 @@
     sensors:
       current_week:
         value_template: >-
-          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
-          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
-          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set year = states.sensor.date_time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date_time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date_time.state.split(',')[0].split('-')[2] %}
           {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
           {%- if (as_timestamp(today) | timestamp_custom('%U', true) | int ) % 2 == 0 -%}
             Even Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
@@ -360,11 +386,11 @@
     sensors:
       trash_day:
         value_template: >-
-          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
-          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
-          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set year = states.sensor.date_time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date_time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date_time.state.split(',')[0].split('-')[2] %}
           {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
-          {%- set pickupDay = states.sensor.trash_pickup_day.state | lower -%}
+          {%- set pickupDay = states.sensor.trash_pickup_day.state | lower -%}      
           {%- if as_timestamp(today)| timestamp_custom('%A', true) | lower == pickupDay -%}
             yes
           {%- else -%}
@@ -378,10 +404,10 @@
     sensors:
       recycle_day:
         value_template: >-
-          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
-          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
-          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
-          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+          {% set year = states.sensor.date_time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date_time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date_time.state.split(',')[0].split('-')[2] %}
+          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}    
           {%- set pickupDay = states.sensor.recycle_pickup_day.state | lower -%}
           {% if states.input_select.recycle_pickup_week.state | lower == "even weeks" %}
             {%- set evenWeekPickup = "true" %}
@@ -390,7 +416,7 @@
           {% endif %}
           {%- macro day_of_week(timestamp) -%}
             {{ as_timestamp(timestamp)| timestamp_custom('%A', true) | lower }}
-          {%- endmacro %}
+          {%- endmacro %}      
           {%- macro week_number_of_year() -%}
             {{ as_timestamp(today) | timestamp_custom('%U', true) | int }}
           {%- endmacro %}
