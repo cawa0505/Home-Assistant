@@ -82,6 +82,6 @@
     sensor.current_week:
       friendly_name: Current Week is
       icon: mdi:calendar-question
-    group.trash__recycle:
+    group.trash_recycle:
       friendly_name: Trash & Recycle
       icon: mdi:recycle
