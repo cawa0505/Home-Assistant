@@ -163,7 +163,7 @@
 
       action:
          service: scene.turn_on
-         entity_id: scene.livingroom_dim
+         entity_id: scene.living_room_media_playing
 
         ##########################################################
         ## OSMC Idle - Normal Lights
@@ -262,20 +262,27 @@
          entity_id: scene.livingroom_normal
 
         ##########################################################
-        ## Watch TV - Dim lights
+        ## Netflix - Dim lights
         ##########################################################
 
-    - alias: 'Watch TV Below Horizon - Dim lights'
+    - alias: 'MNetflix Below Horizon - Dim lights'
       initial_state: on
       trigger:
         platform: state
         entity_id: remote.front_room
-        to: 'Watch TV'
-
+ 
       condition:
-         condition: state
-         entity_id: sun.sun
-         state: 'below_horizon'
+        condition: and
+        conditions:
+
+          - condition: state
+            entity_id: sun.sun
+            state: 'below_horizon'
+
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: '{{ trigger.to_state.attributes.current_activity == "Netflix"}}'              
 
       action:
         - service: scene.turn_on
@@ -286,6 +293,41 @@
            command:
              - CinemaNight
            device: 53468354
+
+        ##########################################################
+        ## Watch TV - Normal lights
+        ##########################################################
+
+    - alias: 'Watch TV - Normal lights'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: remote.front_room
+ 
+      condition:
+        condition: and
+        conditions:
+
+          - condition: state
+            entity_id: sun.sun
+            state: 'below_horizon'
+
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'              
+
+      action:
+        - service: scene.turn_on
+          entity_id: scene.livingroom_normal
+
+        - service: remote.send_command
+          data:
+           entity_id: remote.front_room
+           command:
+             - CinemaNight
+           device: 53468354
+
 
         ##########################################################
         ## Nest Doorbell Ring - Pause TV
@@ -300,8 +342,14 @@
 
       action:
         - service: remote.send_command
-          data:
+          data_template:
            entity_id: remote.front_room
            command:
-             - Pause
-           device: 53468354
+             - Pause            
+           device: >
+              {% if is_state("sensor.remote_front_room", "Watch TV") %}53679772
+              {% elif is_state("sensor.remote_front_room", "NetFlix") %}53679772
+              {% elif is_state("sensor.remote_front_room", "Kodi") %}58159254           
+              {% elif is_state("sensor.remote_front_room", "Amazon") %}53679772
+              {% elif is_state("sensor.remote_front_room", "Sky Q") %}53679772 
+              {% endif %}
