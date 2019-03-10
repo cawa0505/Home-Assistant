@@ -17,10 +17,11 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 1x Google Home<br />
 4x Google Home Minis<br />
 2x Google Home Hubs<br />
+1x Google Home Max<br />
 
 <b>Internet:</b>
 
-3x Google Wifi
+5x Google Wifi
 
 <b>Cameras:</b>
 
