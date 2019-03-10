@@ -4,7 +4,7 @@ Using Home Assistant running on hassio to control all things smart.<br />
 
 <a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
 <a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.<br />
-<a href="https://github.com/robmarkcole/Hue-sensors-HASS">robmarkcole Hue-sensors-HASS</a>Hue motion sensors etc<br /><br />
+<a href="https://github.com/robmarkcole/Hue-sensors-HASS">robmarkcole Hue-sensors-HASS</a> - Hue motion sensors etc<br /><br />
 <b>Kit list</b>
 
 <b>Controller:</b>
