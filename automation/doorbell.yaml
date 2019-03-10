@@ -2,58 +2,6 @@
 ## Doorbell Automations
 #################################################################
 
-        ##########################################################
-        ## Front Door Motion
-        ##########################################################
-
-    - alias: 'Front Door Motion'
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.front_door_camera__garden_activity
-        from: 'off'
-        to: 'on'
-
-      condition:
-
-        - condition: template
-          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door.last_changed) > 180 }}"
-
-        - condition: template
-          value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
-
-        - condition: time
-          after: '08:00:00'
-          before: '21:00:00'
-
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-
-      action:
-        - service: tts.google_say
-          data:
-            message: 'Motion detected at the front door'
-            entity_id:
-              - media_player.man_cave_home
-              - media_player.living_room_home
-       # - service: notify.telegram_chris
-        #  data:
-       #     message: 'Motion detected at the front door'
-      #  - service: camera.snapshot
-        #  data:
-        #    entity_id: camera.front_door
-          #  filename: "/config/camera_snapshot/frontdoor.jpg"
-    #    - delay:
-      #      seconds: 90
-       # - service: notify.telegram
-      #    data:
-       #     message: 'Motion detected at the front door'
-       #     data:
-       #       photo:
-        #         - file: "/config/camera_snapshot/frontdoor.jpg"
-        #           capture: "Snapshot"
-
        ##########################################################
         ## Front Door Person Detected
         ##########################################################
@@ -85,10 +33,11 @@
       action:
         - service: tts.google_say
           data:
-            message: 'Motion detected at the front door'
+            message: 'A person detected in the front garden'
             entity_id:
               - media_player.man_cave_home
               - media_player.living_room_home
+              - media_player.kitchen_display
 
         ##########################################################
         ## Turn On Outside Light when Motion Detected
@@ -98,7 +47,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera_motion_detected
+          entity_id: binary_sensor.front_door_camera_garden_activity
           from: 'off'
           to: 'on'
 
@@ -106,6 +55,9 @@
         - condition: state
           entity_id: sun.sun
           state: 'below_horizon'
+
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.light.outside.last_updated) > 10 }}"          
 
       action:
         - service: light.turn_on
@@ -122,7 +74,7 @@
 
       trigger:
         - platform: state
-          entity_id: binary_sensor.front_door_camera_motion_detected
+          entity_id: binary_sensor.front_door_camera_garden_activity
           from: 'on'
           to: 'off'
           for:
