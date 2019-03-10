@@ -2,6 +2,17 @@
 #  UI Elements
 ###############################################################################
 
+# Input select for Zigbee2mqtt debug level
+  zigbee2mqtt_log_level:
+    name: Zigbee2mqtt Log Level
+    options:
+      - debug
+      - info
+      - warn
+      - error
+    initial: info
+    icon: mdi:format-list-bulleted
+
   trash_pickup_day:
     name: Current Trash Pickup Day (Opposite to Recycle Week)
     options:
