@@ -1,8 +1,12 @@
-  - platform: hue
+  - platform: huesensor
     track_new_devices: false
 
+  - platform: tile
+    username: !secret tile_user
+    password: !secret tile_password   
+
   - platform: bluetooth_tracker
-    track_new_devices: false  
+    track_new_devices: true
     interval_seconds: 10
     consider_home: 150
     
