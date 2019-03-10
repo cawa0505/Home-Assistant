@@ -1,22 +1,11 @@
 #################################################################
 ## Switches
 #################################################################
- 
-  - platform: tplink
-    name: "Man Cave Servers"
-    host: "192.168.86.178"
-  - platform: tplink
-    name: "Man Cave Console Lights"
-    host: "192.168.86.35"
-  - platform: tplink
-    name: "Christmas Tree Lights"
-    host: "192.168.86.63"
-  - platform: tplink
-    name: "Hallway Lamp"
-    host: "192.168.86.50"
-  - platform: tplink
-    name: Twig Light Left
-    host: "192.168.86.64"
-  - platform: tplink
-    name: Twig Light Right
-    host: "192.168.86.65"
+
+ # Switch for enabling joining
+  - platform: mqtt
+    name: "Zigbee2mqtt Main join"
+    state_topic: "zigbee2mqtt/bridge/config/permit_join"
+    command_topic: "zigbee2mqtt/bridge/config/permit_join"
+    payload_on: "true"
+    payload_off: "false"   
