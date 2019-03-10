@@ -2,4 +2,4 @@
 ## Binary Sensors
 #################################################################
 
-  - platform: hue
+  - platform: huesensor
