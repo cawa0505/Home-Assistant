@@ -3,8 +3,8 @@ Using Home Assistant running on hassio to control all things smart.<br />
 <b>Special thanks to the following github pages:</b>
 
 <a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
-<a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.
-
+<a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.<br />
+<a href="https://github.com/robmarkcole/Hue-sensors-HASS">robmarkcole Hue-sensors-HASS</a> - Hue motion sensors etc<br /><br />
 <b>Kit list</b>
 
 <b>Controller:</b>
@@ -17,10 +17,11 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 1x Google Home<br />
 4x Google Home Minis<br />
 2x Google Home Hubs<br />
+1x Google Home Max<br />
 
 <b>Internet:</b>
 
-3x Google Wifi
+5x Google Wifi
 
 <b>Cameras:</b>
 
