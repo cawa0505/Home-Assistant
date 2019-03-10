@@ -2,7 +2,7 @@
 ## Sensors
 #################################################################
   
-  - platform: hue
+  - platform: uptime
 
   - platform: pi_hole
     host: 192.168.86.95
@@ -16,7 +16,7 @@
       - unique_clients
       - unique_domains
 
-  - platform: hue
+  - platform: huesensor
     ip_address: 192.168.86.46
     token: !secret hue_api
 
@@ -39,45 +39,6 @@
 
   - platform: google_wifi
 
-  - platform: sabnzbd
-    api_key: !secret sabnzbd_api
-    host: 192.168.86.6
-    name: sabnzbd
-    port: 8080
-    ssl: false
-    sensors:
-      - current_status
-      - speed
-      - queue_size
-      - queue_remaining
-      - disk_size
-      - disk_free
-      - queue_count
-      - day_size
-      - week_size
-      - month_size
-      - total_size
-
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 2
-      - 4
-      - 6
-      - 8
-      - 10
-      - 12
-      - 14
-      - 16
-      - 18
-      - 20
-      - 22
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-
   - platform: radarr
     host: 192.168.86.6
     port: 7878
@@ -99,10 +60,17 @@
       - queue
     days: 2
 
+# Sensor for monitoring the bridge state
   - platform: mqtt
-    name: Bridge state
+    name: Zigbee2mqtt Bridge state
     state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireles
+    icon: mdi:router-wireless
+
+  - platform: template
+    sensors:
+      remote_front_room:
+        friendly_name: 'Front Room Remote Sensor'
+        value_template: '{{states.remote.front_room.attributes.current_activity}}' 
 
 #################################################################
 ## Temperatures
