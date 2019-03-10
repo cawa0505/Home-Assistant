@@ -22,7 +22,7 @@
         light.hue_lights_exterior:
             state: off
 
-  - name: Living Room Media playing Scene
+  - name: Living Room Media playing
     entities:
         light.hue_livingroom_lightstrip:
            state: on
