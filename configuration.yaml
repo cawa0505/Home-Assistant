@@ -18,6 +18,8 @@ frontend:
 
 config:
 
+system_health:
+
 http:
     api_password: !secret api_password
 
@@ -70,6 +72,25 @@ hue:
 
 ffmpeg:
 
+sabnzbd:
+    api_key: !secret sabnzbd_api
+    host: 192.168.86.6
+    name: sabnzbd
+    port: 8080
+    ssl: false
+    sensors:
+      - "current_status"
+      - "speed"
+      - "queue_size"
+      - "queue_remaining"
+      - "disk_size"
+      - "disk_free"
+      - "queue_count"
+      - "day_size"
+      - "week_size"
+      - "month_size"
+      - "total_size"
+
 mqtt:
  broker: 192.168.86.41 # This will have to be your mqtt broker
  discovery: true
@@ -112,9 +133,22 @@ tado:
   username: !secret tado_user
   password: !secret tado_password  
 
+tplink:
+  switch:
+    - host: 192.168.86.178
+    - host: 192.168.86.35
+    - host: 192.168.86.63
+    - host: 192.168.86.50
+    - host: 192.168.86.64
+    - host: 192.168.86.65  
+
 weather:
   - platform: metoffice
     api_key: !secret metoffice_api
+
+speedtestdotnet:
+
+monkey_patch_nest_camera_event_end_date:
 
 #################################################################
 ## Includes
