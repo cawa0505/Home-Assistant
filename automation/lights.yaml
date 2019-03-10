@@ -166,7 +166,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: sensor.upstairs_motion_sensor
+          entity_id: binary_sensor.upstairs_motion_sensor
           to: 'on'
 
       condition:
@@ -195,7 +195,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: sensor.upstairs_motion_sensor
+          entity_id: binary_sensor.upstairs_motion_sensor
           to: 'off'
           for: '00:02:00'
 
@@ -276,7 +276,7 @@
          entity_id: switch.hallway_lamp
 
         ##########################################################
-        ## Turn on Hallway Lamp at 23:00
+        ## Turn on Hallway Lamp at sunset
         ##########################################################
 
     - alias: 'Turn on Hallway Lamp at sunset'
