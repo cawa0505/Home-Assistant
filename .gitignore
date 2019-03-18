@@ -2,6 +2,7 @@
 *
 !*.yaml
 !automation/
+!custom_components/
 !.gitignore
 !readme.md
 secrets.yaml
