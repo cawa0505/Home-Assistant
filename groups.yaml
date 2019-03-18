@@ -441,8 +441,13 @@ tado:
     name: Tado
     entities:
         - climate.man_cave
+        - climate.bedroom
+        - climate.front_room
+        - climate.heating
         - sensor.home_tado_bridge_status
         - sensor.man_cave_tado_mode
+        - sensor.bedroom_tado_mode
+        - sensor.front_room_tado_mode
 
 Climate Control:
     control: hidden
