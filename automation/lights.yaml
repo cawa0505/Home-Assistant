@@ -166,7 +166,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.upstairs_motion_sensor
+          entity_id: binary_sensor.upstairs_sensor_motion
           to: 'on'
 
       condition:
@@ -195,7 +195,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.upstairs_motion_sensor
+          entity_id: binary_sensor.upstairs_sensor_motion
           to: 'off'
           for: '00:02:00'
 
@@ -340,4 +340,4 @@
 
       action:
         - service: light.toggle
-          entity_id: light.hue_small_bedroom
+          entity_id: light.nursery
