@@ -12,6 +12,7 @@ homeassistant:
   customize: !include customize.yaml
   whitelist_external_dirs:
   - /config/camera_snapshot
+  packages: !include_dir_named packages
 
 frontend:
   themes: !include themes.yaml
@@ -21,13 +22,10 @@ config:
 system_health:
 
 http:
-    api_password: !secret api_password
+  #api_password: !secret api_password
 
 updater:
 discovery:
-   ignore:
-   - sabnzbd
-   - yeelight
 
 conversation:
 history:
@@ -40,6 +38,8 @@ recorder:
   purge_interval: 1
   purge_keep_days: 7
 
+#lovelace:
+ #mode: yaml
 
 #################################################################
 ## Components
@@ -55,7 +55,8 @@ media_player:
         port: 80
 
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
@@ -72,28 +73,12 @@ hue:
 
 ffmpeg:
 
-sabnzbd:
-    api_key: !secret sabnzbd_api
-    host: 192.168.86.6
-    name: sabnzbd
-    port: 8080
-    ssl: false
-    sensors:
-      - "current_status"
-      - "speed"
-      - "queue_size"
-      - "queue_remaining"
-      - "disk_size"
-      - "disk_free"
-      - "queue_count"
-      - "day_size"
-      - "week_size"
-      - "month_size"
-      - "total_size"
+stream:
 
 mqtt:
- broker: 192.168.86.41 # This will have to be your mqtt broker
+ broker: 192.168.86.27 # This will have to be your mqtt broker
  discovery: true
+ discovery_prefix: homeassistant
  username: !secret mqtt_username
  password: !secret mqtt_password
  birth_message:
@@ -134,17 +119,19 @@ tado:
   password: !secret tado_password  
 
 tplink:
+  discovery: false
   switch:
-    - host: 192.168.86.178
-    - host: 192.168.86.35
-    - host: 192.168.86.63
     - host: 192.168.86.50
-    - host: 192.168.86.64
-    - host: 192.168.86.65  
+    - host: 192.168.86.51
+    - host: 192.168.86.52
+    - host: 192.168.86.53
+    - host: 192.168.86.54
+    - host: 192.168.86.55  
+    - host: 192.168.86.56
 
 weather:
-  - platform: metoffice
-    api_key: !secret metoffice_api
+#  - platform: metoffice
+  #  api_key: !secret metoffice_api
 
 speedtestdotnet:
 
@@ -169,3 +156,5 @@ camera: !include cameras.yaml
 timer: !include timers.yaml
 switch: !include switch.yaml
 device_tracker: !include device_tracker.yaml
+yeelight: !include yeelight.yaml
+googlehome: !include googlehome.yaml
