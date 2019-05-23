@@ -15,7 +15,7 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 <b>Assistants:</b>
 
 1x Google Home<br />
-4x Google Home Minis<br />
+5x Google Home Minis<br />
 2x Google Home Hubs<br />
 1x Google Home Max<br />
 
@@ -26,9 +26,9 @@ Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffe
 <b>Cameras:</b>
 
 Nest Hello Door Bell<br />
-1x YI 7200p Home Camera (Running yi-hackv3)<br />
-1x YI 1080p Dome Camera (Running yi-hackv3)<br />
-1x YI 720p Dome Camera (Running yi-hackv3)<br />
+1x YI 7200p Home Camera (Running yi-hackv4)<br />
+1x YI 1080p Dome Camera (Running yi-hackv4)<br />
+1x YI 720p Dome Camera (Running yi-hackv4)<br />
 1x YI 1080p Outdoor Camera (not hacked yet)
 
 <b>Lights:</b>
@@ -39,7 +39,7 @@ Philips Hue - numerous of bulbs<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
-2x TRÅDFRI  LED bulb GU10 400 lumen<br />
+5x TRÅDFRI  LED bulb GU10 400 lumen<br />
 1x TRÅDFRI  LED bulb E27 600 lumen (Acting as router for zigbee2mqtt)<br />
 
 <b>Sensors:</b>
@@ -59,7 +59,7 @@ Philips Hue - numerous of bulbs<br />
 <b>Thermostat:</b>
 
 1x Nest Thermostat<br />
-1x Tado Smart Radiator Thermostat (Used in Man Cave - will prob invest in some more)<br />
+8x Tado Smart Radiator Thermostat
 
 <b>Buttons:</b>
 
