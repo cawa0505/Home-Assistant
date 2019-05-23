@@ -328,3 +328,8 @@
         data_template:
           entity_id: media_player.guest_room_home
           volume_level: 0.5
+
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.dining_room_speaker
+          volume_level: 0.5
