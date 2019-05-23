@@ -13,11 +13,12 @@
         from: 'on'
         to: 'off'
         entity_id: binary_sensor.heating_thermostat_online
+        for: '00:10:00'
 
       action:
       - service: notify.telegram
         data:
-         message: 'Thermostat is offline - please check heating'  
+         message: 'Thermostat has been offline for 10 minutes - please check heating'  
 
   ##########################################################
   ## Tado - Home
@@ -53,4 +54,104 @@
       - service: climate.set_temperature
         entity_id: climate.man_cave
         data_template:
-          temperature: 10          
+          temperature: 10
+
+        #########################################################
+        ## Man Cave Door - Open & Sunset
+        ##########################################################
+
+    - alias: Man Cave Door - Open & Sunset
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.man_cave_door
+        from: 'off'
+        to: 'on'
+
+      action:
+      - service: climate.set_temperature
+        entity_id: climate.man_cave
+        data_template:
+          temperature: 21  
+
+
+        #########################################################
+        ## Heating - Boost heating
+        #########################################################
+
+    - alias: 'Boost heating'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: sensor.min_target
+        from: 'true'
+        to: 'false'
+        
+      condition:
+
+       - condition: state
+         entity_id: group.household
+         state: 'home'          
+
+       - condition: state
+         entity_id: sensor.heating_status
+         state: 'off'    
+
+       - condition: template
+         value_template: '{{ states("sensor.heating_min_temperature") < states("sensor.tado_target_temperature") }}'
+
+
+      action:
+      - service: climate.set_temperature
+        entity_id: climate.heating
+        data_template:
+          temperature: '{{ states("sensor.heating_current_temperature") | float + 1 }}'
+
+        #########################################################
+        ## Heating - Decrease heating
+        #########################################################
+
+    - alias: 'Decrease heating'
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: sensor.min_target
+        from: 'false'
+        to: 'true'
+
+      action:
+      - service: climate.set_temperature
+        entity_id: climate.heating
+        data_template:
+          temperature: '{{ states("sensor.kitchen_target_temp") | float - 1 }}'
+
+        #########################################################
+        ## Heating - Check if min temperature is met when home
+        #########################################################
+
+    - alias: 'Check heating min temp'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.household
+
+      condition:
+      
+       - condition: state
+         entity_id: sensor.heating_status
+         state: 'off'    
+
+       - condition: template
+         value_template: '{{ states("sensor.heating_min_temperature") < states("sensor.tado_target_temperature") }}'
+
+       - condition: state
+         entity_id: sensor.min_target
+         state: 'false'
+
+      action:
+      - service: climate.set_temperature
+        entity_id: climate.heating
+        data_template:
+           temperature: '{{ states("sensor.heating_current_temperature") | float + 0.5 }}'
