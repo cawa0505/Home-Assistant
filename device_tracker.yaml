@@ -70,9 +70,8 @@
     consider_home: 300
     scan_interval: 1
     hosts:
-      Aimee_iPhone: 192.168.86.98
-      Chris_Android: 192.168.86.56
-      charlotesiphonelan: 192.168.86.55
+      Aimee_iPhone: 192.168.86.61
+      Chris_Android: 192.168.86.60
 
   - platform: nmap_tracker
     track_new_devices: false
@@ -87,8 +86,8 @@
     track_new_devices: false
     scan_options: " --privileged -sP "
     hosts:
-      - 192.168.86.25-255
-      - 192.168.87.0/24
+      - 192.168.86.21-255
+      - 192.168.84.0/24
     home_interval: 10
     consider_home: 300
     interval_seconds: 60
