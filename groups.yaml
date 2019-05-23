@@ -92,17 +92,31 @@ sensors:
         - group.wireless_buttons
 
 Temperatures:
-     - sensor.bathroom_temperature
-     - sensor.bedroom_temperature
-     - sensor.dining_room_temperature     
-     - sensor.downstairs_temperature
+
+     - sensor.bathroom_sensor_temperature
+     - sensor.dining_room_sensor_temperature
+     - sensor.downstairs_sensor_temperature
+     - sensor.downstairs_toilet_sensor_temperature
+     - sensor.kitchen_sensor_temperature
+     - sensor.upstairs_sensor_temperature
+     - sensor.xiaomi_bedroom_temperature     
      - sensor.heating_thermostat_temperature
-     - sensor.kitchen_temperature
-     - sensor.living_room_temperature
-     - sensor.man_cave_temperature
-     - sensor.small_bedroom_temperature
-     - sensor.upstairs_temperature
+     - sensor.xiaomi_living_room_temperature
+     - sensor.xiaomi_man_cave_temperature
+     - sensor.xiaomi_small_bedroom_temperature
      - sensor.average_house_temp
+
+Tado_Temperatures:
+
+  - sensor.kitchen_temperature
+  - sensor.kitchen_sensor_temperature
+  - sensor.living_room_temperature
+  - sensor.man_cave_temperature
+  - sensor.nursery_temperature
+  - sensor.small_bedroom_temperature
+  - sensor.upstairs_temperature
+  - sensor.guest_room_temperature
+  - sensor.average_tado_temp
 
 bedrooms:
     name: Bedrooms
@@ -211,17 +225,6 @@ Bedroom:
 Weather:
     - sun.sun
     - sensor.moon
-    - sensor.met_office_feels_like_temperature
-    - sensor.met_office_humidity
-    - sensor.met_office_probability_of_precipitation
-    - sensor.met_office_temperature
-    - sensor.met_office_uv
-    - sensor.met_office_visibility
-    - sensor.met_office_visibility_distance
-    - sensor.met_office_weather
-    - sensor.met_office_wind_direction
-    - sensor.met_office_wind_gust
-    - sensor.met_office_wind_speed
 
 Battery Levels:
     - sensor.motion_downstairs_battery
@@ -254,11 +257,11 @@ Doors:
     - binary_sensor.front_door
     
 Motion Sensors:
-    - binary_sensor.downstairs_motion_sensor
-    - binary_sensor.dining_room_motion_sensor
-    - binary_sensor.upstairs_motion_sensor
-    - binary_sensor.kitchen_motion_sensor
-    - binary_sensor.bathroom_motion_sensor
+    - binary_sensor.downstairs_sensor_motion
+    - binary_sensor.dining_room_sensor_motion
+    - binary_sensor.upstairs_sensor_motion
+    - binary_sensor.kitchen_sensor_motion
+    - binary_sensor.bathroom_sensor_motion
     - binary_sensor.man_cave_door
     - binary_sensor.porch_door
     - binary_sensor.back_door
@@ -349,6 +352,7 @@ dining:
     entities:
       - group.kitchen_lights
       - group.dining_room_Lights
+      - media_player.dining_room_speaker
 
 Internet:
   - sensor.speedtest_download
@@ -444,6 +448,9 @@ tado:
         - climate.bedroom
         - climate.front_room
         - climate.heating
+        - climate.downstairs
+        - climate.nursery
+        - climate.guest_room
         - sensor.home_tado_bridge_status
         - sensor.man_cave_tado_mode
         - sensor.bedroom_tado_mode
@@ -484,6 +491,7 @@ person_chris:
       - device_tracker.chris_android
       - device_tracker.oneplus_6t_bluetooth
       - device_tracker.hue_oneplus_oneplus_a6013
+      - device_tracker.192_168_86_250_64_a2_f9_b7_1c_c1
 
 person_aimee:
   name: Aimee
@@ -491,7 +499,6 @@ person_aimee:
   entities:
       - device_tracker.aimee_iphone
       - device_tracker.aimees_iphone
-      - device_tracker.hue_aimees_iphone
  
 person_keith:
   name: Keith
@@ -579,6 +586,7 @@ Google_Home:
         - media_player.guest_room_home
         - media_player.kitchen_display
         - media_player.man_cave_room_display      
+        - media_player.dining_room_speaker
 
 htpc:
     name: HTPC
