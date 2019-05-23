@@ -16,31 +16,45 @@
       - unique_clients
       - unique_domains
 
-  - platform: huesensor
-    ip_address: 192.168.86.46
-    token: !secret hue_api
+  - platform: nzbget
+    host: 192.168.86.6
+    username: !secret nzbget_username
+    password: !secret nzbget_password
+    monitored_variables:
+      - article_cache
+      - download_rate
+      - download_paused
+      - average_download_rate
+      - free_disk_space
+      - download_size
+      - remaining_size
+      - uptime
 
-  - platform: metoffice
-    api_key: !secret metoffice_api
-    monitored_conditions:
-      - weather
-      - temperature
-      - feels_like_temperature
-      - wind_speed
-      - wind_direction
-      - wind_gust
-      - visibility
-      - visibility_distance
-      - uv
-      - precipitation
-      - humidity
+  - platform: huesensor
+  #  ip_address: 192.168.86.46
+   # token: !secret hue_api
+
+  #- platform: metoffice
+   # api_key: !secret metoffice_api
+   # monitored_conditions:
+   #   - weather
+   #   - temperature
+   #   - feels_like_temperature
+    #  - wind_speed
+    #  - wind_direction
+    #  - wind_gust
+    #  - visibility
+    #  - visibility_distance
+    #  - uv
+    #  - precipitation
+    #  - humidity
 
   - platform: moon
 
   - platform: google_wifi
 
   - platform: radarr
-    host: 192.168.86.6
+    host: 192.168.86.9
     port: 7878
     api_key: !secret radarr_api
     monitored_conditions:
@@ -50,7 +64,7 @@
     days: 2
 
   - platform: sonarr
-    host: 192.168.86.6
+    host: 192.168.86.9
     port: 8989
     api_key: !secret sonarr_api
     monitored_conditions:
@@ -76,70 +90,83 @@
 ## Temperatures
 #################################################################
 
-  - platform: template
-    sensors:
-      kitchen_temperature:
-        friendly_name: 'Kitchen Temperature'
-        value_template: '{{states.binary_sensor.kitchen_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
-  - platform: template
-    sensors:
-      man_cave_tvr:
-        friendly_name: 'Man Cave TVR'
-        value_template: '{{states.climate.man_cave.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
-  - platform: template
-    sensors:
-      dining_room_temperature:
-        friendly_name: 'Dining Room Temperature'
-        value_template: '{{states.binary_sensor.dining_room_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-       
-
-  - platform: template
-    sensors:
-      upstairs_temperature:
-        friendly_name: 'Upstairs Temperature'
-        value_template: '{{states.binary_sensor.upstairs_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
-  - platform: template
-    sensors:
-      bathroom_temperature:
-        friendly_name: 'Bathroom Temperature'
-        value_template: '{{states.binary_sensor.bathroom_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
-  - platform: template
-    sensors:
-      downstairs_temperature:
-        friendly_name: 'Downstairs Temperature'
-        value_template: '{{states.binary_sensor.downstairs_motion_sensor.attributes.temperature}}'
-        unit_of_measurement: '°C'
-
-
   - platform: min_max
     name: Average House Temp
     type: mean
     entity_ids:
+      - sensor.bathroom_sensor_temperature
+      - sensor.dining_room_sensor_temperature
+      - sensor.downstairs_sensor_temperature
+      - sensor.downstairs_toilet_sensor_temperature
+      - sensor.kitchen_sensor_temperature
+      - sensor.upstairs_sensor_temperature
       - sensor.heating_thermostat_temperature
       - sensor.man_cave_temperature
-      - sensor.kitchen_temperature
-      - sensor.upstairs_temperature
-      - sensor.downstairs_temperature
       - sensor.living_room_temperature
       - sensor.bedroom_temperature
       - sensor.small_bedroom_temperature
-      - sensor.dining_room_temperature
-      - sensor.bathroom_temperature
+
+  - platform: min_max
+    name: Average Tado Temp
+    type: mean
+    entity_ids:
+      - sensor.downstairs_temperature
+      - sensor.kitchen_sensor_temperature
+      - sensor.front_room_temperature
+      - sensor.man_cave_temperature
+      - sensor.nursery_temperature
+      - sensor.upstairs_temperature
+      - sensor.guest_room_temperature
+      - sensor.average_tado_temp
+
+# Nest Heating Status
+
+ # - platform: template
+  #  sensors:
+    #  nest_heating:
+       # friendly_name: "Nest Heating"   
+      #  value_template: "{% if is_state('binary_sensor.home_away', 'off') %}on{% else %}off{% endif %}"
+
+  - platform: template
+    sensors:
+      heating_min_temperature:
+        value_template: '{{ states.climate.front_room.attributes.current_temperature }}'    
+
+  - platform: template
+    sensors:
+      kitchen_target_temp:
+        value_template: '{{ states.climate.kitchen.attributes.temperature }}'
+
+  - platform: template
+    sensors:
+      heating_current_temperature:
+        value_template: '{{ states.climate.heating.attributes.current_temperature }}'
+
+  - platform: template
+    sensors:
+      heating_target_temperature:
+        value_template: '{{ states.climate.heating.attributes.temperature }}'
+
+  - platform: template
+    sensors:
+      tado_target_temperature:
+        value_template: '{{ states.climate.front_room.attributes.temperature }}'           
+   
+  - platform: template
+    sensors:
+      heating_status:
+        value_template: '{% if states("sensor.heating_current_temperature") | float > states("sensor.heating_target_temperature") | float %}off{% else %}on{% endif %}'
+
+  - platform: template
+    sensors:
+      min_target:
+        value_template: '{% if states("sensor.front_room_temperature") >= states("sensor.tado_target_temperature") %}true{% else %}false{% endif %}'
 
 # Nest away status
   - platform: template
     sensors:
       away_mode:
-        friendly_name: "Nest Location"   
+        friendly_name: "Nest Location"
         value_template: "{% if is_state('binary_sensor.home_away', 'off') %}home{% else %}not_home{% endif %}"
  
 #################################################################
@@ -198,7 +225,7 @@
     sensors:
       bathroom_room_switch_battery:
         friendly_name: 'Bathroom Switch battery'
-        value_template: '{{states.binary_sensor.bathroom_switch.attributes.battery}}'
+        value_template: '{{states.sensor.bathroom_switch.attributes.battery}}'
         unit_of_measurement: '%'
         device_class: battery    
 
