@@ -3,5 +3,70 @@
 #################################################################
 
         ##########################################################
+        ## Garden
+        ##########################################################
+
+    - alias: 'Motion Garden'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'off'
+        to: 'on'
+        entity_id: binary_sensor.yi_cam_garden_motion
+
+      condition:
+         condition: state
+         entity_id: group.household
+         state: 'not_home'
+
+      action:
+      - service: camera.snapshot
+        entity_id: camera.garden
+        data:
+          filename: /config/camera_snapshot/garden.jpg
+      - delay: '00:00:03'
+      - service: notify.telegram
+        data:
+         message: 'Motion in Garden'
+      - service: notify.telegram
+        data:
+          title: 'Motion in Garden'
+          message: 'Motion in Garden'
+          data:
+            photo:    
+              file: "/config/camera_snapshot/garden.jpg"
+ 
+
+        ##########################################################
         ## Man Cave
         ##########################################################
+
+    - alias: 'Motion Man Cave'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'off'
+        to: 'on'
+        entity_id: binary_sensor.yi_cam_man_cave_motion
+
+      condition:
+         condition: state
+         entity_id: group.household
+         state: 'not_home'
+
+      action:
+      - service: camera.snapshot
+        entity_id: camera.man_cave
+        data:
+          filename: /config/camera_snapshot/mancave.jpg
+      - delay: '00:00:03'
+      - service: notify.telegram
+        data:
+         message: 'Motion in Man Cave'        
+      - service: notify.telegram
+        data:
+          title: 'Motion in Man Cave'
+          message: 'Motion in Man Cave'
+          data:
+            photo:    
+              file: "/config/camera_snapshot/mancave.jpg"
