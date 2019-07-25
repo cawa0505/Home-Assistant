@@ -9,7 +9,7 @@ Using Home Assistant running on hassio to control all things smart.<br />
 
 <b>Controller:</b>
 
-Raspberry Pi 3 running Home Assistant<br />
+Raspberry Pi 4 running Hassio<br />
 Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
 
 <b>Assistants:</b>
@@ -29,7 +29,7 @@ Nest Hello Door Bell<br />
 1x YI 7200p Home Camera (Running yi-hackv4)<br />
 1x YI 1080p Dome Camera (Running yi-hackv4)<br />
 1x YI 720p Dome Camera (Running yi-hackv4)<br />
-1x YI 1080p Outdoor Camera (not hacked yet)
+1x YI 1080p Outdoor Camera (Running yi-hackv4)
 
 <b>Lights:</b>
 
