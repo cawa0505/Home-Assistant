@@ -75,9 +75,9 @@ Pi Hole running on Raspberry Pi 1
 1x Logitech Harmony Elite<br />
 1x Vero 4K (used for Kodi)<br />
 1x Chromecast Ultra<br />
-1x Chromecast (3rd generation)<br />
-2x Chromecast (2nd generation)<br />
 1x Chromecast (1st generation)<br />
+2x Chromecast (2nd generation)<br />
+1x Chromecast (3rd generation)<br />
 Plex running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
