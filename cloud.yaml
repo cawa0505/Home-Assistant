@@ -11,6 +11,8 @@
         include_entities:
             - sensor.trash_day
             - sensor.recycle_day
+            - camera.nursery
+            - input_boolean.stream_camera_to_chromecast_living_room
         include_domains:
             - automation
             - input_boolean
