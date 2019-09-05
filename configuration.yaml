@@ -17,6 +17,19 @@ homeassistant:
 frontend:
   themes: !include themes.yaml
 
+webhook:
+ 
+zigbee2mqtt_networkmap:
+  #topic: your topic (optional, default zigbee2mqtt)
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'  
+
+hacs:
+  token: !secret hacs
+
 config:
 
 system_health:
@@ -118,16 +131,16 @@ tado:
   username: !secret tado_user
   password: !secret tado_password  
 
-tplink:
-  discovery: false
-  switch:
-    - host: 192.168.86.50
-    - host: 192.168.86.51
-    - host: 192.168.86.52
-    - host: 192.168.86.53
-    - host: 192.168.86.54
-    - host: 192.168.86.55  
-    - host: 192.168.86.56
+#tplink:
+ # discovery: false
+  #switch:
+   # - host: 192.168.86.50
+    #- host: 192.168.86.51
+    #- host: 192.168.86.52
+    #- host: 192.168.86.53
+    #- host: 192.168.86.54
+    #- host: 192.168.86.55  
+    #- host: 192.168.86.56
 
 weather:
 #  - platform: metoffice
@@ -157,4 +170,4 @@ timer: !include timers.yaml
 switch: !include switch.yaml
 device_tracker: !include device_tracker.yaml
 yeelight: !include yeelight.yaml
-googlehome: !include googlehome.yaml
+#googlehome: !include googlehome.yaml
