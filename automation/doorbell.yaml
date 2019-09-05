@@ -35,7 +35,6 @@
           data:
             message: 'A person detected in the front garden'
             entity_id:
-              - media_player.man_cave_home
               - media_player.living_room_home
               - media_player.kitchen_display
 
