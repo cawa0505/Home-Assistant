@@ -24,19 +24,19 @@
   ## Tado - Home
   ##########################################################
 
-    - alias: 'Tado - Home'
-      initial_state: on
-      trigger:
-        platform: state
-        from: 'not_home'
-        to: 'home'
-        entity_id: group.household
+    #- alias: 'Tado - Home'
+     # initial_state: on
+      #trigger:
+       # platform: state
+       # from: 'not_home'
+       # to: 'home'
+       # entity_id: group.household
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.man_cave
-        data_template:
-          temperature: 21
+      #action:
+      #- service: climate.set_temperature
+       # entity_id: climate.man_cave
+        #data_template:
+         # temperature: 21
 
   ##########################################################
   ## Tado - Away
@@ -80,7 +80,7 @@
         #########################################################
 
     - alias: 'Boost heating'
-      initial_state: on
+      initial_state: off
       trigger:
         platform: state
         entity_id: sensor.min_target
@@ -112,7 +112,7 @@
         #########################################################
 
     - alias: 'Decrease heating'
-      initial_state: on
+      initial_state: off
       trigger:
         platform: state
         entity_id: sensor.min_target
@@ -130,7 +130,7 @@
         #########################################################
 
     - alias: 'Check heating min temp'
-      initial_state: on
+      initial_state: off
       trigger:
         platform: state
         from: 'not_home'
