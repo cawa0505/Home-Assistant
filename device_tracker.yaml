@@ -91,3 +91,8 @@
     home_interval: 10
     consider_home: 300
     interval_seconds: 60
+
+  - platform: tado
+    username: !secret tado_user
+    password: !secret tado_password  
+    home_id: 291322
