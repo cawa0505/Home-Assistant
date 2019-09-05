@@ -10,6 +10,10 @@
    # ffmpeg_arguments: '-vf scale=800:450'
 
   - platform: ffmpeg
+    name: Upstairs
+    input: -rtsp_transport tcp -i rtsp://192.168.86.70/ch0_0.h264
+
+  - platform: ffmpeg
     name: Man Cave
     input: -rtsp_transport tcp -i rtsp://192.168.86.71/ch0_0.h264
 
@@ -18,9 +22,17 @@
     input: -rtsp_transport tcp -i rtsp://192.168.86.72/ch0_0.h264
 
   - platform: ffmpeg
-    name: Upstairs
-    input: -rtsp_transport tcp -i rtsp://192.168.86.70/ch0_0.h264
+    name: Garden
+    input: -rtsp_transport tcp -i rtsp://192.168.86.73/ch0_0.h264 
 
   - platform: ffmpeg
-    name: Garden
-    input: -rtsp_transport tcp -i rtsp://192.168.86.73/ch0_0.h264   
+    name: Nursery
+    input: -rtsp_transport tcp -i rtsp://192.168.86.74/ch0_0.h264   
+
+  - platform: ffmpeg
+    name: Kitchen
+    input: -rtsp_transport tcp -i rtsp://192.168.86.75/ch0_0.h264   
+
+  - platform: ffmpeg
+    name: Outhouse
+    input: -rtsp_transport tcp -i rtsp://192.168.86.76/ch0_0.h264   
