@@ -325,19 +325,47 @@
              - light.outside
 
         ##########################################################
-        ## Small Bedroom Button Press
+        ## Nursery Bedroom Button Pressed
         ##########################################################
 
-    - alias: Small Bedroom Button Press
+    - alias: Nursery Single Button Press
       initial_state: on    
       trigger:
-        platform: mqtt
-        topic: 'zigbee2mqtt/Small Bedroom Button'
-
-      condition:
-        condition: template
-        value_template: "{{ 'single' == trigger.payload_json.click }}"          
+        platform: state
+        entity_id: sensor.nursery_button
+        to: 'single'
 
       action:
-        - service: light.toggle
+        - service: light.turn_on
+          data_template:
+            brightness_pct: 200
           entity_id: light.nursery
+
+    - alias: Nursery Bedroom Long Button Press
+      initial_state: on    
+      trigger:
+        platform: state
+        entity_id: sensor.nursery_button
+        to: 'long'
+
+      action:
+        - service: light.turn_on
+          data_template:
+            brightness_pct: 10
+          entity_id: light.nursery
+
+        ##########################################################
+        ## Turn off outside light at sunset
+        ##########################################################
+
+    - alias: Turn off outside light above 
+      initial_state: on
+      trigger:
+        platform: sun
+        event: sunrise
+
+      action:
+        service: light.turn_off
+        entity_id:
+
+             - light.outside
