@@ -29,10 +29,13 @@
            brightness_pct: 70
            xy_color: [0.541,0.386]
 
-        light.Living_room:
+        light.living_room_wall:
            state: on
            brightness_pct: 20
            transition: 2
+
+        light.living_room_ceiling:
+            state: off
 
   - name: Livingroom Dim
     entities:
