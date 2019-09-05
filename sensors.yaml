@@ -17,7 +17,7 @@
       - unique_domains
 
   - platform: nzbget
-    host: 192.168.86.6
+    host: 192.168.86.20
     username: !secret nzbget_username
     password: !secret nzbget_password
     monitored_variables:
@@ -52,10 +52,10 @@
   - platform: moon
 
   - platform: google_wifi
-
+  
   - platform: radarr
-    host: 192.168.86.9
-    port: 7878
+    host: 192.168.86.6
+    port: 7879
     api_key: !secret radarr_api
     monitored_conditions:
       - upcoming
@@ -76,7 +76,7 @@
 
 # Sensor for monitoring the bridge state
   - platform: mqtt
-    name: Zigbee2mqtt Bridge state
+    name: Bridge state
     state_topic: "zigbee2mqtt/bridge/state"
     icon: mdi:router-wireless
 
