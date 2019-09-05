@@ -133,6 +133,8 @@
             - group.interior_lights
             - light.outside
             - light.porch
+          data:
+            brightness: 255
 
         ##########################################################
         ## Charlotte is home at sunset
@@ -157,6 +159,8 @@
             - group.interior_lights
             - light.outside
             - light.porch
+          data:
+            brightness: 255
 
         ##########################################################
         ## Aimee is home at sunset
@@ -181,6 +185,8 @@
             - group.interior_lights
             - light.outside
             - light.porch
+          data:
+            brightness: 255
 
         ##########################################################
         # Household Home
@@ -204,7 +210,9 @@
           entity_id: 
             - group.interior_lights
             - light.outside
-            - light.porch            
+            - light.porch          
+          data:
+            brightness: 255  
 
         ##########################################################
         # Tado state change to home
@@ -228,7 +236,9 @@
           entity_id: 
             - group.interior_lights
             - light.outside
-            - light.porch    
+            - light.porch   
+          data:
+            brightness: 255 
 
         ##########################################################
         # Nest detect someone Home
@@ -253,6 +263,8 @@
             - group.interior_lights
             - light.outside
             - light.porch     
+          data:
+            brightness: 255
 
         ##########################################################
         ## Visitors
