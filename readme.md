@@ -3,14 +3,14 @@ Using Home Assistant running on hassio to control all things smart.<br />
 <b>Special thanks to the following github pages:</b>
 
 <a href="https://github.com/geekofweek/homeassistant">geekofweek/homeassistant</a> - Loads of great automations, this got me started and you'll notice my scripts follow the same format<br />
-<a href="https://github.com/skalavala/smarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.<br />
+<a href="https://github.com/skalavala/mysmarthome">skalavala/smarthome</a> - Trash & Recycle automation is from here! wicked automation.<br />
 <a href="https://github.com/robmarkcole/Hue-sensors-HASS">robmarkcole Hue-sensors-HASS</a> - Hue motion sensors etc<br /><br />
 <b>Kit list</b>
 
 <b>Controller:</b>
 
-Raspberry Pi 3 running Home Assistant<br />
-Running zigbee2mqtt https://github.com/Koenkk/zigbee2mqtt  via CC2531 USB sniffer.
+Raspberry Pi 4 running Hassio (Home Assistant)<br />
+Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC2531 USB sniffer.
 
 <b>Assistants:</b>
 
@@ -29,7 +29,7 @@ Nest Hello Door Bell<br />
 1x YI 7200p Home Camera (Running yi-hackv4)<br />
 1x YI 1080p Dome Camera (Running yi-hackv4)<br />
 1x YI 720p Dome Camera (Running yi-hackv4)<br />
-1x YI 1080p Outdoor Camera (not hacked yet)
+1x YI 1080p Outdoor Camera (Running yi-hackv4)
 
 <b>Lights:</b>
 
@@ -75,9 +75,9 @@ Pi Hole running on Raspberry Pi 1
 1x Logitech Harmony Elite<br />
 1x Vero 4K (used for Kodi)<br />
 1x Chromecast Ultra<br />
-1x Chromecast (3rd generation)<br />
-2x Chromecast (2nd generation)<br />
 1x Chromecast (1st generation)<br />
+2x Chromecast (2nd generation)<br />
+1x Chromecast (3rd generation)<br />
 Plex running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
