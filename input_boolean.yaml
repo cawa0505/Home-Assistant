@@ -2,6 +2,9 @@
 ## Input Boolean  ##
 ##############################################################
 
+  stream_camera_to_chromecast_livingroom:
+    name: Stream Camera to Living room
+
   master_security:
     name: Master Security
     initial: on
