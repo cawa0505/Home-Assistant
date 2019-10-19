@@ -21,21 +21,22 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Internet:</b>
 
-5x Google Wifi
+<a href="https://amzn.to/35OQ7wh">5x Google Wifi</a>
 
 <b>Cameras:</b>
 
 Nest Hello Door Bell<br />
 1x YI 7200p Home Camera (Running yi-hackv4)<br />
-1x YI 1080p Dome Camera (Running yi-hackv4)<br />
-1x YI 720p Dome Camera (Running yi-hackv4)<br />
-1x YI 1080p Outdoor Camera (Running yi-hackv4)
+<a href="https://amzn.to/2VWXjSp">1x YI 1080p Dome Camera (Running yi-hackv4)<br /></a>
+<a href="https://amzn.to/31ujOPJ">1x YI 720p Dome Camera (Running yi-hackv4)<br /></a>
+<a href="https://amzn.to/2Msn7CN">2x Yi 1080p Home Camera(Running yi-hackv4)<br /></a>
+<a href="https://amzn.to/31sfOiD">1x YI 1080p Outdoor Camera (Running yi-hackv4)</a>
 
 <b>Lights:</b>
 
-Philips Hue - numerous of bulbs<br />
-5x Philips Hue Light dimmers<br />
-1x Philips Hue Strip + extension<br />
+<a href="https://amzn.to/31ogV32">Philips Hue - numerous of bulbs<br /></a>
+<a href="https://amzn.to/2VYoRqM">5x Philips Hue Light dimmers<br /></a>
+<a href="https://amzn.to/2P2zXJz">1x Philips Hue Strip + extension<br /></a>
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
