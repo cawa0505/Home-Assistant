@@ -16,8 +16,8 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <a href="https://store.google.com/gb/product/google_home">1x Google Home</a><br />
 <a href="https://store.google.com/gb/product/google_home_mini">5x Google Home Minis</a><br />
-<a href="https://store.google.com/product/google_nest_hub2>2x Google Nest Hub</a><br />
-<a href="https://store.google.com/product/google_nest_hub_max2>1x Google Home Max</a><br />
+<a href="https://store.google.com/product/google_nest_hub2">2x Google Nest Hub</a><br />
+<a href="https://store.google.com/product/google_nest_hub_max2">1x Google Home Max</a><br />
 <a href="https://store.google.com/product/google_nest_hub_max">1x Google Nest Hub Max</a>
 
 <b>Internet:</b>
