@@ -76,10 +76,10 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <a href="https://amzn.to/2o4grBo">1x Logitech Harmony Elite</a><br />
 <a href="https://osmc.tv/vero/">1x Vero 4K (used for Kodi)</a><br />
-1x Chromecast Ultra<br />
-1x Chromecast (1st generation)<br />
+<a href="https://store.google.com/product/chromecast_ultra">1x Chromecast Ultra</a><br />
+<a href="https://store.google.com/product/chromecast">1x Chromecast (3rd generation)></a><br />
 2x Chromecast (2nd generation)<br />
-1x Chromecast (3rd generation)<br />
+1x Chromecast (1st generation)<br />
 <a href="plex.tv">Plex</a> running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
