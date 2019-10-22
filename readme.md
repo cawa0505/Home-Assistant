@@ -14,10 +14,11 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Assistants:</b>
 
-1x Google Home<br />
-5x Google Home Minis<br />
-2x Google Home Hubs<br />
-1x Google Home Max<br />
+<a href="https://store.google.com/gb/product/google_home">1x Google Home</a><br />
+<a href="https://store.google.com/gb/product/google_home_mini">5x Google Home Minis</a><br />
+<a href="https://store.google.com/product/google_nest_hub2>2x Google Nest Hub</a><br />
+<a href="https://store.google.com/product/google_nest_hub_max2>1x Google Home Max</a><br />
+<a href="https://store.google.com/product/google_nest_hub_max">1x Google Nest Hub Max</a>
 
 <b>Internet:</b>
 
@@ -25,12 +26,10 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Cameras:</b>
 
-Nest Hello Door Bell<br />
-1x YI 7200p Home Camera (Running yi-hackv4)<br />
-<a href="https://amzn.to/2VWXjSp">1x YI 1080p Dome Camera (Running yi-hackv4)</a><br />
-<a href="https://amzn.to/31ujOPJ">1x YI 720p Dome Camera (Running yi-hackv4)</a><br />
-<a href="https://amzn.to/2Msn7CN">2x Yi 1080p Home Camera(Running yi-hackv4)</a><br />
-<a href="https://amzn.to/31sfOiD">1x YI 1080p Outdoor Camera (Running yi-hackv4)</a>
+<a href="https://amzn.to/2VWXjSp">1x YI Dome Camera 1080p  (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/31ujOPJ">1x YI Dome Camera 720p (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/2Msn7CN">3x Yi Home Camera 1080p (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/31sfOiD">1x YI Outdoor Camera 1080p (Running yi-hackv4)</a>
 
 <b>Lights:</b>
 
@@ -40,8 +39,8 @@ Nest Hello Door Bell<br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
-5x TRÅDFRI LED bulb GU10 400 lumen<br />
-1x TRÅDFRI LED bulb E27 600 lumen (Acting as router for zigbee2mqtt)<br />
+<a href="https://www.ikea.com/gb/en/p/tradfri-led-bulb-gu10-400-lumen-wireless-dimmable-white-spectrum-90408603/">5x TRÅDFRI LED bulb GU10 400 lumen</a><br />
+<a href="https://www.ikea.com/gb/en/p/tradfri-led-bulb-e27-600-lumen-wireless-dimmable-colour-and-white-spectrum-opal-white-00408612/">1x TRÅDFRI LED bulb E27 600 lumen</a><br />
 
 <b>Sensors:</b>
 
@@ -55,6 +54,7 @@ Nest Hello Door Bell<br />
 
 <a href="https://amzn.to/2We6LBf">1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring</a><br />
 <a href="https://amzn.to/2PcAk4u">5x TP-Link HS100 - Kasa Smart Wi-Fi Plug</a><br />
+<a href="https://www.ikea.com/gb/en/p/tradfri-wireless-control-outlet-00364477/">2x TRÅDFRI Wireless control outlet (Zigbee repeater)</a><br />
 1x Sonoff Plug
 
 <b>Thermostat:</b>
