@@ -11,7 +11,7 @@
           hide_entity: True
           trigger:
             platform: state
-            entity_id: remote.living_room
+            entity_id: remote.front_room
 
           condition:
             - condition: template
@@ -31,7 +31,7 @@
           hide_entity: True
           trigger:
             platform: state
-            entity_id: remote.living_room
+            entity_id: remote.front_room
 
           condition:
             - condition: template
@@ -45,7 +45,7 @@
              entity_id: scene.livingroom_dim
            - service: remote.send_command
              data:
-              entity_id: remote.living_room
+              entity_id: remote.front_room
               command:
                 - CinemaNight
               device: 53468354
