@@ -494,7 +494,7 @@
           entity_id: light.nursery
 
         ##########################################################
-        ## Turn off outside light at sunset
+        ## Turn off outside light at sunrise
         ##########################################################
 
     - alias: Turn off outside light above 
