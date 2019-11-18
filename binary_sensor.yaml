@@ -3,3 +3,53 @@
 #################################################################
 
   - platform: huesensor
+
+  - platform: mqtt
+    state_topic: "yicam_mancave/motion"
+    name: "Yi Cam Man Cave Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion
+
+ 
+  - platform: mqtt
+    state_topic: "yicam_downstairs/motion"
+    name: "Yi Cam Downstairs Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion   
+
+  - platform: mqtt
+    state_topic: "yicam_upstairs/motion"
+    name: "Yi Cam Upstairs Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion   
+
+  - platform: mqtt
+    state_topic: "yicam_garden/motion"
+    name: "Yi Cam Garden Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion   
+
+  - platform: mqtt
+    state_topic: "yicam_outhouse/motion"
+    name: "Yi Cam Out House Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion       
+
+  - platform: mqtt
+    state_topic: "yicam_nursery/motion"
+    name: "Yi Cam Nursery Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion
+
+  - platform: mqtt
+    state_topic: "yicam_kitchen/motion"
+    name: "Yi Cam Kitchen Motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion
