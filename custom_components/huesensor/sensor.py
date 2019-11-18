@@ -24,7 +24,10 @@ TYPE_GEOFENCE = "Geofence"
 ICONS = {
     "SML": "mdi:run",
     "RWL": "mdi:remote",
+<<<<<<< HEAD
     "ROM": "mdi:remote",    
+=======
+>>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
     "ZGP": "mdi:remote",
     "FOH": "mdi:light-switch",
 }
