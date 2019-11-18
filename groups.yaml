@@ -93,30 +93,31 @@ sensors:
 
 Temperatures:
 
+     - sensor.aqara_bedroom_temperature     
+     - sensor.aqara_mancave_temperature
+     - sensor.aqara_nursery_temperature
      - sensor.bathroom_sensor_temperature
      - sensor.dining_room_sensor_temperature
      - sensor.downstairs_sensor_temperature
      - sensor.downstairs_toilet_sensor_temperature
      - sensor.kitchen_sensor_temperature
      - sensor.upstairs_sensor_temperature
-     - sensor.xiaomi_bedroom_temperature     
      - sensor.heating_thermostat_temperature
-     - sensor.xiaomi_living_room_temperature
-     - sensor.xiaomi_man_cave_temperature
-     - sensor.xiaomi_small_bedroom_temperature
+     - sensor.aqara_living_room_temperature
      - sensor.average_house_temp
 
 Tado_Temperatures:
 
+  - sensor.average_tado_temp
+  - sensor.bedroom_temperature
+  - sensor.downstairs_temperature
+  - sensor.guest_room_temperature
   - sensor.kitchen_temperature
-  - sensor.kitchen_sensor_temperature
   - sensor.living_room_temperature
   - sensor.man_cave_temperature
   - sensor.nursery_temperature
-  - sensor.small_bedroom_temperature
   - sensor.upstairs_temperature
-  - sensor.guest_room_temperature
-  - sensor.average_tado_temp
+
 
 bedrooms:
     name: Bedrooms
@@ -243,18 +244,18 @@ Battery Levels:
     - sensor.bathroom_room_switch_battery
 
 security_doors:
-    - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.aqara_front_door_contact
+    - binary_sensor.aqara_back_door_contact
 
 exterior_doors:
-    - binary_sensor.porch_door
-    - binary_sensor.front_door
+    - binary_sensor.aqara_porch_door_contact
+    - binary_sensor.aqara_front_door_contact
 
 Doors:
-    - binary_sensor.man_cave_door
-    - binary_sensor.porch_door
-    - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.aqara_porch_door_contact
+    - binary_sensor.aqara_front_door_contact
+    - binary_sensor.aqara_back_door_contact
+    - binary_sensor.aqara_mancave_door_contact
     
 Motion Sensors:
     - binary_sensor.downstairs_sensor_motion
@@ -262,10 +263,10 @@ Motion Sensors:
     - binary_sensor.upstairs_sensor_motion
     - binary_sensor.kitchen_sensor_motion
     - binary_sensor.bathroom_sensor_motion
-    - binary_sensor.man_cave_door
-    - binary_sensor.porch_door
-    - binary_sensor.back_door
-    - binary_sensor.front_door
+    - binary_sensor.aqara_porch_door_contact
+    - binary_sensor.aqara_front_door_contact
+    - binary_sensor.aqara_back_door_contact
+    - binary_sensor.aqara_mancave_door_contact
     - binary_sensor.front_door_camera_garden_activity
     - binary_sensor.front_door_camera_road_activity
     - binary_sensor.front_door_camera_motion_detected
@@ -444,17 +445,23 @@ nest_thermostat:
 tado:
     name: Tado
     entities:
-        - climate.man_cave
         - climate.bedroom
-        - climate.front_room
-        - climate.heating
         - climate.downstairs
-        - climate.nursery
         - climate.guest_room
-        - sensor.home_tado_bridge_status
-        - sensor.man_cave_tado_mode
+        - climate.kitchen
+        - climate.living_room
+        - climate.man_cave
+        - climate.nursery
+        - climate.upstairs
         - sensor.bedroom_tado_mode
-        - sensor.front_room_tado_mode
+        - sensor.home_tado_bridge_status
+        - sensor.downstairs_tado_mode
+        - sensor.guest_room_tado_mode
+        - sensor.kitchen_tado_mode
+        - sensor.living_room_tado_mode
+        - sensor.man_cave_tado_mode
+        - sensor.upstairs_tado_mode
+        - sensor.nursery_tado_mode
 
 Climate Control:
     control: hidden
@@ -489,9 +496,8 @@ person_chris:
   icon: mdi:account-multiple
   entities:
       - device_tracker.chris_android
-      - device_tracker.oneplus_6t_bluetooth
-      - device_tracker.hue_oneplus_oneplus_a6013
-      - device_tracker.192_168_86_250_64_a2_f9_b7_1c_c1
+      - device_tracker.oneplus7tpro_Bluetooth
+      - device_tracker.tado_chris_s_phone
 
 person_aimee:
   name: Aimee
@@ -499,6 +505,8 @@ person_aimee:
   entities:
       - device_tracker.aimee_iphone
       - device_tracker.aimees_iphone
+     # - device_tracker.hue_aimees_iphone
+      - device_tracker.tado_aimees_phone
  
 person_keith:
   name: Keith
