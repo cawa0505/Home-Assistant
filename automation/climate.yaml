@@ -7,7 +7,7 @@
   #################################################################
 
     - alias: 'Thermostat offline'
-      initial_state: on
+      
       trigger:
         platform: state
         from: 'on'
@@ -24,55 +24,55 @@
   ## Tado - Home
   ##########################################################
 
-    - alias: 'Tado - Home'
-      initial_state: on
-      trigger:
-        platform: state
-        from: 'not_home'
-        to: 'home'
-        entity_id: group.household
+    #- alias: 'Tado - Home'
+     # 
+      #trigger:
+       # platform: state
+       # from: 'not_home'
+       # to: 'home'
+       # entity_id: group.household
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.man_cave
-        data_template:
-          temperature: 21
+      #action:
+      #- service: climate.set_temperature
+       # entity_id: climate.man_cave
+        #data_template:
+         # temperature: 21
 
   ##########################################################
   ## Tado - Away
   ##########################################################
 
-    - alias: 'Tado - Away'
-      initial_state: on
-      trigger:
-        platform: state
-        from: 'home'
-        to: 'not_home'
-        entity_id: group.household
+    #- alias: 'Tado - Away'
+     # 
+      #trigger:
+       # platform: state
+        #from: 'home'
+        #to: 'not_home'
+        #entity_id: group.household
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.man_cave
-        data_template:
-          temperature: 10
+      #action:
+      #- service: climate.set_temperature
+       # entity_id: climate.man_cave
+       # data_template:
+        #  temperature: 10
 
         #########################################################
         ## Man Cave Door - Open & Sunset
         ##########################################################
 
-    - alias: Man Cave Door - Open & Sunset
-      initial_state: on
-      trigger:
-        platform: state
-        entity_id: binary_sensor.man_cave_door
-        from: 'off'
-        to: 'on'
+  #  - alias: Man Cave Door - Open & Sunset
+   #   
+    #  trigger:
+     #   platform: state
+      #  entity_id: binary_sensor.man_cave_door
+       # from: 'off'
+        #to: 'on'
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.man_cave
-        data_template:
-          temperature: 21  
+      #action:
+      #- service: climate.set_temperature
+      #  entity_id: climate.man_cave
+       # data_template:
+        #  temperature: 21  
 
 
         #########################################################
@@ -80,57 +80,65 @@
         #########################################################
 
     - alias: 'Boost heating'
-      initial_state: on
+      
       trigger:
         platform: state
-        entity_id: sensor.min_target
+        entity_id: sensor.tado_temp_met
         from: 'true'
         to: 'false'
-        
-      condition:
 
-       - condition: state
-         entity_id: group.household
-         state: 'home'          
-
-       - condition: state
-         entity_id: sensor.heating_status
-         state: 'off'    
-
-       - condition: template
-         value_template: '{{ states("sensor.heating_min_temperature") < states("sensor.tado_target_temperature") }}'
-
+   #   condition:
+    #   - condition: state
+     #    entity_id: group.household
+      #   state: 'home' 
 
       action:
-      - service: climate.set_temperature
-        entity_id: climate.heating
-        data_template:
-          temperature: '{{ states("sensor.heating_current_temperature") | float + 1 }}'
+       - service: climate.set_preset_mode
+         data:
+           entity_id: climate.kitchen_thermostat
+           preset_mode: "none"
+       - service: climate.set_temperature
+         entity_id: climate.kitchen_thermostat
+         data_template:
+           temperature: '{{ states("sensor.heating_current_temperature") | float + 2 }}'
+       - service: homeassistant.toggle
+         entity_id: input_boolean.boost_heating
 
         #########################################################
         ## Heating - Decrease heating
         #########################################################
 
     - alias: 'Decrease heating'
-      initial_state: on
+      
       trigger:
         platform: state
-        entity_id: sensor.min_target
+        entity_id: sensor.tado_temp_met
         from: 'false'
         to: 'true'
 
+  #   condition:
+   #    - condition: state
+    #     entity_id: group.household
+     #    state: 'home'          
+
       action:
-      - service: climate.set_temperature
-        entity_id: climate.heating
-        data_template:
-          temperature: '{{ states("sensor.kitchen_target_temp") | float - 1 }}'
+       - service: climate.set_temperature
+         entity_id: climate.kitchen_thermostat
+         data_template:
+            temperature: '{{ states("sensor.heating_current_temperature") | float -2 }}'
+       - service: homeassistant.toggle
+         entity_id: input_boolean.boost_heating
+       - service: climate.set_preset_mode
+         data:
+           entity_id: climate.kitchen_thermostat
+           preset_mode: "eco"
 
         #########################################################
-        ## Heating - Check if min temperature is met when home
+        ## Heating - Check if min temperature is met when household changes to home
         #########################################################
 
-    - alias: 'Check heating min temp'
-      initial_state: on
+    - alias: 'Check heating min temp when arrive home'
+      
       trigger:
         platform: state
         from: 'not_home'
@@ -138,20 +146,72 @@
         entity_id: group.household
 
       condition:
+       - condition: state
+         entity_id: sensor.tado_temp_met
+         state: 'false'    
+
+      action:
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.kitchen_thermostat
+          preset_mode: "none"
+      - service: climate.set_temperature
+        entity_id: climate.kitchen_thermostat
+        data_template:
+           temperature: '{{ states("sensor.heating_current_temperature") | float + 2 }}'
+      - service: homeassistant.toggle
+        entity_id: input_boolean.boost_heating
+
+        #########################################################
+        ## Heating - Nest call for heat but Tado Temp met - Turn off
+        #########################################################
+
+    - alias: 'Check heating min temp when arrive home'
       
-       - condition: state
-         entity_id: sensor.heating_status
-         state: 'off'    
+      trigger:
+        platform: state
+        from: 'idle'
+        to: 'heating'
+        entity_id: sensor.nest_heating_status
 
-       - condition: template
-         value_template: '{{ states("sensor.heating_min_temperature") < states("sensor.tado_target_temperature") }}'
-
-       - condition: state
-         entity_id: sensor.min_target
-         state: 'false'
+      condition:
+      - condition: state
+        entity_id: sensor.tado_temp_met
+        state: 'true'    
 
       action:
       - service: climate.set_temperature
-        entity_id: climate.heating
+        entity_id: climate.kitchen_thermostat
         data_template:
-           temperature: '{{ states("sensor.heating_current_temperature") | float + 0.5 }}'
+          temperature: '{{ states("sensor.heating_current_temperature") | float - 2 }}'
+      - service: climate.set_preset_mode
+        data:
+         entity_id: climate.kitchen_thermostat
+         preset_mode: "eco"
+
+        #########################################################
+        ## Heating > Idle check Tado temp met
+        #########################################################
+
+    - alias: 'Heating > Idle check Tado temp met'
+      
+      trigger:
+        platform: state
+        from: 'heating'
+        to: 'idle'
+        entity_id: sensor.nest_heating_status
+
+      condition:
+      - condition: state
+        entity_id: sensor.tado_temp_met
+        state: 'false'    
+
+      action:
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.kitchen_thermostat
+          preset_mode: "none"
+      - service: climate.set_temperature
+        entity_id: climate.kitchen_thermostat
+        data_template:
+          temperature: '{{ states("sensor.heating_current_temperature") | float + 2 }}'
