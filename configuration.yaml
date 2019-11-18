@@ -17,11 +17,24 @@ homeassistant:
 frontend:
   themes: !include themes.yaml
 
+webhook:
+ 
+zigbee2mqtt_networkmap:
+  #topic: your topic (optional, default zigbee2mqtt)
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'  
+
+hacs:
+  token: !secret hacs
+
 config:
 
 system_health:
 
-http:
+#http:
   #api_password: !secret api_password
 
 updater:
@@ -62,8 +75,8 @@ tts:
     time_memory: 300
 
 google:
-  client_id: !secret google_id
-  client_secret: !secret google_secret
+   client_id: !secret google_id
+   client_secret: !secret google_secret
 
 hue:
   bridges:
@@ -106,6 +119,10 @@ telegram_bot:
         - !secret telegram_chris_chat
         - !secret telegram_aimee_chat
 
+pi_hole:
+    host: 192.168.86.95
+    verify_ssl: false     
+
 influxdb:
   host: 192.168.86.6
 
@@ -114,26 +131,40 @@ remote:
     name: Front room
     host: 192.168.86.30
 
+nzbget:
+  host: 192.168.86.20
+  username: !secret nzbget_username
+  password: !secret nzbget_password
+
 tado:
   username: !secret tado_user
   password: !secret tado_password  
 
 tplink:
-  discovery: false
-  switch:
-    - host: 192.168.86.50
-    - host: 192.168.86.51
-    - host: 192.168.86.52
-    - host: 192.168.86.53
-    - host: 192.168.86.54
-    - host: 192.168.86.55  
-    - host: 192.168.86.56
+ # discovery: false
+  #switch:
+   # - host: 192.168.86.50
+    #- host: 192.168.86.51
+    #- host: 192.168.86.52
+    #- host: 192.168.86.53
+    #- host: 192.168.86.54
+    #- host: 192.168.86.55  
+    #- host: 192.168.86.56
 
 weather:
 #  - platform: metoffice
   #  api_key: !secret metoffice_api
 
 speedtestdotnet:
+
+badnest:
+  issue_token: !secret badnest_token
+  cookie: !secret badnest_cookie
+  region: eu
+
+climate:
+  - platform: badnest
+    scan_interval: 10
 
 monkey_patch_nest_camera_event_end_date:
 
@@ -157,4 +188,4 @@ timer: !include timers.yaml
 switch: !include switch.yaml
 device_tracker: !include device_tracker.yaml
 yeelight: !include yeelight.yaml
-googlehome: !include googlehome.yaml
+#googlehome: !include googlehome.yaml
