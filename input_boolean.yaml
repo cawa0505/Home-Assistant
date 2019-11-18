@@ -2,6 +2,9 @@
 ## Input Boolean  ##
 ##############################################################
 
+  stream_camera_to_chromecast_livingroom:
+    name: Stream Camera to Living room
+
   master_security:
     name: Master Security
     initial: on
@@ -33,6 +36,9 @@
 
   disable_downloads:
     name: Disable Downloads
+
+  boost_heating:
+    name: Boost Heating
 
   trash_reminders:
     name: Trash Reminders
