@@ -55,3 +55,12 @@
       - Kitchen
       - Away
       - Home   
+
+  season:
+    name: Which season is it?
+    options:
+      - No season
+      - Christmas
+      - Halloween
+      - Easter
+    initial: No season
