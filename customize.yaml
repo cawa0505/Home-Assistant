@@ -2,6 +2,11 @@
 ## Customize
 #################################################################
 
+    switch.pihole_temp_disable:
+        friendly_name: Disable for 5 mins
+        icon: mdi:emoticon-dead
+        assumed_state: false
+
     binary_sensor.philips_hue:
         decice_class: connectivity
         friendly_name: Hue Hub
