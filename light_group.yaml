@@ -47,13 +47,26 @@
           - light.man_cave_light
 
     - platform: group
-      name: Living room
+      name: Living Room
       entities:
           - light.living_ceiling_light_1
           - light.living_ceiling_light_2
           - light.living_ceiling_light_3
           - light.living_wall_light_1
           - light.living_wall_light_2
+
+    - platform: group
+      name: Living Room Wall
+      entities:
+          - light.living_wall_light_1
+          - light.living_wall_light_2
+
+    - platform: group
+      name: Living Room Ceiling
+      entities:
+          - light.living_ceiling_light_1
+          - light.living_ceiling_light_2
+          - light.living_ceiling_light_3
 
     - platform: group
       name: Dining Room
