@@ -331,7 +331,6 @@
       initial_state: on    
       trigger:
         platform: state
-<<<<<<< HEAD
         entity_id: sensor.mijia_nursery_wireless_switch_click
         to: 'single'
 
@@ -368,22 +367,11 @@
         ## Nursery Bedroom Long Press
         ##########################################################
 
-=======
-        entity_id: sensor.nursery_button
-        to: 'single'
-
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 200
-          entity_id: light.nursery
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
 
     - alias: Nursery Bedroom Long Button Press
       initial_state: on    
       trigger:
         platform: state
-<<<<<<< HEAD
         entity_id: sensor.mijia_nursery_wireless_switch_click
         to: 'long'
 
@@ -483,29 +471,3 @@
             brightness_pct: 100
             xy_color: [0.323,0.329]
             entity_id: light.nursery
-=======
-        entity_id: sensor.nursery_button
-        to: 'long'
-
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 10
-          entity_id: light.nursery
-
-        ##########################################################
-        ## Turn off outside light at sunrise
-        ##########################################################
-
-    - alias: Turn off outside light above 
-      initial_state: on
-      trigger:
-        platform: sun
-        event: sunrise
-
-      action:
-        service: light.turn_off
-        entity_id:
-
-             - light.outside
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d

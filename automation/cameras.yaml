@@ -120,7 +120,6 @@
         - service: camera.play_stream
           data:
             entity_id: camera.nursery
-<<<<<<< HEAD
             media_player: media_player.living_room_tv
 
 
@@ -170,6 +169,3 @@
         - service: light.turn_off
           data_template:
             entity_id: light.nursery
-=======
-            media_player: media_player.living_room_tv
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d

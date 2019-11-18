@@ -80,11 +80,7 @@
         #########################################################
 
     - alias: 'Boost heating'
-<<<<<<< HEAD
       
-=======
-      initial_state: off
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
       trigger:
         platform: state
         entity_id: sensor.tado_temp_met
@@ -113,11 +109,7 @@
         #########################################################
 
     - alias: 'Decrease heating'
-<<<<<<< HEAD
       
-=======
-      initial_state: off
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
       trigger:
         platform: state
         entity_id: sensor.tado_temp_met
@@ -145,13 +137,8 @@
         ## Heating - Check if min temperature is met when household changes to home
         #########################################################
 
-<<<<<<< HEAD
     - alias: 'Check heating min temp when arrive home'
       
-=======
-    - alias: 'Check heating min temp'
-      initial_state: off
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
       trigger:
         platform: state
         from: 'not_home'
