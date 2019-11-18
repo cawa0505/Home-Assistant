@@ -45,7 +45,6 @@
     name: "Yi Cam Nursery Motion"
     payload_on: "motion_start"
     payload_off: "motion_stop"
-<<<<<<< HEAD
     device_class: motion
 
   - platform: mqtt
@@ -54,6 +53,3 @@
     payload_on: "motion_start"
     payload_off: "motion_stop"
     device_class: motion
-=======
-    device_class: motion       
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d

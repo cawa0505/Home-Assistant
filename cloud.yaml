@@ -12,14 +12,11 @@
             - sensor.trash_day
             - sensor.recycle_day
             - camera.nursery
-<<<<<<< HEAD
             - camera.upstairs
             - camera.kitchen
             - camera.downstairs
             - camera.outhouse
             - camera.garden
-=======
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
             - input_boolean.stream_camera_to_chromecast_living_room
         include_domains:
             - automation

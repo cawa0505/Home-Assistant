@@ -496,13 +496,7 @@ person_chris:
   icon: mdi:account-multiple
   entities:
       - device_tracker.chris_android
-<<<<<<< HEAD
       - device_tracker.oneplus7tpro_Bluetooth
-=======
-      - device_tracker.oneplus_6t_bluetooth
-    # - device_tracker.192_168_86_250_64_a2_f9_b7_1c_c1
-      - device_tracker.hue_oneplus_oneplus_a6013
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
       - device_tracker.tado_chris_s_phone
 
 person_aimee:

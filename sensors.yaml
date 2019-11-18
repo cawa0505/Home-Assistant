@@ -4,37 +4,8 @@
   
   - platform: uptime
 
-<<<<<<< HEAD
   - platform: badnest
   
-=======
-  - platform: pi_hole
-    host: 192.168.86.95
-    monitored_conditions:
-      - ads_blocked_today
-      - ads_percentage_today
-      - dns_queries_today
-      - domains_being_blocked
-      - queries_cached
-      - queries_forwarded
-      - unique_clients
-      - unique_domains
-
-  - platform: nzbget
-    host: 192.168.86.20
-    username: !secret nzbget_username
-    password: !secret nzbget_password
-    monitored_variables:
-      - article_cache
-      - download_rate
-      - download_paused
-      - average_download_rate
-      - free_disk_space
-      - download_size
-      - remaining_size
-      - uptime
-
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
   - platform: huesensor
   #  ip_address: 192.168.86.46
    # token: !secret hue_api

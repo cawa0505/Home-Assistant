@@ -35,11 +35,7 @@
            transition: 2
 
         light.living_room_ceiling:
-<<<<<<< HEAD
           state: off
-=======
-            state: off
->>>>>>> 18b6d154da0e7cce95a0345b9da92b651db2bb3d
 
   - name: Livingroom Dim
     entities:
