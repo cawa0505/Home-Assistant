@@ -70,8 +70,8 @@
     consider_home: 300
     scan_interval: 1
     hosts:
-      Aimee_iPhone: 192.168.86.61
-      Chris_Android: 192.168.86.60
+      aimee_iphone: 192.168.86.61
+      chris_android: 192.168.86.60
 
   - platform: nmap_tracker
     track_new_devices: false
@@ -91,3 +91,8 @@
     home_interval: 10
     consider_home: 300
     interval_seconds: 60
+
+  - platform: tado
+    username: !secret tado_user
+    password: !secret tado_password  
+    home_id: 291322
