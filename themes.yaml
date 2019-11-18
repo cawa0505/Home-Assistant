@@ -1,6 +1,9 @@
 #################################################################
 ## Themes
 #################################################################
+   
+    pihole-button:
+        paper-item-icon-active-color: '#26ff00'
 
     #################################################################
     ## Slate: https://github.com/seangreen2/home_assistant/blob/master/themes.yaml
