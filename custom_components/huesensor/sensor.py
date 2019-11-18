@@ -16,13 +16,18 @@ from homeassistant.helpers.event import async_track_time_interval
 
 DEPENDENCIES = ["hue"]
 
-__version__ = "1.0.5"
 
 _LOGGER = logging.getLogger(__name__)
 
 SCAN_INTERVAL = timedelta(seconds=0.1)
 TYPE_GEOFENCE = "Geofence"
-ICONS = {"SML": "mdi:run", "RWL": "mdi:remote", "ZGP": "mdi:remote", "FOH": "mdi:light-switch"}
+ICONS = {
+    "SML": "mdi:run",
+    "RWL": "mdi:remote",
+    "ROM": "mdi:remote",    
+    "ZGP": "mdi:remote",
+    "FOH": "mdi:light-switch",
+}
 DEVICE_CLASSES = {"SML": "motion"}
 ATTRS = {
     "SML": [
@@ -39,8 +44,9 @@ ATTRS = {
         "threshold",
     ],
     "RWL": ["last_updated", "battery", "on", "reachable"],
+    "ROM": ["last_updated", "battery", "on", "reachable"],
     "ZGP": ["last_updated"],
-    "FOH": ["last_updated"]
+    "FOH": ["last_updated"],
 }
 
 
@@ -51,15 +57,15 @@ def parse_hue_api_response(sensors):
     # Loop over all keys (1,2 etc) to identify sensors and get data.
     for sensor in sensors:
         modelid = sensor["modelid"][0:3]
-        if modelid in ["RWL", "SML", "ZGP"]:
+        if modelid in ["RWL", "ROM", "SML", "ZGP"]:
             _key = modelid + "_" + sensor["uniqueid"][:-5]
-            if modelid == "RWL":
+            if modelid == "RWL" or modelid == "ROM":
                 data_dict[_key] = parse_rwl(sensor)
             elif modelid == "ZGP":
                 data_dict[_key] = parse_zgp(sensor)
 
-        elif modelid == 'FOH': ############# New Model ID
-            _key = modelid + '_' + sensor['uniqueid'][-5:] ###needed for uniqueness
+        elif modelid == "FOH":  ############# New Model ID
+            _key = modelid + "_" + sensor["uniqueid"][-5:]  ###needed for uniqueness
             data_dict[_key] = parse_foh(sensor)
 
     return data_dict
@@ -69,7 +75,7 @@ def parse_zgp(response):
     """Parse the json response for a ZGPSWITCH Hue Tap."""
     TAP_BUTTONS = {34: "1_click", 16: "2_click", 17: "3_click", 18: "4_click"}
     press = response["state"]["buttonevent"]
-    if press is None:
+    if press is None or press not in TAP_BUTTONS:
         button = "No data"
     else:
         button = TAP_BUTTONS[press]
@@ -112,30 +118,32 @@ def parse_rwl(response):
 def parse_foh(response):
     """Parse the JSON response for a FOHSWITCH (type still = ZGPSwitch)"""
     FOH_BUTTONS = {
-        16: 'left_upper_press',
-        20: 'left_upper_release',
-        17: 'left_lower_press',
-        21: 'left_lower_release',
-        18: 'right_lower_press',
-        22: 'right_lower_release',
-        19: 'right_upper_press',
-        23: 'right_upper_release',
-        100: 'double_upper_press',
-        101: 'double_upper_release',
-        98: 'double_lower_press',
-        99: 'double_lower_release'
+        16: "left_upper_press",
+        20: "left_upper_release",
+        17: "left_lower_press",
+        21: "left_lower_release",
+        18: "right_lower_press",
+        22: "right_lower_release",
+        19: "right_upper_press",
+        23: "right_upper_release",
+        100: "double_upper_press",
+        101: "double_upper_release",
+        98: "double_lower_press",
+        99: "double_lower_release",
     }
-    
-    press = response['state']['buttonevent']
-    if press is None:
-        button = 'No data'
-    else:
-        button =FOH_BUTTONS[press]
 
-    data = {'model':'FOH',
-            'name': response['name'],
-            'state': button,
-            'last_updated': response['state']['lastupdated'].split('T')}
+    press = response["state"]["buttonevent"]
+    if press is None or press not in FOH_BUTTONS:
+        button = "No data"
+    else:
+        button = FOH_BUTTONS[press]
+
+    data = {
+        "model": "FOH",
+        "name": response["name"],
+        "state": button,
+        "last_updated": response["state"]["lastupdated"].split("T"),
+    }
     return data
 
 
@@ -194,7 +202,7 @@ class HueSensorData(object):
         new_sensors = data.keys() - self.data.keys()
         updated_sensors = []
         for key, new in data.items():
-            new['changed'] = True
+            new["changed"] = True
             old = self.data.get(key)
             if not old or old == new:
                 continue
@@ -203,7 +211,7 @@ class HueSensorData(object):
                 old["last_updated"] == new["last_updated"]
                 and old["state"] == new["state"]
             ):
-                new['changed'] = False
+                new["changed"] = False
         self.data.update(data)
 
         new_entities = {
@@ -256,6 +264,11 @@ class HueSensor(Entity):
         data = self._data.get(self._hue_id)
         if data:
             return data["name"]
+
+    @property
+    def unique_id(self):
+        """Return the ID of this Hue sensor."""
+        return self._hue_id[+4:][:-3]
 
     @property
     def state(self):
