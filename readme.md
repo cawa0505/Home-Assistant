@@ -80,7 +80,7 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 <a href="https://store.google.com/product/chromecast">1x Chromecast (3rd generation)></a><br />
 2x Chromecast (2nd generation)<br />
 1x Chromecast (1st generation)<br />
-<a href="plex.tv">Plex</a> running as a VM (CentOS) on a Dell T20 server<br />
+<a href="http://www.plex.tv">Plex</a> running as a VM (CentOS) on a Dell T20 server<br />
 1x HP Microserver N54L running FreeNAS<br />
 1x HP Microserver Gen 8 running unRaid<br />
 1x HP ML110 G7 running unRaid | Docker containers running Tautulli, OpenVPN, Sabnzbd, Sonarr, Radarr & Duck DNS.
