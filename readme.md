@@ -26,10 +26,10 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Cameras:</b>
 
-<a href="https://amzn.to/2VWXjSp">1x YI Dome Camera 1080p  (Running yi-hackv4)</a><br />
-<a href="https://amzn.to/31ujOPJ">1x YI Dome Camera 720p (Running yi-hackv4)</a><br />
-<a href="https://amzn.to/2Msn7CN">3x Yi Home Camera 1080p (Running yi-hackv4)</a><br />
-<a href="https://amzn.to/31sfOiD">1x YI Outdoor Camera 1080p (Running yi-hackv4)</a>
+<a href="https://amzn.to/2RnA17xp">1x YI Dome Camera 1080p  (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/38MTDbl">1x YI Dome Camera 720p (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/2NWOxkw">3x Yi Home Camera 1080p (Running yi-hackv4)</a><br />
+<a href="https://amzn.to/30Q9ZwQ">1x YI Outdoor Camera 1080p (Running yi-hackv4)</a>
 
 <b>Lights:</b>
 
