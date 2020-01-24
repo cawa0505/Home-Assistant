@@ -33,9 +33,9 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Lights:</b>
 
-<a href="https://amzn.to/31ogV32">Philips Hue - numerous of bulbs</a><br />
-<a href="https://amzn.to/2VYoRqM">5x Philips Hue Light dimmers</a><br />
-<a href="https://amzn.to/2P2zXJz">1x Philips Hue Strip + extension</a><br />
+<a href="https://amzn.to/2GoukzO">Philips Hue - numerous of bulbs</a><br />
+<a href="https://amzn.to/3aDko3u">5x Philips Hue Light dimmers</a><br />
+<a href="https://amzn.to/30NC6gi">1x Philips Hue Strip + extension</a><br />
 3x Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb<br />
 3x Xiaomi Yeelight YLDD01YL Smart Light Strip<br />
 1x Xiaomi Mijia Yeelight MJTD01YL Smart LED Desk Lamp<br />
@@ -46,22 +46,22 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <a href="https://www.banggood.com/custlink/KDKmBiMJ9C">4x Xiaomi Aqara temperature humidity Sensor</a><br />
 <a href="https://www.banggood.com/custlink/KK3DBIUC9j">6x Xiaomi Aqara Door/Window Sensor</a><br />
-<a href="https://amzn.to/32DT80u">5x Philips Hue Motion sensors</a><br />
+<a href="https://amzn.to/36o1NVR">5x Philips Hue Motion sensors</a><br />
 1x Xiaomi Aqara Vibration Sensor (Washing machine)<br />
 1x Xiaomi MiJia Honeywell smoke detector
 
 <b>Plugs:</b>
 
-<a href="https://amzn.to/2We6LBf">1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring</a><br />
-<a href="https://amzn.to/2PcAk4u">5x TP-Link HS100 - Kasa Smart Wi-Fi Plug</a><br />
+<a href="https://amzn.to/2sVtuHZ">1x TP-Link HS110 - Kasa Smart Wi-Fi Plug with Energy Monitoring</a><br />
+<a href="https://amzn.to/36nPUiz">5x TP-Link HS100 - Kasa Smart Wi-Fi Plug</a><br />
 <a href="https://www.ikea.com/gb/en/p/tradfri-wireless-control-outlet-00364477/">2x TRÅDFRI Wireless control outlet (Zigbee repeater)</a><br />
 1x Sonoff Plug
 
 <b>Thermostat:</b>
 
-<A href=">https://amzn.to/31zRz23">1x Nest Thermostat</a><br />
-<a href="https://amzn.to/31yUyb7">1x Tado Smart Radiator Therostat Starter Kit V3+</a><br />
-<a href="https://amzn.to/2pHHVNJ">7x Tado Smart Radiator Thermostat</a>
+<A href="https://amzn.to/2NWZQt5">1x Nest Thermostat</a><br />
+<a href="https://amzn.to/2RZptuH">1x Tado Smart Radiator Thermostat Starter Kit V3+</a><br />
+<a href="https://amzn.to/2uz9HhJ">7x Tado Smart Radiator Thermostat</a>
 
 <b>Buttons:</b>
 
@@ -74,7 +74,7 @@ Running zigbee2mqtt https://github.com/danielwelch/hassio-zigbee2mqtt  via CC253
 
 <b>Media:</b>
 
-<a href="https://amzn.to/2o4grBo">1x Logitech Harmony Elite</a><br />
+<a href="https://amzn.to/2vkd9xk">1x Logitech Harmony Elite</a><br />
 <a href="https://osmc.tv/vero/">1x Vero 4K (used for Kodi)</a><br />
 <a href="https://store.google.com/product/chromecast_ultra">1x Chromecast Ultra</a><br />
 <a href="https://store.google.com/product/chromecast">1x Chromecast (3rd generation)></a><br />
