@@ -27,9 +27,14 @@
     name: Garden
     input: -rtsp_transport tcp -i rtsp://192.168.86.73/ch0_0.h264 
 
-  - platform: ffmpeg
-    name: Nursery
-    input: -rtsp_transport tcp -i rtsp://192.168.86.74/ch0_0.h264   
+  #- platform: ffmpeg
+   # name: Nursery
+    #input: -rtsp_transport tcp -i rtsp://192.168.86.74/ch0_0.h264   
+
+ # - platform: generic
+  #  name: Nursery
+  #  still_image_url: "http://192.168.86.122:81/image/Nursery"
+ #   stream_source: "http://192.168.86.122:81/nursery/temp.m3u8"
 
   - platform: ffmpeg
     name: Kitchen
