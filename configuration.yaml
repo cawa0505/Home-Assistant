@@ -15,7 +15,7 @@ homeassistant:
   packages: !include_dir_named packages
 
 frontend:
-  themes: !include themes.yaml
+  themes: !include_dir_merge_named themes
 
 webhook:
  
@@ -29,7 +29,8 @@ panel_iframe:
 
 hacs:
   token: !secret hacs
-
+  appdaemon: true
+  
 config:
 
 system_health:
@@ -130,6 +131,9 @@ remote:
   - platform: harmony
     name: Front room
     host: 192.168.86.30
+  - platform: harmony
+    name: Man Cave
+    host: 192.168.86.31
 
 nzbget:
   host: 192.168.86.20
@@ -167,6 +171,8 @@ climate:
     scan_interval: 10
 
 monkey_patch_nest_camera_event_end_date:
+
+mobile_app:
 
 #################################################################
 ## Includes
