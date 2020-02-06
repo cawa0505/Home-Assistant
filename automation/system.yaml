@@ -6,15 +6,15 @@
         ## Set theme on HA start
         ##########################################################
 
-  - alias: Set theme at startup
-    initial_state: 'on'
-    trigger:
-     - platform: homeassistant
-       event: start
-    action:
-      service: frontend.set_theme
-      data:
-        name: slate
+ # - alias: Set theme at startup
+  #  initial_state: 'on'
+   # trigger:
+    # - platform: homeassistant
+     #  event: start
+    #action:
+    #  service: frontend.set_theme
+     # data:
+      #  name: slate
 
         ##########################################################
         ## Home Assistant
