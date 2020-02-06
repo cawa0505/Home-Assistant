@@ -28,17 +28,15 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.aqara_mancave_door_contact
+        entity_id: binary_sensor.aqara_man_cave_door_contact
         from: 'off'
         to: 'on'
 
       action:
         - service: light.turn_on
           entity_id:
-             - light.man_cave_desk_strip
-        - service: switch.turn_on
-          entity_id:
-             - switch.man_cave_console_lights             
+             - light.man_cave_console_strip
+             - light.hue_man_cave_desk_strip   
 
         #########################################################
         ## Man Cave Door - Open & Sunset
@@ -48,7 +46,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.aqara_mancave_door_contact
+        entity_id: binary_sensor.aqara_man_cave_door_contact
         from: 'off'
         to: 'on'
 
@@ -60,11 +58,9 @@
       action:
         - service: light.turn_on
           entity_id:
-             - light.man_cave_desk_strip
+             - light.hue_man_cave_desk_strip
              - light.man_cave_lamp
-        - service: switch.turn_on
-          entity_id:
-             - switch.man_cave_console_lights
+             - light.man_cave_console_strip
 
         ##########################################################
         ## Man Cave Door closed and no motion - Turn off lights
@@ -74,7 +70,7 @@
       initial_state: on
       trigger:
         - platform: state
-          entity_id: binary_sensor.aqara_mancave_door_contact
+          entity_id: binary_sensor.aqara_man_cave_door_contact
           to: 'off'
           for: '00:03:00'
 
@@ -82,10 +78,7 @@
         - service: light.turn_off
           entity_id:
             - group.man_cave_lights
-        - service: switch.turn_off
-          entity_id:
-             - switch.man_cave_console_lights
-
+ 
         #########################################################
         ## Man Cave Door - Closed - Turn on landing light
         #########################################################
@@ -94,7 +87,7 @@
       initial_state: on
       trigger:
         platform: state
-        entity_id: binary_sensor.aqara_mancave_door_contact
+        entity_id: binary_sensor.aqara_man_cave_door_contact
         from: 'on'
         to: 'off'
 
@@ -138,25 +131,23 @@
         ## Front Door - Open & Sunset
         ##########################################################
 
-#    - alias: Front Door - Open & Sunset
- #     initial_state: on
-  #    trigger:
-   #     platform: state
-    #    entity_id: binary_sensor.aqara_front_door_contact
-     #   from: 'off'
-      #  to: 'on'
+    - alias: Front Door - Open & Sunset
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.aqara_front_door_contact
+        from: 'off'
+        to: 'on'
 
-      #condition:
-       # condition: state
-        #entity_id: sun.sun
-        #state: below_horizon
+      condition:
+        condition: state
+        entity_id: sun.sun
+        state: below_horizon
 
-     # action:
-      #  - service: light.turn_on
-       #   entity_id:
-        #     - light.porch
-         #    - light.outside
-
+      action:
+        - service: light.turn_on
+          entity_id:
+             - light.outside
 
         ##########################################################
         ## Upstairs motion - Turn on Man Cave Landing
@@ -327,147 +318,89 @@
         ## Nursery Bedroom Button Pressed
         ##########################################################
 
-    - alias: Nursery Single Button Press
-      initial_state: on    
-      trigger:
-        platform: state
-        entity_id: sensor.mijia_nursery_wireless_switch_click
-        to: 'single'
+ #   - alias: Nursery Single Button Press
+  #    initial_state: on    
+   #   trigger:
+    #    platform: state
+     #   entity_id: sensor.mijia_nursery_wireless_switch_click
+      #  to: 'single'
 
-      action:
-        - service_template: >
-            {% if is_state('light.nursery', 'on') %}
-            light.turn_off
-            {% else %}
-            light.turn_on
-            {% endif %}
-          data_template:
-            entity_id: light.nursery
+      #action:
+       # - service_template: >
+        #    {% if is_state('light.nursery', 'on') %}
+         #   light.turn_off
+          #  {% else %}
+           # light.turn_on
+            #{% endif %}
+          #data_template:
+           # entity_id: light.nursery
 
         ##########################################################
         ## Nursery Bedroom Double Button Press
         ##########################################################
 
 
-    - alias: Nursery Bedroom Double Button Press
-      initial_state: on    
-      trigger:
-        platform: state
-        entity_id: sensor.mijia_nursery_wireless_switch_click
-        to: 'double'
+    #- alias: Nursery Bedroom Double Button Press
+     # initial_state: on    
+      #trigger:
+       # platform: state
+        #entity_id: sensor.mijia_nursery_wireless_switch_click
+        #to: 'double'
 
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 1
-            xy_color: [0.579,0.403]
-            entity_id: light.nursery
+   #   action:
+    #    - service: light.turn_on
+     #     data_template:
+      #      brightness_pct: 1
+       #     xy_color: [0.579,0.403]
+#            entity_id: light.nursery
 
         ##########################################################
         ## Nursery Bedroom Long Press
         ##########################################################
 
 
-    - alias: Nursery Bedroom Long Button Press
-      initial_state: on    
-      trigger:
-        platform: state
-        entity_id: sensor.mijia_nursery_wireless_switch_click
-        to: 'long'
+  #  - alias: Nursery Bedroom Long Button Press
+   #   initial_state: on    
+    #  trigger:
+     #   platform: state
+      #  entity_id: sensor.mijia_nursery_wireless_switch_click
+       # to: 'long'
 
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 100
-            xy_color: [0.323,0.329]
-            entity_id: light.nursery
+      #action:
+       # - service: light.turn_on
+        #  data_template:
+         #   brightness_pct: 100
+          #  xy_color: [0.323,0.329]
+           # entity_id: light.nursery
 
         ##########################################################
         ## Turn off outside light at sunrise
         ##########################################################
 
-    - alias: Turn off outside light at sunrise
-      initial_state: on
-      trigger:
-        platform: sun
-        event: sunrise
+   # - alias: Turn off outside light at sunrise
+    #  initial_state: on
+     # trigger:
+      #  platform: sun
+       # event: sunrise
 
-      action:
-        service: light.turn_off
-        entity_id:
-             - light.outside
+      #action:
+       # service: light.turn_off
+        #entity_id:
+         #    - light.outside
 
         ##########################################################
         ## Turn on outside light at sunset
         ##########################################################
 
-    - alias: Turn on outside light at sunset
-      initial_state: on
-      trigger:
-        platform: sun
-        event: sunset
+#    - alias: Turn on outside light at sunset
+ #     initial_state: on
+  #    trigger:
+   #     platform: sun
+    #    event: sunset
+     #   offset: "+00:30:00"
 
-      action:
-        service: light.turn_on
-        entity_id:
+      #action:
+       # service: light.turn_on
+        #entity_id:
 
-             - light.outside
-
-    - alias: 'Turn Nursery Light on'
-      initial_state: true
-      trigger:
-          platform: state
-          entity_id:
-            - sensor.nursery_switch
-          to: '1_click_up'
-
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 1
-            xy_color: [0.579,0.403]
-            entity_id: light.nursery
-
-    - alias: 'Nursery Light Turn Off'
-      initial_state: true
-      trigger:
-          platform: state
-          entity_id:
-            - sensor.nursery_switch
-          to: '4_click_up'
-
-      action:
-        - service: light.turn_off
-          data:
-            entity_id: light.nursery
-
-
-    - alias: 'Nursery Light Turn on Dim'
-      initial_state: true
-      trigger:
-          platform: state
-          entity_id:
-            - sensor.nursery_switch
-          to: '3_click_up'
-
-      action:
-          - service: light.turn_on
-            data_template:
-              brightness_pct: 1
-              xy_color: [0.579,0.403]
-              entity_id: light.nursery   
-
-    - alias: 'Nursery Light Turn on Bright'
-      initial_state: true
-      trigger:
-          platform: state
-          entity_id:
-            - sensor.nursery_switch
-          to: '2_click_up'
-
-      action:
-        - service: light.turn_on
-          data_template:
-            brightness_pct: 100
-            xy_color: [0.323,0.329]
-            entity_id: light.nursery
+         #    - light.outside
