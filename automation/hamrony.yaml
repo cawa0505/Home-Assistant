@@ -8,7 +8,6 @@
 
         - alias: Harmony Off
           initial_state: on
-          hide_entity: True
           trigger:
             platform: state
             entity_id: remote.front_room
@@ -28,7 +27,6 @@
 
         - alias: Netflix playing at Sunset
           initial_state: on
-          hide_entity: True
           trigger:
             platform: state
             entity_id: remote.front_room

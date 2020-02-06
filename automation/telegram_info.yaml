@@ -8,7 +8,6 @@
         ##########################################################
 
          - alias: 'Telegram test'
-           hide_entity: true
            initial_state: true
            trigger:
              platform: event
@@ -29,7 +28,6 @@
         ##########################################################
 
          - alias: 'Telegram start'
-           hide_entity: true
            initial_state: true
            trigger:
              platform: event
