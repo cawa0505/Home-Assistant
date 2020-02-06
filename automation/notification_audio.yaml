@@ -7,7 +7,7 @@
         ##########################################################
 
 - alias: 'Chris is home'
-  initial_state: on
+  initial_state: off
   trigger:
     platform: state
     from: 'not_home'
@@ -40,7 +40,7 @@
         ##########################################################
 
 - alias: 'Aimee is home'
-  initial_state: on
+  initial_state: off
   trigger:
     platform: state
     from: 'not_home'
