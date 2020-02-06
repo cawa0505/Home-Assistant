@@ -7,24 +7,27 @@
         ##########################################################
 
     - alias: 'Front Door Person Detected'
-      initial_state: on
+      initial_state: off
       trigger:
         platform: state
-        entity_id: binary_sensor.front_door_camera_person_detected
+        entity_id: binary_sensor.hue_front_outdoor_motion_sensor_motion
         from: 'off'
         to: 'on'
 
       condition:
 
         - condition: template
-          value_template: "{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.front_door.last_changed) > 180 }}"
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states. binary_sensor.aqara_front_door_contact.last_changed) > 180 }}"
+
+        - condition: template
+          value_template: "{{ as_timestamp(now()) - as_timestamp(states.light.outside.last_changed) > 30 }}"    
 
         - condition: template
           value_template: "{{ as_timestamp(now()) - as_timestamp(states.group.household.last_updated) > 180 }}"
 
         - condition: time
           after: '08:00:00'
-          before: '21:00:00'
+          before: '20:00:00'
 
         - condition: state
           entity_id: group.household
@@ -33,10 +36,11 @@
       action:
         - service: tts.google_say
           data:
-            message: 'A person detected in the front garden'
+            message: 'Motion detected in the front garden'
             entity_id:
               - media_player.living_room_home
               - media_player.dining_room_speaker
+              - media_player.hallway_home
 
         ##########################################################
         ## Turn On Outside Light when Motion Detected
