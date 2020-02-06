@@ -3,7 +3,6 @@
 #################################################################
 
 default_view:
-    view: yes
     icon: mdi:home
     entities:
         - persistent_notification.1
@@ -24,8 +23,6 @@ chris_room_location:
         input_select.chris_room_location
 
 zigbee_group:
-    view: false
-    control: hidden
     name: Zigbee2mqtt
     entities:
       - input_boolean.zigbee_permit_join
@@ -40,7 +37,6 @@ zigbee_group:
 
 cameras:
     name: Cameras
-    view: yes
     icon: mdi:camera
     entities:
         - camera.front_door
@@ -70,7 +66,6 @@ calendar_events:
 
 sensors:
     name: Sensors
-    view: yes
     icon: mdi:gauge
     entities:
         - camera.front_door
@@ -94,7 +89,7 @@ sensors:
 Temperatures:
 
      - sensor.aqara_bedroom_temperature     
-     - sensor.aqara_mancave_temperature
+     - sensor.aqara_man_cave_temperature
      - sensor.aqara_nursery_temperature
      - sensor.bathroom_sensor_temperature
      - sensor.dining_room_sensor_temperature
@@ -121,7 +116,6 @@ Tado_Temperatures:
 
 bedrooms:
     name: Bedrooms
-    view: yes
     icon: mdi:hotel
     entities:
       - group.bedroom
@@ -130,7 +124,6 @@ bedrooms:
 
 Bathroom:
     name: Bathroom
-    view: yes
     icon: mdi:hot-tub
     entities:
         - group.bathroom_lights
@@ -203,21 +196,18 @@ Pi Hole:
      - sensor.pi_hole_domains_blocked
 
 Guest Bedroom:
-    control: hidden
     entities:
         - light.guest_room
         - media_player.guest_room_home
 
 Outdoors:
     name: Outdoors
-    view: yes
     icon: mdi:tree
     entities:
         - group.exterior_lights
         - camera.front_door
 
 Bedroom:
-    control: hidden
     entities:
       - light.bedroom
       - media_player.bedroom_home
@@ -255,7 +245,7 @@ Doors:
     - binary_sensor.aqara_porch_door_contact
     - binary_sensor.aqara_front_door_contact
     - binary_sensor.aqara_back_door_contact
-    - binary_sensor.aqara_mancave_door_contact
+    - binary_sensor.aqara_man_cave_door_contact
     
 Motion Sensors:
     - binary_sensor.downstairs_sensor_motion
@@ -287,7 +277,6 @@ LivingRoom_TVLight:
         - light.hue_livingroom_lightstrip
 
 Interior:
-    control: hidden
     entities:
       - light.hue_downstairs_hallway_2
       - light.downstairs_light
@@ -310,7 +299,6 @@ Exterior Lights:
 
 living:
     name: Living
-    view: yes
     icon: mdi:sofa
     entities:
         - group.livingroom_lights
@@ -340,6 +328,8 @@ Man_Cave_Lights:
         - light.man_cave_desk_strip
         - light.man_cave_lamp
         - light.man_cave_light
+        - light.hue_man_cave_desk_strip
+        - light.man_cave_console_strip
 
 Man_Cave_Switches:
     name: Man Cave Switches
@@ -348,7 +338,6 @@ Man_Cave_Switches:
 
 dining:
     name: Dining
-    view: yes
     icon: mdi:silverware-variant
     entities:
       - group.kitchen_lights
@@ -369,7 +358,6 @@ Internet:
 
 Man_Cave_Room:
     name: Man Cave
-    view: yes
     icon: mdi:google-controller
     entities:
         - group.man_cave_lights
@@ -420,7 +408,6 @@ Humidity:
       # - group.trash_automation
 
 Trash Status:
-    control: hidden
     name: Trash Status
     entities:
         - sensor.trash_day
@@ -464,12 +451,10 @@ tado:
         - sensor.nursery_tado_mode
 
 Climate Control:
-    control: hidden
     entities:
       - climate.heating
 
 Alarm:
-    control: hidden
     entities:
       - input_boolean.master_security
       - input_boolean.enable_security
@@ -477,7 +462,6 @@ Alarm:
       - input_boolean.alarm_tripped
 
 Household:
-    control: hidden
     entities:
       - group.person_chris
       - group.person_aimee
@@ -568,7 +552,6 @@ Date Time:
 
 weatherdashboard:
     name: Weather
-    view: yes
     icon: mdi:weather-partlycloudy
     entities:
       - group.thermostat
@@ -577,7 +560,6 @@ weatherdashboard:
 
 automation:
     name: Automation
-    view: yes
     icon: mdi:robot
     entities:
       - group.all_automations
@@ -585,7 +567,6 @@ automation:
 
 Google_Home:
     name: Google Home Devices
-    view: yes
     icon: mdi:google-home
     entities:
         - media_player.hallway_home
@@ -598,7 +579,6 @@ Google_Home:
 
 htpc:
     name: HTPC
-    view: yes
     icon: mdi:youtube
     entities:
       - group.sabnzbd
@@ -608,7 +588,6 @@ htpc:
 
 troubleshooting:
     name: Troubleshooting
-    view: yes
     icon: mdi:none
     entities:
      - group.all_devices
