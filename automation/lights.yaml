@@ -21,7 +21,7 @@
              - group.interior_lights
 
         #########################################################
-        ## Man Cave Door - Open & Sunset
+        ## Man Cave Door - Open
         ##########################################################
 
     - alias: Man Cave Door - Open & Sunset
@@ -60,6 +60,7 @@
           entity_id:
              - light.hue_man_cave_desk_strip
              - light.man_cave_lamp
+             - light.hue_man_cave
              - light.man_cave_console_strip
 
         ##########################################################
@@ -98,17 +99,12 @@
 
       action:
         - service: light.turn_on
-          entity_id: light.man_cave_landing
+          entity_id: light.hue_man_cave_landing
           data_template:
             brightness: >
               {% if now().hour > 20 %}64
               {% else %}100
               {% endif %}
-
-        - service: light.turn_on
-          entity_id: light.upstairs_hallway   
-          data_template:
-            brightness: 75    
 
         ##########################################################
         ## Front Door - Open
@@ -153,47 +149,47 @@
         ## Upstairs motion - Turn on Man Cave Landing
         ##########################################################
 
-    - alias: 'Upstairs motion - Turn on Man Cave Landing'
-      initial_state: on
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.upstairs_sensor_motion
-          to: 'on'
+  #  - alias: 'Upstairs motion - Turn on Man Cave Landing'
+   #   initial_state: on
+    #  trigger:
+     #   - platform: state
+      #    entity_id: binary_sensor.upstairs_sensor_motion
+       #   to: 'on'
 
-      condition:
-        condition: and
-        conditions:
+      #condition:
+       # condition: and
+        #conditions:
 
-          - condition: state
-            entity_id: sun.sun
-            state: below_horizon
+         # - condition: state
+          #  entity_id: sun.sun
+           # state: below_horizon
 
-          - condition: state
-            entity_id: light.upstairs_hallway
-            state: 'on'
+         # - condition: state
+        #    entity_id: light.upstairs_hallway
+       #     state: 'on'
 
-      action:
-        - service: light.turn_on
-          entity_id: light.man_cave_landing
-          data_template:
-            brightness: '{% if now().hour > 20 %}64{% else %}100{% endif %}'
+  #    action:
+   #     - service: light.turn_on
+    #      entity_id: light.man_cave_landing
+     #     data_template:
+      #      brightness: '{% if now().hour > 20 %}64{% else %}100{% endif %}'
 
         ##########################################################
         ## Upstairs motion - Turn off Man Cave Landing
         ##########################################################
 
-    - alias: 'Upstairs motion - Turn off Man Cave Landing'
-      initial_state: on
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.upstairs_sensor_motion
-          to: 'off'
-          for: '00:02:00'
+  #  - alias: 'Upstairs motion - Turn off Man Cave Landing'
+   #   initial_state: on
+    #  trigger:
+     #   - platform: state
+      #    entity_id: binary_sensor.upstairs_sensor_motion
+       #   to: 'off'
+        #  for: '00:02:00'
 
-      action:
-        - service: light.turn_off
-          entity_id:
-            - light.man_cave_landing
+      #action:
+       # - service: light.turn_off
+          #entity_id:
+          #  - light.man_cave_landing
 
         ##########################################################
         ## No-one home - lights on
