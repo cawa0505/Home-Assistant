@@ -134,4 +134,4 @@
              entity_id: group.all_lights
            - service: notify.telegram
              data:
-               message: 'All the lights have been turned off'
+               message: 'All the lights have been turned off '
