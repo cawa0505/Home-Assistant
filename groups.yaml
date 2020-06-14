@@ -47,6 +47,7 @@ family:
     name: Family
     entities:
         - group.person_keith
+        - group.household
 
 visitors:
     name: Visitors
@@ -197,7 +198,7 @@ Pi Hole:
 
 Guest Bedroom:
     entities:
-        - light.guest_room
+        - light.hue_guest_room
         - media_player.guest_room_home
 
 Outdoors:
@@ -271,6 +272,13 @@ Livingroom_Lights:
         - light.living_wall_light_2
         - light.hue_livingroom_lightstrip
 
+livingroom_twigs:
+    name: Living Room Twig Lights
+    entities:
+        - switch.twig_left
+        - switch.twig_right
+
+
 LivingRoom_TVLight:
     name: "Living Room TV Light"
     entities:
@@ -282,8 +290,8 @@ Interior:
       - light.downstairs_light
       - light.upstairs_hallway
       - light.bottom_man_cave
-      - light.man_cave_landing
       - switch.hallway_lamp
+      - light.hue_man_cave_landing
 
 Interior Lights:
       - light.hue_downstairs_hallway_2
@@ -327,7 +335,7 @@ Man_Cave_Lights:
         - light.man_cave_desk_light
         - light.man_cave_desk_strip
         - light.man_cave_lamp
-        - light.man_cave_light
+        - light.hue_man_cave
         - light.hue_man_cave_desk_strip
         - light.man_cave_console_strip
 
