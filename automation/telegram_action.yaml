@@ -79,6 +79,45 @@
                message: 'Master Security has been enabled'
 
         ##########################################################
+        ## Baby Sitter Turn On
+        ##########################################################
+
+         - alias: 'Baby Sitter'
+           initial_state: true
+           trigger:
+             platform: event
+             event_type: telegram_command
+             event_data:
+               command: '/baby_sitter_on'
+
+           action:
+           - service: homeassistant.turn_on
+             entity_id: input_boolean.baby_sitter
+           - service: notify.telegram
+             data:
+               message: 'Baby Sitter turned on'
+
+        ##########################################################
+        ## Baby Sitter Turn Off
+        ##########################################################
+
+         - alias: 'Baby Sitter'
+           initial_state: true
+           trigger:
+             platform: event
+             event_type: telegram_command
+             event_data:
+               command: '/baby_sitter_off'
+
+           action:
+           - service: homeassistant.turn_off
+             entity_id: input_boolean.baby_sitter
+           - service: notify.telegram
+             data:
+               message: 'Baby Sitter turned off'
+
+
+        ##########################################################
         ## Lights off
         ##########################################################
 
