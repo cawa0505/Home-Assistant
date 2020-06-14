@@ -2,7 +2,7 @@
 ## Binary Sensors
 #################################################################
 
-  - platform: huesensor
+  #- platform: huesensor
 
   - platform: mqtt
     state_topic: "yicam_mancave/motion"
