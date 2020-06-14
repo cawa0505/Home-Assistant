@@ -93,6 +93,7 @@
       #   state: 'home' 
 
       action:
+       - delay: '00:05:00'
        - service: climate.set_preset_mode
          data:
            entity_id: climate.kitchen_thermostat
@@ -143,7 +144,7 @@
         platform: state
         from: 'not_home'
         to: 'home'
-        entity_id: group.household
+        entity_id: group.family
 
       condition:
        - condition: state
@@ -251,10 +252,47 @@
           - climate.kitchen
           - climate.living_room
           - climate.man_cave
-          - climate.nursery
           - climate.upstairs
         data_template:
             hvac_mode: 'off'
+
+        #########################################################
+        ## Back door open, turn off kitchen heating
+        #########################################################
+
+    - alias: Back door open, turn off kitchen heating
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.aqara_back_door_contact
+        from: 'off'
+        to: 'on'
+
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.kitchen
+        data_template:
+            hvac_mode: 'off'
+
+        #########################################################
+        ## Back door closed, turn on kitchen heating
+        #########################################################
+
+    - alias: Back door closed, turn on kitchen heating
+      initial_state: on
+      trigger:
+        platform: state
+        entity_id: binary_sensor.aqara_back_door_contact
+        from: 'on'
+        to: 'off'
+    
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.kitchen
+        data_template:
+            hvac_mode: 'auto'
 
         #########################################################
         ## Chris WFH - Aimee Away
@@ -291,7 +329,6 @@
           - climate.kitchen
           - climate.living_room
           - climate.man_cave
-          - climate.nursery
           - climate.upstairs
         data_template:
             hvac_mode: 'off'
@@ -361,3 +398,140 @@
           - climate.upstairs
         data_template:
             hvac_mode: 'auto'
+
+        #########################################################
+        ## Heating - Turn on Baby Sitter
+        #########################################################
+
+    - alias: 'Heating - Turn on Baby Sitter'
+      
+      trigger:
+        platform: state
+        from: 'home'
+        to: 'not_home'
+        entity_id: sensor.nursery_tado_mode
+
+      condition:
+      - condition: state
+        entity_id: input_boolean.baby_sitter
+        state: 'on'   
+
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.bedroom
+          - climate.downstairs
+          - climate.guest_room
+          - climate.kitchen
+          - climate.living_room
+          - climate.nursery
+          - climate.upstairs
+        data_template:
+            hvac_mode: 'heat'
+
+      - service: climate.set_temperature
+        entity_id: 
+          - climate.bedroom
+          - climate.downstairs
+          - climate.guest_room
+          - climate.kitchen
+          - climate.living_room
+          - climate.nursery
+          - climate.upstairs
+        data_template:
+          temperature: 21
+
+        #########################################################
+        ## Heating - Turn off Baby Sitter
+        #########################################################
+
+    - alias: 'Heating - Turn off Baby Sitter'
+      
+      trigger:
+        platform: state
+        from: 'on'
+        to: 'off'
+        entity_id: input_boolean.baby_sitter
+
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.bedroom
+          - climate.downstairs
+          - climate.guest_room
+          - climate.kitchen
+          - climate.living_room
+          - climate.nursery
+          - climate.upstairs
+        data_template:
+            hvac_mode: 'auto'
+
+        #########################################################
+        ## Heating - Eddie proof - Kitchen
+        #########################################################
+
+    - alias: 'Heating - Eddie proof - Kitchen'
+      
+      trigger:
+        platform: state
+        from: 'auto'
+        to: 'heat'
+        entity_id: sensor.climate_kitchen_status
+
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.kitchen
+        data_template:
+            hvac_mode: 'auto'
+
+        #########################################################
+        ## Heating - Eddie proof - Downstairs
+        #########################################################
+
+    - alias: 'Heating - Eddie proof - Downstairs'
+      
+      trigger:
+        platform: state
+        from: 'auto'
+        to: 'heat'
+        entity_id: sensor.climate_downstairs_status
+
+      action:
+      - service: climate.set_hvac_mode
+        entity_id: 
+          - climate.downstairs
+        data_template:
+            hvac_mode: 'auto'
+
+        #########################################################
+        ## Heating - Man Cave > 24c
+        #########################################################
+
+    - alias: 'Heating - Man Cave > 24c'
+      
+      trigger:
+        platform: numeric_state
+        above: '24'
+        entity_id: sensor.aqara_man_cave_temperature
+
+      action:
+      - service: notify.telegram
+        data:
+          message: 'Man Cave Temperature: { states.climate.man_cave.attributes.current_temperature}}'
+
+        #########################################################
+        ## Heating - Man Cave < 25c
+        #########################################################
+
+    - alias: 'Heating - Man Cave < 25c'
+      
+      trigger:
+        platform: numeric_state
+        below: '25'
+        entity_id: sensor.aqara_man_cave_temperature
+
+      action:
+      - service: notify.telegram
+        data:
+          message: 'Man Cave Temperature: {{ states.climate.man_cave.attributes.current_temperature}}'
