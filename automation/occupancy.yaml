@@ -284,18 +284,56 @@
          message: 'A visitor has arrived'
 
         ##########################################################
-        ## No One Home - Turn off all lights
+        ## Family home - Turn off baby sitter mode
         ##########################################################
 
-    - alias: 'No One Home - Turn off all lights'
+    - alias: 'Family home - Turn off baby sitter mode'
       initial_state: on
       trigger:
         platform: state
-        from: 'home'
-        to: 'not_home'
-        entity_id: group.household
+        from: 'not_home'
+        to: 'home'
+        entity_id: group.family
+
+      condition:  
+        condition: state
+        entity_id: input_boolean.baby_sitter
+        state: 'on'
 
       action:
-        - service: light.turn_off
-          entity_id:
-            - group.all_lights
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.baby_sitter
+
+        - service: notify.telegram
+          data:
+           message: 'Baby sitter turned off'
+
+        ##########################################################
+        ## Tado state change to home
+        ##########################################################
+
+    - alias: 'Tado state change to home'
+      initial_state: on
+      trigger:
+        platform: state
+        from: 'not_home'
+        to: 'home'
+        entity_id: sensor.man_cave_tado_mode
+
+      condition:
+         condition: state
+         entity_id: sun.sun
+         state: 'below_horizon'
+
+      action:
+        - service: light.turn_on
+          entity_id: 
+            - group.interior_lights
+            - light.outside
+            - light.porch   
+          data:
+            brightness: 255 
+
+        - service: notify.telegram
+          data:
+            message: 'Tado changed to home'
