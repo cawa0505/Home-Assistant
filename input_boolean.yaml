@@ -18,6 +18,10 @@
     name: Disable Occupancy Automation
     icon: mdi:eye-off
 
+  baby_sitter:
+    name: Baby Sitter
+    icon: mdi:eye-off
+
   disable_doorbell:
     name: Disable Doorbell Automation
     icon: mdi:bell-off
