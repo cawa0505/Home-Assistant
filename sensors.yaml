@@ -5,10 +5,6 @@
   - platform: uptime
 
   - platform: badnest
-  
-  - platform: huesensor
-  #  ip_address: 192.168.86.46
-   # token: !secret hue_api
 
   #- platform: metoffice
    # api_key: !secret metoffice_api
@@ -28,6 +24,7 @@
   - platform: moon
 
   - platform: google_wifi
+    host: 192.168.86.1
   
   - platform: radarr
     host: 192.168.86.6
@@ -186,6 +183,17 @@
     sensors:
       heating_target_temperature:
         value_template: '{{ states.climate.kitchen_thermostat.attributes.temperature }}'
+
+  - platform: template
+    sensors:
+      climate_kitchen_status:
+        value_template: '{{ states.climate.kitchen.state }}'
+
+  - platform: template
+    sensors:
+      climate_downstairs_status:
+        value_template: '{{ states.climate.downstairs.state }}'
+
 
 # Nest away status
   - platform: template
