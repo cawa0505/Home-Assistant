@@ -1,5 +1,5 @@
-  - platform: huesensor
-    track_new_devices: false
+#  - platform: huesensor
+ #   track_new_devices: false
 
   - platform: tile
     username: !secret tile_user
