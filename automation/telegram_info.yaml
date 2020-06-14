@@ -45,6 +45,7 @@
                    keyboard:
                      - '/trash_left, /lights_off, /status, /lights, /birthday'
                      - '/master_security_on, /master_security_off, /alarm_on, /alarm_off'
+                     - '/baby_sitter_on, /baby_sitter_off'
 
         ##########################################################
         ## Status
@@ -100,11 +101,9 @@
              data_template:
                message: >
                  The following lights are on:
-                 {%- for entity_id in states.group.all_lights.attributes.entity_id -%}
-                 {% set parts = entity_id.split('.') -%}
-                 {%- if states(entity_id) == 'on' %}
-                 {%- if loop.first %} {% elif loop.last %} and the {% else %}, the {% endif -%}{{ states[parts[0]][parts[1]].name }}{% endif -%}
-                 {%- endfor %}
+                  {% set domain = 'light' %}
+                  {% set state = 'on' %}
+                  {{ states[domain] | selectattr('state','eq', state) | map(attribute='entity_id') | list | join(', ') }}
 
         ##########################################################
         ## Help - List commands
