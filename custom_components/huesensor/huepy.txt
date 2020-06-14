@@ -1,3 +1,0 @@
-https://github.com/robmarkcole/Hue-sensors-HASS
-
-https://community.home-assistant.io/t/hue-motion-sensors-remotes-custom-component/27176/652
