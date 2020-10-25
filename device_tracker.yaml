@@ -72,15 +72,16 @@
     hosts:
       aimee_iphone: 192.168.86.61
       chris_android: 192.168.86.60
+      starky_pc: 192.168.86.34
 
   - platform: nmap_tracker
-    track_new_devices: false
+    track_new_devices: true
     scan_options: " --privileged -sP "
     hosts:
       - 192.168.86.0-40
     home_interval: 1
     consider_home: 300
-    interval_seconds: 15
+    interval_seconds: 5
 
   - platform: nmap_tracker
     track_new_devices: false
@@ -94,5 +95,5 @@
 
   - platform: tado
     username: !secret tado_user
-    password: !secret tado_password  
-    home_id: 291322
+    password: !secret tado_password
+    home_id: !secret tado_home_id
