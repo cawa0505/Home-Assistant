@@ -40,11 +40,6 @@
     host: 192.168.86.9
     port: 8989
     api_key: !secret sonarr_api
-    monitored_conditions:
-      - upcoming
-      - wanted
-      - series
-      - queue
     days: 7
 
 # Sensor for monitoring the bridge state
@@ -282,6 +277,30 @@
   #  sensors:
   #    hallway_chris_gh_rssi:
    #     value_template: '{{ states.device_tracker.chris_bt_hallway.attributes.rssi }}'
+
+  - platform: apcupsd
+    resources:
+      - apc
+      - date
+      - hostname
+      - version
+      - upsname
+      - cable
+      - driver
+      - upsmode
+      - starttime
+      - model
+      - status
+      - linev
+      - loadpct
+      - bcharge
+      - timeleft
+      - mbattchg
+      - mintimel
+      - maxtime
+      - maxlinev
+      - minlinev
+      - outputv
 
 #################################################################
 ## MISC
