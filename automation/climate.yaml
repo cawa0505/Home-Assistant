@@ -221,40 +221,40 @@
         ## Chris WFH 
         #########################################################
 
-    - alias: 'Heating - Chris WFH turn off heat'
+    #- alias: 'Heating - Chris WFH turn off heat'
       
-      trigger:
-        platform: state
-        from: 'off'
-        to: 'on'
-        entity_id: binary_sensor.aqara_man_cave_door_contact
+      #trigger:
+        #platform: state
+        #from: 'off'
+        #to: 'on'
+       # entity_id: binary_sensor.aqara_man_cave_door_contact
 
-      condition:
-      - condition: state
-        entity_id: group.person_aimee
-        state: 'not_home'   
+      #condition:
+     # - condition: state
+        #entity_id: group.person_aimee
+       # state: 'not_home'   
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.kitchen_thermostat
-        data_template:
-          temperature: '{{ states("sensor.heating_current_temperature") | float - 2 }}'
-      - service: climate.set_preset_mode
-        data:
-         entity_id: climate.kitchen_thermostat
-         preset_mode: "eco"
+      #action:
+      #- service: climate.set_temperature
+       # entity_id: climate.kitchen_thermostat
+       # data_template:
+      #    temperature: '{{ states("sensor.heating_current_temperature") | float - 2 }}'
+     # - service: climate.set_preset_mode
+        #data:
+      #   entity_id: climate.kitchen_thermostat
+       #  preset_mode: "eco"
 
-      - service: climate.set_hvac_mode
-        entity_id: 
-          - climate.bedroom
-          - climate.downstairs
-          - climate.guest_room
-          - climate.kitchen
-          - climate.living_room
-          - climate.man_cave
-          - climate.upstairs
-        data_template:
-            hvac_mode: 'off'
+     # - service: climate.set_hvac_mode
+        #entity_id: 
+          #- climate.bedroom
+          #- climate.downstairs
+          #- climate.guest_room
+          #- climate.kitchen
+          #- climate.living_room
+          #- climate.man_cave
+         # - climate.upstairs
+        #data_template:
+       #     hvac_mode: 'off'
 
         #########################################################
         ## Back door open, turn off kitchen heating
@@ -298,40 +298,40 @@
         ## Chris WFH - Aimee Away
         #########################################################
 
-    - alias: 'Heating - Chris WFH turn off heat - Aimee away'
+  #  - alias: 'Heating - Chris WFH turn off heat - Aimee away'
       
-      trigger:
-        platform: state
-        from: 'home'
-        to: 'not_home'
-        entity_id: group.person_aimee
+   #   trigger:
+    #    platform: state
+     #   from: 'home'
+      #  to: 'not_home'
+       # entity_id: group.person_aimee
 
-      condition:
-      - condition: state
-        entity_id: binary_sensor.aqara_man_cave_door_contact
-        state: 'on'   
+      #condition:
+     # - condition: state
+      #  entity_id: binary_sensor.aqara_man_cave_door_contact
+       # state: 'on'   
 
-      action:
-      - service: climate.set_temperature
-        entity_id: climate.kitchen_thermostat
-        data_template:
-          temperature: '{{ states("sensor.heating_current_temperature") | float - 2 }}'
-      - service: climate.set_preset_mode
-        data:
-         entity_id: climate.kitchen_thermostat
-         preset_mode: "eco"
+      #action:
+     # - service: climate.set_temperature
+     #   entity_id: climate.kitchen_thermostat
+      #  data_template:
+       #   temperature: '{{ states("sensor.heating_current_temperature") | float - 2 }}'
+      #- service: climate.set_preset_mode
+       # data:
+        # entity_id: climate.kitchen_thermostat
+         #preset_mode: "eco"
 
-      - service: climate.set_hvac_mode
-        entity_id: 
-          - climate.bedroom
-          - climate.downstairs
-          - climate.guest_room
-          - climate.kitchen
-          - climate.living_room
-          - climate.man_cave
-          - climate.upstairs
-        data_template:
-            hvac_mode: 'off'
+     # - service: climate.set_hvac_mode
+       # entity_id: 
+         # - climate.bedroom
+         # - climate.downstairs
+         # - climate.guest_room
+          #- climate.kitchen
+         # - climate.living_room
+        #  - climate.man_cave
+       #   - climate.upstairs
+        #data_template:
+          #  hvac_mode: 'off'
 
         #########################################################
         ## Heating - Aimee comes home
@@ -470,39 +470,39 @@
         ## Heating - Eddie proof - Kitchen
         #########################################################
 
-    - alias: 'Heating - Eddie proof - Kitchen'
+  #  - alias: 'Heating - Eddie proof - Kitchen'
       
-      trigger:
-        platform: state
-        from: 'auto'
-        to: 'heat'
-        entity_id: sensor.climate_kitchen_status
+   #   trigger:
+    #    platform: state
+     #   from: 'auto'
+      #  to: 'heat'
+       # entity_id: sensor.climate_kitchen_status
 
-      action:
-      - service: climate.set_hvac_mode
-        entity_id: 
-          - climate.kitchen
-        data_template:
-            hvac_mode: 'auto'
+     # action:
+      #- service: climate.set_hvac_mode
+       # entity_id: 
+        #  - climate.kitchen
+        #data_template:
+         #   hvac_mode: 'auto'
 
         #########################################################
         ## Heating - Eddie proof - Downstairs
         #########################################################
 
-    - alias: 'Heating - Eddie proof - Downstairs'
+  #  - alias: 'Heating - Eddie proof - Downstairs'
       
-      trigger:
-        platform: state
-        from: 'auto'
-        to: 'heat'
-        entity_id: sensor.climate_downstairs_status
+   #   trigger:
+    #    platform: state
+     #   from: 'auto'
+      #  to: 'heat'
+      #  entity_id: sensor.climate_downstairs_status
 
-      action:
-      - service: climate.set_hvac_mode
-        entity_id: 
-          - climate.downstairs
-        data_template:
-            hvac_mode: 'auto'
+     # action:
+     # - service: climate.set_hvac_mode
+      #  entity_id: 
+       #   - climate.downstairs
+       # data_template:
+        #    hvac_mode: 'auto'
 
         #########################################################
         ## Heating - Man Cave > 24c
@@ -518,7 +518,7 @@
       action:
       - service: notify.telegram
         data:
-          message: 'Man Cave Temperature: { states.climate.man_cave.attributes.current_temperature}}'
+          message: 'Man Cave Temperature: {{ states.climate.man_cave.attributes.current_temperature}}'
 
         #########################################################
         ## Heating - Man Cave < 25c
