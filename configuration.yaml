@@ -10,7 +10,7 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/London
   customize: !include customize.yaml
-  whitelist_external_dirs:
+  allowlist_external_dirs:
   - /config/camera_snapshot
   packages: !include_dir_named packages
 
@@ -142,6 +142,9 @@ nzbget:
 tado:
   username: !secret tado_user
   password: !secret tado_password  
+
+apcupsd:
+  host: 192.168.86.9
 
 tplink:
  # discovery: false
